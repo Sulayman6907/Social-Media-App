@@ -1,26 +1,19 @@
-
-  
 import React from "react";
 import styled from "styled-components";
-import { ErrorMessage, useField } from 'formik';
 
-
-export const Input = ({ label,type, ...props }) => {
-  const [field, meta] = useField(props);
+const Input = ({ type, placeholder }) => {
   return (
     <Container>
-      <label htmlFor={field.name}>{label}</label>
       <StyledInput
-        
-        {...field} {...props}
-        autoComplete="off"
+        placeholder={placeholder && placeholder}
+        type={type ? type : "text"}
+        required
+        autocomplete="off"
       />
-      
-      <ErrorMessage component="div"  name={field.name} className="error" />
-      
+      <Status />
     </Container>
-  )
-}
+  );
+};
 
 const StyledInput = styled.input`
   width: 80%;

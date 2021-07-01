@@ -1,85 +1,26 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 import logo from '../assests/logo.svg'
-import Input from './Input'
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
-
-
-
-
+import Input from "./Input";
 
 const Sidebar = () => {
-
-    const validate = Yup.object({
-        firstName: Yup.string()
-          .max(15, 'Must be 15 characters or less')
-          .required('Required'),
-        lastName: Yup.string()
-          .max(20, 'Must be 20 characters or less')
-          .required('Required'),
-        email: Yup.string()
-          .email('Email is invalid')
-          .required('Email is required'),
-        password: Yup.string()
-          .min(6, 'Password must be at least 6 charaters')
-          .required('Password is required'),
-        confirmPassword: Yup.string()
-          .oneOf([Yup.ref('password'), null], 'Password must match')
-          .required('Confirm password is required'),
-      })
-
-      
-
-
-
-    return (
-        <Container>
-           <LogoWrapper>
+  return (
+   
+    <Container>
+      <LogoWrapper>
         <img src={logo} alt="" />
         <h3>
           Eli <span>Codes</span>
         </h3>
       </LogoWrapper>
-      
-      
-
-
-      <Formik
-      initialValues={{
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-      }}
-      validationSchema={validate}
-      onSubmit={values => {
-        console.log(Formik.values)
-      }}
-    >
-
-{formik => (
-        <div>
-          <h3>Sign Up</h3>
-          <FormWrapper>
-          <Input label="First Name" name="firstName" type="text" />
-            <Input label="last Name" name="lastName" type="text" />
-            <Input label="Email" name="email" type="email" />
-            <Input label="password" name="password" type="password" />
-            <Input label="Confirm Password" name="confirmPassword" type="password" />
-            <button type="submit" >Sign Up</button>
-            </FormWrapper>
-        </div>
-      )}
-    </Formik>    
-
-        
-        
-        
-        
-      
-      
+      <Form>
+        <h3>Sign Up</h3>
+        <Input placeholder="Full Name" />
+        <Input type="email" placeholder="Email" />
+        <Input type="password" placeholder="Password" />
+        <Input type="password" placeholder="Confrim Password" />
+        <button onClick>Sign Up</button>
+      </Form>
       <div>
         <Terms>
           By signing up, I agree to the Privacy Policy <br /> and Terms of
@@ -89,9 +30,9 @@ const Sidebar = () => {
           Already have an account? <span>Sign In</span>
         </h4>
       </div>
-        </Container>
-    )
-}
+    </Container>
+  );
+};
 
 const Terms = styled.p`
   padding: 0 1rem;
@@ -101,7 +42,7 @@ const Terms = styled.p`
   font-weight: 300;
 `;
 
-const FormWrapper = styled.form`
+const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -145,15 +86,32 @@ const LogoWrapper = styled.div`
     font-size: 18px;
   }
 `;
+
 const Container = styled.div`
-min-width: 600px;
-backdrop-filter: blur(35px);
-background-color: rgba(255, 255, 255, 0.8);
-height: 100%;
-display: flex;
-flex-direction: Column;
-justify-content: space-evenly;
-align-items: center;
-padding: 0 2rem;
+  min-width: 400px;
+  backdrop-filter: blur(35px);
+  background-color: rgba(255, 255, 255, 0.8);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 2rem;
+  @media (max-width: 900px) {
+    width: 100vw;
+    position: absolute;
+    padding: 0;
+  }
+  h4 {
+    color: #808080;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 2rem;
+    span {
+      color: #ff8d8d;
+      cursor: pointer;
+    }
+  }
 `;
-export default Sidebar
+
+export default Sidebar;
