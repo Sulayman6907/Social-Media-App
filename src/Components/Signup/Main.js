@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Main = () => {
+ export const Main = () => {
     return (
         <Container>
             <h1>Join the Platform</h1>
@@ -24,4 +24,4 @@ h1 {
   }
 }
 `;
-export default Main
+

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Input = ({ type, placeholder }) => {
+export const Input = ({ type, placeholder }) => {
   return (
     <Container>
       <StyledInput
@@ -54,5 +54,3 @@ const Status = styled.div`
     background: #70edb9;
   }
 `;
-
-export default Input;

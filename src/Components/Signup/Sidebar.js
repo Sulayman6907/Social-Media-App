@@ -1,11 +1,33 @@
 import React from "react";
 import styled from "styled-components";
 import logo from '../assests/logo.svg'
-import Input from "./Input";
+import {Input} from "./Input";
+import { Formik, yupToFormErrors, useField } from "formik";
+import * as Yup from 'yup';
 
-const Sidebar = () => {
-  return (
+const CustomInput = ({label, ...props}) =>{
+  const [field, meta] = useField(props);
+   return (
+     <>
+       <label>
+         {label}
+         <input {...field} {...props} />
+       </label>
+       {meta.touched && meta.error ? (
+         <div className="error">{meta.error}</div>
+       ) : null}
+     </>
+   );
+  
+}
+
+ export const Sidebar = () => {
+    
+    
    
+  return (
+    
+
     <Container>
       <LogoWrapper>
         <img src={logo} alt="" />
@@ -13,14 +35,24 @@ const Sidebar = () => {
           Eli <span>Codes</span>
         </h3>
       </LogoWrapper>
-      <Form>
+      <Formik
+      initialValues ={{ email: '', password: '' }}
+      onSubmit={(values)=>{
+        
+        console.log("here are the values : ",values)
+      }}
+      validationSchema={Yup.object().shape({name: Yup.string().required(), email : Yup.string().email().required("Email is required")})}
+      >
+      {({handleSubmit})=>
+       <>
         <h3>Sign Up</h3>
-        <Input placeholder="Full Name" />
-        <Input type="email" placeholder="Email" />
-        <Input type="password" placeholder="Password" />
-        <Input type="password" placeholder="Confrim Password" />
-        <button onClick>Sign Up</button>
-      </Form>
+        <CustomInput type="email" name="email" placeholder="Email" label="email" />
+        <CustomInput type ="string "placeholder="Full Name" name="password" label ="password"/>
+        
+        <button   type="button" onClick={()=>{handleSubmit()}}>Login</button>
+        </>
+      }
+      </Formik>
       <div>
         <Terms>
           By signing up, I agree to the Privacy Policy <br /> and Terms of
@@ -114,4 +146,3 @@ const Container = styled.div`
   }
 `;
 
-export default Sidebar;
