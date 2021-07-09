@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 export const Input = ({ type, placeholder }) => {
   return (
-    <Container>
-      <StyledInput
-        placeholder={placeholder && placeholder}
-        type={type ? type : "text"}
-        required
-        autocomplete="off"
-      />
-      <Status />
+      <Container>
+          <StyledInput
+            placeholder={placeholder && placeholder}
+            type={type ? type : "text"}
+            required
+            autocomplete="off"
+          />
+          <Status />
     </Container>
   );
 };
@@ -30,14 +30,12 @@ const StyledInput = styled.input`
   &:hover {
     transform: translateY(-3px);
   }
-`;
-
+`
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
+`
 const Status = styled.div`
   height: 10px;
   width: 10px;
@@ -53,4 +51,4 @@ const Status = styled.div`
   ${StyledInput}:valid + & {
     background: #70edb9;
   }
-`;
+`

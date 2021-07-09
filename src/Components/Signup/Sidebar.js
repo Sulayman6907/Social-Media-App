@@ -14,42 +14,34 @@ const CustomInput = ({label, ...props}) =>{
          <input {...field} {...props} />
        </label>
        {meta.touched && meta.error ? (
-         <div className="error">{meta.error}</div>
+         <div>{meta.error}</div>
        ) : null}
      </>
    );
-  
 }
 
- export const Sidebar = () => {
-    
-    
-   
-  return (
-    
-
+export const Sidebar = () => {
+    return (
     <Container>
       <LogoWrapper>
         <img src={logo} alt="" />
         <h3>
-          Eli <span>Codes</span>
+          Fake <span>Book 2.0</span>
         </h3>
       </LogoWrapper>
       <Formik
       initialValues ={{ email: '', password: '' }}
       onSubmit={(values)=>{
-        
         console.log("here are the values : ",values)
       }}
-      validationSchema={Yup.object().shape({name: Yup.string().required(), email : Yup.string().email().required("Email is required")})}
+      validationSchema={Yup.object().shape({password: Yup.string().required(), email : Yup.string().email().required("Email is required")})}
       >
       {({handleSubmit})=>
-       <>
+        <>
         <h3>Sign Up</h3>
         <CustomInput type="email" name="email" placeholder="Email" label="email" />
         <CustomInput type ="string "placeholder="Full Name" name="password" label ="password"/>
-        
-        <button   type="button" onClick={()=>{handleSubmit()}}>Login</button>
+        <button type="button" onClick={()=>{handleSubmit()}}>Login</button>
         </>
       }
       </Formik>
@@ -72,8 +64,7 @@ const Terms = styled.p`
   font-size: 10px;
   color: #808080;
   font-weight: 300;
-`;
-
+`
 const Form = styled.form`
   width: 100%;
   display: flex;
@@ -101,8 +92,7 @@ const Form = styled.form`
       transform: translateY(-3px);
     }
   }
-`;
-
+`
 const LogoWrapper = styled.div`
   img {
     height: 6rem;
@@ -117,8 +107,7 @@ const LogoWrapper = styled.div`
     font-weight: 300;
     font-size: 18px;
   }
-`;
-
+`
 const Container = styled.div`
   min-width: 400px;
   backdrop-filter: blur(35px);
@@ -144,5 +133,5 @@ const Container = styled.div`
       cursor: pointer;
     }
   }
-`;
+`
 
