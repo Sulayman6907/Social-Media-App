@@ -15,6 +15,7 @@
     "react-scripts": "4.0.3",
     "react-social-icons": "^5.5.1",
     "styled-components": "^5.3.0",
+    "use-local-storage-state": "^10.0.0",
     "web-vitals": "^1.0.1",
     "yup": "^0.32.9"
   },
@@ -41,8 +42,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-
   },
   "proxy": "https://fakebook00.herokuapp.com"
-  
 }

@@ -1,10 +1,12 @@
-import React from "react";
+import {React, useEffect } from "react";
 import styled from "styled-components";
 import logo from '../assests/logo.svg'
 import {Input} from "./Input";
 import { Formik, yupToFormErrors, useField } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
+import { Redirect,useHistory } from "react-router-dom";
+
 
 
 const CustomInput = ({label, ...props}) =>{
@@ -22,7 +24,16 @@ const CustomInput = ({label, ...props}) =>{
    );
 }
 
-export const Sidebar = () => {
+export const LoginSidebar = () => {
+    let history=useHistory();
+    useEffect(()=>{
+        console.log(localStorage.getItem("token"))
+    },[])
+    const config = {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
     return (
     <Container>
       <LogoWrapper>
@@ -32,51 +43,43 @@ export const Sidebar = () => {
         </h3>
       </LogoWrapper>
       <Formik
-      initialValues ={{ email: '', password: '', name: '' }}
-      onSubmit={({name, email, password})=>{
-      console.log("here are the values : ",name, email, password)
-      //Register a user
-
-      const user = JSON.stringify( {name, email, password} );
-      const url="/api/users";
+      initialValues ={{ email: '', password: '' }}
+      onSubmit={({ email, password})=>{
+      console.log("here are the values : ", email, password)
+      //Login a user
+      const user = JSON.stringify( { email, password} );
+      const url="/api/auth";
       console.log(user)
-      axios.post(url, {
-      name: name,
-      email: email,
-      password: password
-      },{
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      })
+      axios.post(url,user,config)
       .then(function (response) {
-      console.log(response);
-      })
+        console.log(response);
+        localStorage.setItem("token",response.data.token);
+        if (response.status == 201){
+            console.log("this func is working");
+            history.push("/feed")
+            
+        }
+        })
       .catch(function (error) {
-      console.log(error);
-      });
-
+        console.log(error);
+       });
       }
       }
 
-      validationSchema={Yup.object().shape({name:Yup.string().required(), password: Yup.string().required(), email : Yup.string().email().required("Email is required")})}
+      validationSchema={Yup.object().shape({ password: Yup.string().required(), email : Yup.string().email().required("Email is required")})}
       >
       {({handleSubmit})=>
       <>
-        <h3>Sign Up</h3>
-        <CustomInput type ="string "placeholder="name" name="name" label ="name"/>
+        <h3>Login now</h3>
         <CustomInput type="email" name="email" placeholder="Email" label="email" />
         <CustomInput type ="password" placeholder="password" name="password" label ="password"/>
-        <button type="button" onClick={()=>{handleSubmit()}}>Sign Up</button>
+        <button type="button" onClick={()=>{handleSubmit()}}>Login</button>
       </>
       }
       </Formik>
       <div>
-        <Terms>
-        By signing up, I agree to the Privacy Policy <br /> and Terms of
-        Service
-        </Terms>
         <h4>
-        Already have an account? <span><a href="/login">Sign In </a></span>
+        Don't have an account? <a href="/"> <span> Sign up</span></a>
         </h4>
       </div>
     </Container>

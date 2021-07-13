@@ -8,6 +8,7 @@ import {Signup} from './Pages/Signup.jsx'
 import { FeedPage } from './Pages/FeedPage.jsx';
 import { ProfilePage } from './Pages/ProfilePage.jsx';
 import { ProfileForm } from './Pages/ProfileForm.jsx';
+import { Login } from './Pages/Login.jsx';
 
 export const App = () => {
   return (
@@ -24,6 +25,9 @@ export const App = () => {
           </Route>
           <Route path="/profileform" exact>
             <ProfileForm />
+          </Route>
+          <Route path="/login" exact>
+            <Login/>
           </Route>
         </Switch>
     </Router>
