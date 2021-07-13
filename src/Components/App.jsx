@@ -2,12 +2,12 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
-import {Signup} from './Pages/Signup'
-import { FeedPage } from './Pages/FeedPage';
-import { ProfilePage } from './Pages/ProfilePage';
+import {Signup} from './Pages/Signup.jsx'
+import { FeedPage } from './Pages/FeedPage.jsx';
+import { ProfilePage } from './Pages/ProfilePage.jsx';
+import { ProfileForm } from './Pages/ProfileForm.jsx';
 
 export const App = () => {
   return (
@@ -21,6 +21,9 @@ export const App = () => {
           </Route>
           <Route path="/profile" exact>
             <ProfilePage />
+          </Route>
+          <Route path="/profileform" exact>
+            <ProfileForm />
           </Route>
         </Switch>
     </Router>

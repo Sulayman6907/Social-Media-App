@@ -1,5 +1,5 @@
 import React from 'react'
-import { Posts } from '../Feed/Posts'
+import { Posts } from '../Feed/Post'
 
 export const Comment = () => {
     return (

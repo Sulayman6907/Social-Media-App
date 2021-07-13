@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import styled from 'styled-components'
 
-export const Posts = ({avatar,name,status,likes,dislikes,liked, like,unlike}) => {
+export const Post = ({avatar,name,status,likes,dislikes,liked, like,unlike}) => {
     const [count, setcount] = useState(likes);
     const[checkliked,setliked]=useState(liked)
     
@@ -34,55 +34,58 @@ export const Posts = ({avatar,name,status,likes,dislikes,liked, like,unlike}) =>
 }
 
 const Container = styled.div`
-  min-width: 400px;
-  backdrop-filter: blur(35px);
-  background-color: rgba(255, 255, 255, 0.8);
-  border-color:black;
-  border-style:solid;
-  margin-left:200px;
-  margin-right:200px;
-  height: 100%;
-  display: flex;
-  padding: 0 2rem;
-  margin-bottom:30px;
+    min-width: 400px;
+    backdrop-filter: blur(35px);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: black;
+    border-style: solid;
+    margin-left: 200px;
+    margin-right: 200px;
+    height: 100%;
+    display: flex;
+    padding: 0 2rem;
+    margin-bottom: 30px;
 `
 const Status=styled.div`
-padding-top:30px;
-margin-left: 300px;
+    padding-top: 30px;
+    margin-left: 300px;
 `
 const StatusText=styled.h3`
-padding-top:30px;`
+    padding-top: 30px;
+`
 
 const Like=styled.button`
-margin-top:30px;
-margin-left:-100px;
-width:100px;
-background-color: green;
-color:white;
+    margin-top: 30px;
+    margin-left: -100px;
+    width: 100px;
+    background-color: green;
+    color: white;
 `
 const Dislike=styled.button`
-margin-top:30px;
-margin-left :20px;
-width:100px;
-background-color: red;
-color:white;
+    margin-top: 30px;
+    margin-left: 20px;
+    width: 100px;
+    background-color: red;
+    color: white;
 `
 const Comment=styled.button`
-margin-top:30px;
-margin-left :20px;
-width:100px;
-background-color: blue;
-color:white;
+    margin-top: 30px;
+    margin-left: 20px;
+    width: 100px;
+    background-color: blue;
+    color: white;
 `
 const LikesCounter=styled.div`
-margin-top:30px`
+    margin-top: 30px
+`
 
 const DislikesCounter=styled.div`
-margin-top:30px;`
+    margin-top: 30px;
+`
 
 const CustomText=styled.textarea`
-width:100%;
-margin-left:-50px;
-margin-top:20px;
+    width: 100%;
+    margin-left: -50px;
+    margin-top: 20px;
 `
 

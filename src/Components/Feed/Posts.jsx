@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from 'react'
-import { Posts } from './Posts'
+import { Post } from './Post.jsx'
 import axios from 'axios';
 
 const data=[
@@ -45,7 +45,7 @@ const data=[
     }
   ];
 
-export const PostMap = () => {
+export const Posts = () => {
 
     const[posts,setPosts]=useState(data);
   
@@ -62,9 +62,9 @@ export const PostMap = () => {
 
     return (
         <div>
-            {posts.map(({avatar,name,status,likes,dislikes,key,liked}) =>
+            {posts.map(({avatar,name,status,likes,dislikes,key,liked}) => 
         
-        <Posts key ={key} liked={liked} avatar={avatar} name={name} status={status} likes={likes} dislikes={dislikes} like={()=> like(key) } unlike={()=> unLike(key)}/>
+        <Post key ={key} liked={liked} avatar={avatar} name={name} status={status} likes={likes} dislikes={dislikes} like={()=> like(key) } unlike={()=> unLike(key)}/>
         
         )}
         </div>
