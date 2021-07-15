@@ -28,7 +28,7 @@ export const Posts = () => {
 
   useEffect(() => {
     getPost();
-  }, [posts])
+  }, [])
 
   const like = (id) => async () => {
       // console.log("unliked");

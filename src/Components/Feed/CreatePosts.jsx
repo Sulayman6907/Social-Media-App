@@ -5,9 +5,29 @@
  export const CreatePosts = () => {
   const [commentText,setCommentText] = useState("")
 
+  const addPost = (text) => async () => {
+    try {
+      console.log("in add post with text ", text);
+      const token=localStorage.getItem("token")
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": token,
+        }
+      };
+      const res = await axios.post("/api/posts", { text: text }, config);
+      console.log(res)
+      
+    } catch (err) {
+      console.log(err)
+    }
+  };  
+
   const handleSubmit = (evt) => {
   evt.preventDefault();
   console.log(commentText)
+  addPost(commentText)
+  console.log("Post is added!")
           
   }
 
@@ -23,7 +43,7 @@
             onChange={e => setCommentText(e.target.value)}
           >
           </CustomText> 
-          <input type = "submit" value="Submit"/>
+          <input type = "submit"  onClick={ addPost(commentText)} value="Submit"/>
       </Container>
     </form>
   )
