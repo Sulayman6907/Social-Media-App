@@ -1,72 +1,80 @@
-import React, { useState ,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Post } from './Post.jsx'
 import axios from 'axios';
 
-const data=[
-    {
-      name: "Sulayman",
-      avatar: "https://scontent.fisb1-1.fna.fbcdn.net/v/t1.6435-9/194711225_2983390401985191_1495320275213563202_n.jpg?_nc_cat=103&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeGULRKaxMFieLKnJQwSAS5lHHt_cUXcMe0ce39xRdwx7aojh5121gVFGgzR8X8y4MQM4LSMYkcEPnY6cD9R94V9&_nc_ohc=a7UNbrKqS3QAX_3lvi9&_nc_ht=scontent.fisb1-1.fna&oh=70e3b5cda6239122c30da5c4954a9a98&oe=60E2B317",
-      status: "I am Happy",
-      likes: 32,
-      dislikes: 10,
-      liked: true,
-      key : 1
-      
-    },
-    {
-      name: "Sulayman",
-      avatar: "https://scontent.fisb1-1.fna.fbcdn.net/v/t1.6435-9/194711225_2983390401985191_1495320275213563202_n.jpg?_nc_cat=103&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeGULRKaxMFieLKnJQwSAS5lHHt_cUXcMe0ce39xRdwx7aojh5121gVFGgzR8X8y4MQM4LSMYkcEPnY6cD9R94V9&_nc_ohc=a7UNbrKqS3QAX_3lvi9&_nc_ht=scontent.fisb1-1.fna&oh=70e3b5cda6239122c30da5c4954a9a98&oe=60E2B317",
-      status: "I am Happy",
-      likes: 20,
-      dislikes: 17,
-      liked: false,
-      key : 2
-      
-    },
-    {
-      name: "Usman",
-      avatar: "https://scontent.fisb1-1.fna.fbcdn.net/v/t1.6435-9/194711225_2983390401985191_1495320275213563202_n.jpg?_nc_cat=103&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeGULRKaxMFieLKnJQwSAS5lHHt_cUXcMe0ce39xRdwx7aojh5121gVFGgzR8X8y4MQM4LSMYkcEPnY6cD9R94V9&_nc_ohc=a7UNbrKqS3QAX_3lvi9&_nc_ht=scontent.fisb1-1.fna&oh=70e3b5cda6239122c30da5c4954a9a98&oe=60E2B317",
-      status: "Life is hard ;-;",
-      likes: 110,
-      dislikes: 7,
-      liked: false,
-      key : 3
-      
-    },
-    {
-      name: "Usman",
-      avatar: "https://scontent.fisb1-1.fna.fbcdn.net/v/t1.6435-9/194711225_2983390401985191_1495320275213563202_n.jpg?_nc_cat=103&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeGULRKaxMFieLKnJQwSAS5lHHt_cUXcMe0ce39xRdwx7aojh5121gVFGgzR8X8y4MQM4LSMYkcEPnY6cD9R94V9&_nc_ohc=a7UNbrKqS3QAX_3lvi9&_nc_ht=scontent.fisb1-1.fna&oh=70e3b5cda6239122c30da5c4954a9a98&oe=60E2B317",
-      status: "Life is hard ;-;",
-      likes: 110,
-      dislikes: 7,
-      liked: false,
-      key : 4
-      
-    }
-  ];
-
 export const Posts = () => {
 
-    const[posts,setPosts]=useState(data);
-  
-    const like=(key)=>{
-        const tempPosts= posts.map((post)=>post.key==key?{...post,liked:true}:post)
-        setPosts(tempPosts)
-        
+  let isliked=false;
+  const [posts, setPosts] = useState([]);
+  const getPost = async () => {
+    let token = localStorage.getItem("token")
+    console.log(token)
+    try {
+      const res = await axios.get("/api/posts", {
+        headers: {
+          'x-auth-token': token,
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        }
+      });
+      console.log(res.data)
+      setPosts(res.data)
+    } catch (error) {
+      console.log(error)
+
     }
 
-    const unLike=(key)=>{
-      const tempPosts= posts.map((post)=>post.key==key?{...post,liked:false}:post)
-      setPosts(tempPosts)
-    } 
+  }
 
-    return (
-        <div>
-            {posts.map(({avatar,name,status,likes,dislikes,key,liked}) => 
+  useEffect(() => {
+    getPost();
+  }, [posts])
+
+  const like = (id) => async () => {
+      // console.log("unliked");
+      try {
+        console.log("Function is rinning!")
+        const token = localStorage.getItem("token")
+        const res = await axios.put(`/api/posts/like/${id}`, {}, {
+          headers: {
+            'x-auth-token': token,
+            'Content-Type': 'application/json',
+          }
+          
+        });
+        console.log("isliked", isliked)
         
-        <Post key ={key} liked={liked} avatar={avatar} name={name} status={status} likes={likes} dislikes={dislikes} like={()=> like(key) } unlike={()=> unLike(key)}/>
+      } catch (err) {
+        console.log(err)
+      }
+    };
+
+
+    const unlike = (id) => async () => {
+      // console.log("unliked");
+      try {
+        console.log("Function is rinning!")
+        const token = localStorage.getItem("token")
+        const res = await axios.put(`/api/posts/unlike/${id}`, {}, {
+          headers: {
+            'x-auth-token': token,
+            'Content-Type': 'application/json',
+          }
+          
+        });
         
-        )}
-        </div>
-      )
+      } catch (err) {
+        console.log(err)
+      }
+    };  
+
+  return (
+    <div>
+      {posts.map(({ avatar, name, text,_id,likes}) =>
+
+        <Post  key={_id}  avatar={avatar} name={name} status={text} likes={likes.length} like={like} id={_id} isliked={isliked} unlike={unlike}/>
+
+      )}
+    </div>
+  )
 }

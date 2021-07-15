@@ -1,91 +1,89 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-export const Post = ({avatar,name,status,likes,dislikes,liked, like,unlike}) => {
+export const Post = ({ avatar, name, status, likes, dislikes, liked, like, unlike, id,isliked }) => {
     const [count, setcount] = useState(likes);
-    const[checkliked,setliked]=useState(liked)
-    
+    const [checkliked, setliked] = useState(liked)
+
     useEffect(() => {
-        if(!liked){
-            setcount(count-1)
-        }
-        else{
-            setcount(count+1)
-        }
-    }, [liked])
-    
+        setcount(likes)
+    }, [likes])
     return (
-        
+
         <Container>
             <div>
-                <img src={avatar} alt="new" style ={{height : "200px", width: "200px", borderRadius: "100px", display: "inline" , paddingTop:"10px"}}/>
-                <h1 style={{marginLeft:"30px"}}>{name}</h1>
+                <DivImg>
+                    <img src={avatar} alt="new" style={{ height: "200px", width: "200px", borderRadius: "100px", display: "inline", paddingTop: "10px" }} />
+                </DivImg>
+                <Customh1>{name}</Customh1>
             </div>
             <Status>
-                <h1>Status</h1>
+                <Customh1>Status</Customh1>
                 <StatusText>"  {status} "</StatusText>
-                <Like onClick={like} style={ {backgroundColor: liked?'green':'black'} }> like</Like>
-                <Dislike onClick={unlike}>Unlike</Dislike>
-                <Comment onClick={()=> console.log(liked)}>Comment</Comment>
-                <LikesCounter >Total likes : {count} </LikesCounter>  
+                <Like onClick={like(id)} style={{ backgroundColor: isliked ? 'green' : 'black' }}> like</Like>
+                <Dislike onClick={unlike(id)}>Unlike</Dislike>
+                <Comment onClick={() => console.log(liked)}>Comment</Comment>
+                <LikesCounter >Total likes : {count} </LikesCounter>
             </Status>
-        </Container>    
+        </Container>
     )
 }
 
 const Container = styled.div`
-    min-width: 400px;
-    backdrop-filter: blur(35px);
-    background-color: rgba(255, 255, 255, 0.8);
-    border-color: black;
-    border-style: solid;
-    margin-left: 200px;
-    margin-right: 200px;
-    height: 100%;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    border: 1px solid #363636;
     display: flex;
-    padding: 0 2rem;
-    margin-bottom: 30px;
+    flex-direction: column;
+    margin-bottom:30px;
 `
-const Status=styled.div`
+const Customh1 = styled.h1`
+    text-align:center;
+`
+
+
+const Status = styled.div`
     padding-top: 30px;
-    margin-left: 300px;
+    display:flex;
+    align-items:left;
+    justify-context:left;
+    flex-direction: column;
+    align-items: center;
 `
-const StatusText=styled.h3`
+const StatusText = styled.h3`
     padding-top: 30px;
 `
 
-const Like=styled.button`
+const Like = styled.button`
     margin-top: 30px;
-    margin-left: -100px;
     width: 100px;
     background-color: green;
     color: white;
 `
-const Dislike=styled.button`
+const Dislike = styled.button`
     margin-top: 30px;
-    margin-left: 20px;
     width: 100px;
     background-color: red;
     color: white;
 `
-const Comment=styled.button`
+const Comment = styled.button`
     margin-top: 30px;
-    margin-left: 20px;
     width: 100px;
     background-color: blue;
     color: white;
 `
-const LikesCounter=styled.div`
+const LikesCounter = styled.div`
     margin-top: 30px
 `
 
-const DislikesCounter=styled.div`
+const DislikesCounter = styled.div`
     margin-top: 30px;
 `
 
-const CustomText=styled.textarea`
-    width: 100%;
-    margin-left: -50px;
-    margin-top: 20px;
-`
-
+const DivImg = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    `
