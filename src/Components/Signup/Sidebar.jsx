@@ -1,82 +1,87 @@
 import React from "react";
 import styled from "styled-components";
 import logo from '../assests/logo.svg'
-import {Input} from "./Input";
+import { Input } from "./Input";
 import { Formik, yupToFormErrors, useField } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
 
-
-const CustomInput = ({label, ...props}) =>{
-   const [field, meta] = useField(props);
-   return (
-     <>
-       <label>
-         {label}
-         <input {...field} {...props} />
-       </label>
-       {meta.touched && meta.error ? (
-         <div>{meta.error}</div>
-       ) : null}
-     </>
-   );
+const CustomInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <>
+      <label>
+        {label}
+        <input {...field} {...props} />
+      </label>
+      {meta.touched && meta.error ? (
+        <div>{meta.error}</div>
+      ) : null}
+    </>
+  );
 }
 
 export const Sidebar = () => {
-    return (
+  const Submit = ({ name, email, password }) => {
+    console.log("here are the values : ", name, email, password)
+    const user = JSON.stringify({ name, email, password });
+    const url = "/api/users";
+    console.log(user)
+    axios.post(url, {
+      name: name,
+      email: email,
+      password: password
+    }, {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  const validationShape = {
+    name: Yup.string().required(),
+    password: Yup.string().required(),
+    email: Yup.string().email().required("Email is required")
+  }
+  return (
     <Container>
       <LogoWrapper>
         <img src={logo} alt="" />
         <h3>
-        Fake <span>Book 2.0</span>
+          Fake <span>Book 2.0</span>
         </h3>
       </LogoWrapper>
       <Formik
-      initialValues ={{ email: '', password: '', name: '' }}
-      onSubmit={({name, email, password})=>{
-      console.log("here are the values : ",name, email, password)
-      //Register a user
+        initialValues={{ email: '', password: '', name: '' }}
+        onSubmit={Submit}
 
-      const user = JSON.stringify( {name, email, password} );
-      const url="/api/users";
-      console.log(user)
-      axios.post(url, {
-      name: name,
-      email: email,
-      password: password
-      },{
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      })
-      .then(function (response) {
-      console.log(response);
-      })
-      .catch(function (error) {
-      console.log(error);
-      });
-
-      }
-      }
-
-      validationSchema={Yup.object().shape({name:Yup.string().required(), password: Yup.string().required(), email : Yup.string().email().required("Email is required")})}
+        validationSchema={Yup.object().shape(validationShape)}
       >
-      {({handleSubmit})=>
-      <>
-        <h3>Sign Up</h3>
-        <CustomInput type ="string "placeholder="name" name="name" label ="name"/>
-        <CustomInput type="email" name="email" placeholder="Email" label="email" />
-        <CustomInput type ="password" placeholder="password" name="password" label ="password"/>
-        <button type="button" onClick={()=>{handleSubmit()}}>Sign Up</button>
-      </>
-      }
+        {({ handleSubmit }) =>
+          <>
+            <h3>Sign Up</h3>
+            <CustomInput type="string " placeholder="name" name="name" label="name" />
+            <CustomInput type="email" name="email" placeholder="Email" label="email" />
+            <CustomInput type="password" placeholder="password" name="password" label="password" />
+            <button type="button" onClick={() => { handleSubmit() }}>Sign Up</button>
+          </>
+        }
       </Formik>
       <div>
         <Terms>
-        By signing up, I agree to the Privacy Policy <br /> and Terms of
-        Service
+          By signing up, I agree to the Privacy Policy
+          <br />
+          and Terms of Service
         </Terms>
         <h4>
-        Already have an account? <span><a href="/login">Sign In </a></span>
+          Already have an account?
+          <span>
+            <a href="/login">Sign In </a>
+          </span>
         </h4>
       </div>
     </Container>

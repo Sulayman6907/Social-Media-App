@@ -1,15 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
- export const Main = () => {
-    return (
-        <Container>
-            <h1>Join the Platform</h1>
-        </Container>
-    )
+export const Main = () => {
+  return (
+    <Container>
+      <h1>Join the Platform</h1>
+    </Container>
+  )
 }
 
-const Container= styled.div`
+const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;

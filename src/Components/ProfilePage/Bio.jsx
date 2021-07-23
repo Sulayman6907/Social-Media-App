@@ -14,7 +14,7 @@ export const Bio = () => {
     )
 }
 
-const Container=styled.div`
+const Container = styled.div`
     min-width: 400px;
     min-height: 200px;
     background-color: white;
@@ -23,11 +23,11 @@ const Container=styled.div`
     height: 100%;
     padding: 0 2rem;  
 `
-const Customh1=styled.h1`
+const Customh1 = styled.h1`
     text-align: center;
     margin-top: -150px;
 `
-const Customh2=styled.h2`
+const Customh2 = styled.h2`
     text-align: center;
     margin-top: 30px
 `

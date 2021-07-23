@@ -9,15 +9,17 @@ import { FeedPage } from './Pages/FeedPage.jsx';
 import { ProfilePage } from './Pages/ProfilePage.jsx';
 import { ProfileForm } from './Pages/ProfileForm.jsx';
 import { Login } from './Pages/Login.jsx';
+import { PostProvider } from '../Context/PostContext.jsx';
 
 export const App = () => {
   return (
+    <PostProvider>
     <Router>
       <Switch>
           <Route path="/" exact>
             <Signup />
           </Route>
-          <Route path="/feed" exact>
+          <Route path="/feed" exact> 
             <FeedPage />
           </Route>
           <Route path="/profile" exact>
@@ -31,6 +33,7 @@ export const App = () => {
           </Route>
         </Switch>
     </Router>
+    </PostProvider>
   );
 };
 

@@ -1,85 +1,88 @@
-import {React, useEffect } from "react";
+import { React, useEffect } from "react";
 import styled from "styled-components";
 import logo from '../assests/logo.svg'
-import {Input} from "./Input";
+import { Input } from "./Input";
 import { Formik, yupToFormErrors, useField } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
-import { Redirect,useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-
-
-const CustomInput = ({label, ...props}) =>{
-   const [field, meta] = useField(props);
-   return (
-     <>
-       <label>
-         {label}
-         <input {...field} {...props} />
-       </label>
-       {meta.touched && meta.error ? (
-         <div>{meta.error}</div>
-       ) : null}
-     </>
-   );
+const CustomInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <>
+      <label>
+        {label}
+        <input {...field} {...props} />
+      </label>
+      {meta.touched && meta.error ? (
+        <div>{meta.error}</div>
+      ) : null}
+    </>
+  );
 }
 
 export const LoginSidebar = () => {
-    let history=useHistory();
-    useEffect(()=>{
-        console.log(localStorage.getItem("token"))
-    },[])
-    const config = {
-        headers: {
-          "Content-Type": "application/json"
+  useEffect(() => {
+    console.log(localStorage.getItem("token"))
+  }, [])
+
+  let history = useHistory();
+  const config = {
+    headers: {
+      "Content-Type": "application/json"
+    }
+  };
+  const submit = ({ email, password }) => {
+    console.log("here are the values : ", email, password)
+    //Login a user
+    const user = JSON.stringify({ email, password });
+    const url = "/api/auth";
+    console.log(user)
+    axios.post(url, user, config)
+      .then(function (response) {
+        console.log(response);
+        localStorage.setItem("token", response.data.token);
+        if (response.status == 201) {
+          console.log("this func is working");
+          history.push("/feed")
         }
-      };
-    return (
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  const validationShape = {
+    password: Yup.string().required(),
+    email: Yup.string().email().required("Email is required")
+  }
+  
+  return (
     <Container>
       <LogoWrapper>
         <img src={logo} alt="" />
         <h3>
-        Fake <span>Book 2.0</span>
+          Fake <span>Book 2.0</span>
         </h3>
       </LogoWrapper>
       <Formik
-      initialValues ={{ email: '', password: '' }}
-      onSubmit={({ email, password})=>{
-      console.log("here are the values : ", email, password)
-      //Login a user
-      const user = JSON.stringify( { email, password} );
-      const url="/api/auth";
-      console.log(user)
-      axios.post(url,user,config)
-      .then(function (response) {
-        console.log(response);
-        localStorage.setItem("token",response.data.token);
-        if (response.status == 201){
-            console.log("this func is working");
-            history.push("/feed")
-            
-        }
-        })
-      .catch(function (error) {
-        console.log(error);
-       });
-      }
-      }
-
-      validationSchema={Yup.object().shape({ password: Yup.string().required(), email : Yup.string().email().required("Email is required")})}
+        initialValues={{ email: '', password: '' }}
+        onSubmit={submit}
+        validationSchema={Yup.object().shape(validationShape)}
       >
-      {({handleSubmit})=>
-      <>
-        <h3>Login now</h3>
-        <CustomInput type="email" name="email" placeholder="Email" label="email" />
-        <CustomInput type ="password" placeholder="password" name="password" label ="password"/>
-        <button type="button" onClick={()=>{handleSubmit()}}>Login</button>
-      </>
-      }
+        {({ handleSubmit }) =>
+          <>
+            <h3>Login now</h3>
+            <CustomInput type="email" name="email" placeholder="Email" label="email" />
+            <CustomInput type="password" placeholder="password" name="password" label="password" />
+            <button type="button" onClick={() => { handleSubmit() }}>Login</button>
+          </>
+        }
       </Formik>
       <div>
         <h4>
-        Don't have an account? <a href="/"> <span> Sign up</span></a>
+          Don't have an account? <a href="/"> <span> Sign up</span></a>
         </h4>
       </div>
     </Container>

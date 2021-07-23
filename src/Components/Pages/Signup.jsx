@@ -1,21 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 import bgImg from '../assests/bg.png'
-import {Sidebar} from '../Signup/Sidebar.jsx'
-import {Main} from '../Signup/Main.jsx'
+import { Sidebar } from '../Signup/Sidebar.jsx'
+import { Main } from '../Signup/Main.jsx'
 
 export const Signup = () => {
   return (
     <Container>
       <Wrapper>
-        <Sidebar/>
-        <Main/>
+        <Sidebar />
+        <Main />
       </Wrapper>
     </Container>
   )
 }
 
-const Container =styled.div`
+const Container = styled.div`
   background: #eefcff;
   position: absolute;
   left: 0;
@@ -23,7 +23,7 @@ const Container =styled.div`
   bottom: 0;
   top: 0;
 `
-const Wrapper= styled.div`
+const Wrapper = styled.div`
   background-image: url(${bgImg});
   background-position: center;
   background-size: cover;

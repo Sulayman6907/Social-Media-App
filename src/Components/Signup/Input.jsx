@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 export const Input = ({ type, placeholder }) => {
   return (
-      <Container>
-          <StyledInput
-            placeholder={placeholder && placeholder}
-            type={type ? type : "text"}
-            required
-            autocomplete="off"
-          />
-          <Status />
+    <Container>
+      <StyledInput
+        placeholder={placeholder && placeholder}
+        type={type ? type : "text"}
+        required
+        autocomplete="off"
+      />
+      <Status />
     </Container>
   );
 };

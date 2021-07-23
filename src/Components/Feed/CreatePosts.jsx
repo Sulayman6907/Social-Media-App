@@ -1,14 +1,15 @@
- import React, { useState } from "react";
- import styled from "styled-components";
- import axios from "axios";
+import React, { useState, useContext } from "react";
+import styled from "styled-components";
+import axios from "axios";
+import { WithPost } from "../../HOCs/WithPost";
 
- export const CreatePosts = () => {
-  const [commentText,setCommentText] = useState("")
+export const CreatePostsComponent = ({ posts, setPosts }) => {
+  const [commentText, setCommentText] = useState("")
 
   const addPost = (text) => async () => {
     try {
       console.log("in add post with text ", text);
-      const token=localStorage.getItem("token")
+      const token = localStorage.getItem("token")
       const config = {
         headers: {
           "Content-Type": "application/json",
@@ -17,33 +18,34 @@
       };
       const res = await axios.post("/api/posts", { text: text }, config);
       console.log(res)
-      
+      if (res.status === 200) {
+        const tempPost = [res.data, ...posts];
+        setPosts(tempPost)
+      }
     } catch (err) {
       console.log(err)
     }
-  };  
+  };
 
   const handleSubmit = (evt) => {
-  evt.preventDefault();
-  console.log(commentText)
-  addPost(commentText)
-  console.log("Post is added!")
-          
+    evt.preventDefault();
+    console.log(commentText)
+    console.log("Post is added!")      
   }
 
- return (
-    <form  onSubmit={handleSubmit} >
+  return (
+    <form onSubmit={handleSubmit} >
       <Container>
         <label>Add your Status</label>
-          <CustomText
-            name = "commentTextArea"
-            type="text"
-            id="CommentsOrAdditionalInformation"
-            value = {commentText}
-            onChange={e => setCommentText(e.target.value)}
-          >
-          </CustomText> 
-          <input type = "submit"  onClick={ addPost(commentText)} value="Submit"/>
+        <CustomText
+          name="commentTextArea"
+          type="text"
+          id="CommentsOrAdditionalInformation"
+          value={commentText}
+          onChange={e => setCommentText(e.target.value)}
+        >
+        </CustomText>
+        <input type="submit" onClick={addPost(commentText)} value="Submit"/> 
       </Container>
     </form>
   )
@@ -62,6 +64,7 @@ const Container = styled.div`
   padding: 0 2rem;
   margin-bottom: 30px;  
 `
-const CustomText=styled.textarea`
+const CustomText = styled.textarea`
   width: 100%;
 `
+export const CreatePosts = WithPost(CreatePostsComponent)

@@ -5,8 +5,7 @@ export const Avatar = ({avatar}) => {
     return (
         <Container>
             <CustomImg src={avatar} alt="Avatar" />
-        </Container>
-        
+        </Container>   
     )
 }
 

@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import axios from 'axios';
 
-export const Post = ({ avatar, name, status, likes, dislikes, liked, like, unlike, id,isliked }) => {
-    const [count, setcount] = useState(likes);
-    const [checkliked, setliked] = useState(liked)
-
+export const Post = ({ avatar, name, status, likes, dislikes, liked, like, unlike, id, isliked, index, auth, userId, user }) => {
+    const [checkliked, setliked] = useState(false)
     useEffect(() => {
-        setcount(likes)
-    }, [likes])
-    return (
+        console.log(likes)
+    }, [])
 
+    return (
         <Container>
             <div>
                 <DivImg>
@@ -20,10 +19,17 @@ export const Post = ({ avatar, name, status, likes, dislikes, liked, like, unlik
             <Status>
                 <Customh1>Status</Customh1>
                 <StatusText>"  {status} "</StatusText>
-                <Like onClick={like(id)} style={{ backgroundColor: isliked ? 'green' : 'black' }}> like</Like>
-                <Dislike onClick={unlike(id)}>Unlike</Dislike>
-                <Comment onClick={() => console.log(liked)}>Comment</Comment>
-                <LikesCounter >Total likes : {count} </LikesCounter>
+                <Like onClick={like(user, id)} style={{ backgroundColor: checkliked ? 'green' : 'black' }}> like</Like>
+                <Dislike onClick={unlike(id, index)}>Unlike</Dislike>
+                {userId === user && (
+                    <button
+                        type="button"
+                        onClick={() => console.log("Lets implement delete")}
+                    >
+                        delete
+                    </button>
+                )}
+                <LikesCounter >Total likes : {likes.length} </LikesCounter>
             </Status>
         </Container>
     )
@@ -43,12 +49,11 @@ const Customh1 = styled.h1`
     text-align:center;
 `
 
-
 const Status = styled.div`
     padding-top: 30px;
-    display:flex;
-    align-items:left;
-    justify-context:left;
+    display: flex;
+    align-items: left;
+    justify-context: left;
     flex-direction: column;
     align-items: center;
 `

@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 export const BackgroundCover = () => {
-    return (
-        <Container/>
-    )
+  return (
+    <Container />
+  )
 }
 
-const Container=styled.div`
+const Container = styled.div`
   min-width: 400px;
   min-height: 300px;
   background-color: black;

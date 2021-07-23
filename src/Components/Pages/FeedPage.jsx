@@ -4,12 +4,12 @@ import { Posts } from '../Feed/Posts.jsx'
 import { NavBar } from '../Feed/NavBar.jsx'
 import { CreatePosts } from '../Feed/CreatePosts.jsx'
 
- export const FeedPage = () => {
-   return (
+export const FeedPage = () => {
+  return (
     <>
-      <NavBar/>
-      <CreatePosts/>
-      <Posts/>
+        <NavBar />
+        <CreatePosts />
+        <Posts />
     </>
   );
 };

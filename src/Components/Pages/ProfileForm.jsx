@@ -9,13 +9,13 @@ export const ProfileForm = () => {
         <div>
             <NavBar />
             <Container>
-                <ProfileData/>
+                <ProfileData />
             </Container>
         </div>
     )
 }
 
-const Container=styled.div`
+const Container = styled.div`
     margin-left: 200px;
     margin-right: 200px;
     display: flex;
