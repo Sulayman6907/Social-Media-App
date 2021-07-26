@@ -6,7 +6,7 @@ import { WithPost } from "../../HOCs/WithPost";
 export const CreatePostsComponent = ({ posts, setPosts }) => {
   const [commentText, setCommentText] = useState("")
 
-  const addPost = (text) => async () => {
+  const addPost =  async (text) => {
     try {
       console.log("in add post with text ", text);
       const token = localStorage.getItem("token")
@@ -30,12 +30,12 @@ export const CreatePostsComponent = ({ posts, setPosts }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     console.log(commentText)
+    addPost(commentText)
     console.log("Post is added!")      
   }
 
   return (
-    <form onSubmit={handleSubmit} >
-      <Container>
+      <Container onSubmit={handleSubmit}>
         <label>Add your Status</label>
         <CustomText
           name="commentTextArea"
@@ -45,13 +45,12 @@ export const CreatePostsComponent = ({ posts, setPosts }) => {
           onChange={e => setCommentText(e.target.value)}
         >
         </CustomText>
-        <input type="submit" onClick={addPost(commentText)} value="Submit"/> 
+        <button type="submit"  value="Submit"> Submit </button>
       </Container>
-    </form>
   )
 }
 
-const Container = styled.div`
+const Container = styled.form`
   min-width: 400px;
   backdrop-filter: blur(35px);
   background-color: rgba(255, 255, 255, 0.8);

@@ -1,4 +1,4 @@
-import { createContext,useState,useEffect ,useContext} from "react";
+import { createContext,useState,useEffect } from "react";
 import axios from "axios";
 
  export const PostContext=createContext([])
@@ -26,6 +26,7 @@ import axios from "axios";
         console.log(error)
       }  
     }
+    
     return(
         <PostContext.Provider value={{posts,setPosts:(data)=>{console.log("Setposts is called", data); setPosts(data)}}}>
             {props.children}

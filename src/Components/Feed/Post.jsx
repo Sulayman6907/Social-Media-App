@@ -3,24 +3,21 @@ import styled from 'styled-components'
 import axios from 'axios';
 
 export const Post = ({ avatar, name, status, likes, dislikes, liked, like, unlike, id, isliked, index, auth, userId, user }) => {
-    const [checkliked, setliked] = useState(false)
-    useEffect(() => {
-        console.log(likes)
-    }, [])
+    const [checkLiked, setLiked] = useState(false)
 
     return (
         <Container>
             <div>
                 <DivImg>
-                    <img src={avatar} alt="new" style={{ height: "200px", width: "200px", borderRadius: "100px", display: "inline", paddingTop: "10px" }} />
+                    <AvatarImg src={avatar} alt="new" />
                 </DivImg>
                 <Customh1>{name}</Customh1>
             </div>
             <Status>
                 <Customh1>Status</Customh1>
                 <StatusText>"  {status} "</StatusText>
-                <Like onClick={like(user, id)} style={{ backgroundColor: checkliked ? 'green' : 'black' }}> like</Like>
-                <Dislike onClick={unlike(id, index)}>Unlike</Dislike>
+                <Like onClick={() => like(user, id)} style={{ backgroundColor: checkLiked ? 'green' : 'black' }}> like</Like>
+                <Dislike onClick={() => unlike(id)}>Unlike</Dislike>
                 {userId === user && (
                     <button
                         type="button"
@@ -83,8 +80,12 @@ const LikesCounter = styled.div`
     margin-top: 30px
 `
 
-const DislikesCounter = styled.div`
-    margin-top: 30px;
+const AvatarImg = styled.img`
+    height: 200px:
+    width: 200px; 
+    border-radius: 100px;
+    display: inline;
+    padding-top: 10px;
 `
 
 const DivImg = styled.div`

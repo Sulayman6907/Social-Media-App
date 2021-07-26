@@ -6,10 +6,11 @@ import { arrayExpression } from '@babel/types';
 import { WithPost } from '../../HOCs/WithPost.jsx';
 
 export const PostsComponent = ({posts,setPosts}) => {
-  let userId=null
+  
+  let userId= null
   console.log("Component rerendered!!!!")
-  const like = (user,id) => async () => {
-      // console.log("unliked");
+  const like = async (user,id) => {
+      // console.log("liked");
       try {
         console.log("Like is running!")
         const token = localStorage.getItem("token")
@@ -19,7 +20,6 @@ export const PostsComponent = ({posts,setPosts}) => {
             'Content-Type': 'application/json',
           } 
         });
-        
         console.log(res.data);
         console.log(posts.findIndex(posts => posts._id===id))
         const index=posts.findIndex(posts => posts._id===id)
@@ -33,7 +33,7 @@ export const PostsComponent = ({posts,setPosts}) => {
       }
     };
 
-    const unlike = (id) => async () => {
+    const unlike = async (id) => {
       // console.log("unliked");
       try {
         console.log("Unlike is running!")
@@ -43,7 +43,13 @@ export const PostsComponent = ({posts,setPosts}) => {
             'x-auth-token': token,
             'Content-Type': 'application/json',
           }  
-        });  
+        });
+        const index=posts.findIndex(posts => posts._id===id)
+        const tempPosts=[...posts]
+        tempPosts[index].likes.pop()
+        console.log(tempPosts)
+        setPosts(tempPosts)    
+
       } catch (err) {
         console.log(err)
       }
@@ -60,7 +66,7 @@ export const PostsComponent = ({posts,setPosts}) => {
           } 
         });
         console.log(res.data._id)
-        userId= res.data._id;
+        return res.data._id;
       } catch (err) {
         console.log(err)  
       }

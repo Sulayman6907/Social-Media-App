@@ -5,6 +5,7 @@ import { Input } from "./Input";
 import { Formik, yupToFormErrors, useField } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const CustomInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
@@ -22,26 +23,30 @@ const CustomInput = ({ label, ...props }) => {
 }
 
 export const Sidebar = () => {
-  const Submit = ({ name, email, password }) => {
-    console.log("here are the values : ", name, email, password)
-    const user = JSON.stringify({ name, email, password });
-    const url = "/api/users";
-    console.log(user)
-    axios.post(url, {
-      name: name,
-      email: email,
-      password: password
-    }, {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    })
-      .then(function (response) {
-        console.log(response);
+  let history = useHistory()
+  const Submit = async ({ name, email, password }) => {
+    try {
+      console.log("here are the values : ", name, email, password)
+      const user = JSON.stringify({ name, email, password });
+      const url = "/api/users";
+      console.log(user)
+      const res = await axios.post(url, {
+        name: name,
+        email: email,
+        password: password
+      }, {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      console.log(res)
+      if (res.status === 201) {
+        history.push("/feed")
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
+
   const validationShape = {
     name: Yup.string().required(),
     password: Yup.string().required(),

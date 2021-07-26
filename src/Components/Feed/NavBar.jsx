@@ -6,8 +6,8 @@ export const NavBar = () => {
         <Container>
             <CustomUl>
                 <Header> Fakebook 2.0</Header>
-                <Customachor href="/main"><CustomLi> Posts</CustomLi></Customachor>
-                <Customachor href="/profile"><CustomLi> profile</CustomLi></Customachor>
+                <Customachor href="/feed"><CustomLi> Posts</CustomLi></Customachor>
+                <Customachor href="/profile"><CustomLi> Profile</CustomLi></Customachor>
                 <Customachor href="/"><CustomLi> Logout</CustomLi></Customachor>
             </CustomUl>
         </Container>
