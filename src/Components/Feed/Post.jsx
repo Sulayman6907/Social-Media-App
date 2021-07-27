@@ -4,7 +4,6 @@ import axios from 'axios';
 
 export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, user }) => {
     const [checkLiked, setLiked] = useState(false)
-    
 
     return (
         <Container>

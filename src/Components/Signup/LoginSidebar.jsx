@@ -6,63 +6,9 @@ import * as Yup from 'yup';
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { WithToken } from "../../HOCs/withToken";
-
-const CustomInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <label>
-        {label}
-        <input {...field} {...props} />
-      </label>
-      {meta.touched && meta.error ? (
-        <div>{meta.error}</div>
-      ) : null}
-    </>
-  );
-}
+import { CustomInput } from "./CustomInput";
 
 export const LoginSidebarComponent = ({ submit }) => {
-
-  // const submit = ({ email, password }) => {
-
-  //   console.log("here are the values : ", email, password)
-  //   //Login a user
-  //   const user = JSON.stringify({ email, password });
-  //   const url = "/api/auth";
-  //   console.log(user)
-  //   axios.post(url, user, config)
-  //     .then(function (response) {
-  //       console.log(response);
-  //       localStorage.setItem("token", response.data.token);
-  //       if (response.status == 201) {
-  //         console.log("this func is working");
-  //         history.push("/feed")
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
-
-  // const submit= async ({email,password}) =>{
-  //   try{
-  //   console.log("here are the values : ", email, password)
-  //   //Login a user
-  //   const user = JSON.stringify({ email, password });
-  //   const url = "/api/auth";
-  //   console.log(user)
-  //   const res = await axios.post(url, user, config)
-  //   setToken(res.data.token)
-  //   localStorage.setItem("token",res.data.token)
-  //   if (res.status == 201) {
-  //     console.log("this func is working");
-  //     history.push("/feed")
-  //   }
-  // } catch (err) {
-  //   console.log(err)
-  //     }
-  //   };
 
   const validationShape = {
     password: Yup.string().required(),

@@ -5,21 +5,7 @@ import { Formik, yupToFormErrors, useField } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-
-const CustomInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <label>
-        {label}
-        <input {...field} {...props} />
-      </label>
-      {meta.touched && meta.error ? (
-        <div>{meta.error}</div>
-      ) : null}
-    </>
-  );
-}
+import { CustomInput } from "./CustomInput";
 
 export const Sidebar = () => {
   let history = useHistory()
