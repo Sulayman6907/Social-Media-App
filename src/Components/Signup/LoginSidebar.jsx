@@ -91,11 +91,9 @@ export const LoginSidebarComponent = ({ submit }) => {
           </>
         }
       </Formik>
-      <div>
         <h4>
           Don't have an account? <a href="/"> <span> Sign up</span></a>
         </h4>
-      </div>
     </Container>
   );
 };
