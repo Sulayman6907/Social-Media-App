@@ -1,7 +1,6 @@
 import { React, useEffect } from "react";
 import styled from "styled-components";
 import logo from '../assests/logo.svg'
-import { Input } from "./Input";
 import { Formik, yupToFormErrors, useField } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";

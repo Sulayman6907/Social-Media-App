@@ -11,12 +11,14 @@ import { ProfileForm } from './Pages/ProfileForm.jsx';
 import { Login } from './Pages/Login.jsx';
 import { PostProvider } from '../Context/PostContext.jsx';
 import { UserProvider } from '../Context/userContext.jsx';
+import { NavBar } from './Feed/NavBar.jsx';
 
 export const App = () => {
   return (
     <Router>
       <UserProvider>
         <PostProvider>
+          <NavBar />
           <Switch>
             <Route path="/" exact>
               <Signup />

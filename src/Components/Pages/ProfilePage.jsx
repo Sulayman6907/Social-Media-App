@@ -48,7 +48,6 @@ export const ProfilePage = () => {
 
     return (
         <div>
-            <NavBar />
             <Profile />
         </div>
     );

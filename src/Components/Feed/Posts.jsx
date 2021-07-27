@@ -74,8 +74,8 @@ export const PostsComponent = ({posts,setPosts}) => {
 
   return (
     <div>
-      {posts.map(({ avatar, name, text,_id,likes,index,user}) =>(
-        <Post  key={_id}  avatar={avatar} name={name} status={text} user={user} likes={likes} like={like} id={_id}  unlike={unlike}auth={auth} index={index} userId={userId}/>
+      {posts.map(({ avatar, name, text,_id,likes,user}) =>(
+        <Post  key={_id}  avatar={avatar} name={name} status={text} user={user} likes={likes} like={like} id={_id}  unlike={unlike}auth={auth} userId={userId}/>
       ))}
     </div>
   )

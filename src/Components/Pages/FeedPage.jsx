@@ -8,7 +8,6 @@ import {MiniDashboard} from '../Dashboard/MiniDashboard.jsx'
 export const FeedPage = () => {
   return (
     <>
-        <NavBar />
         <MiniDashboard />
         <CreatePosts />
         <Posts />

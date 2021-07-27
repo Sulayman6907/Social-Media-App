@@ -6,7 +6,7 @@ import axios from "axios";
 export const UserContext = createContext("")
 
 export const UserProvider = (props) => {
-    const [token, setToken] = useCookies(localStorage.getItem('token'))
+    const [token, setToken] = useState(localStorage.getItem('token'))
     const [user,setUser]= useState()
     let history = useHistory();
     const config = {
@@ -30,8 +30,6 @@ export const UserProvider = (props) => {
             setToken(res.data.token)
             localStorage.setItem("token", res.data.token)
             if (res.status === 201) {
-                // console.log("this func is working");
-                // console.log(history)
                 history.push("/feed")
             }
         } catch (err) {

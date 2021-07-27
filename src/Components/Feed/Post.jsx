@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import axios from 'axios';
 
-export const Post = ({ avatar, name, status, likes, dislikes, liked, like, unlike, id, isliked, index, auth, userId, user }) => {
+export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, user }) => {
     const [checkLiked, setLiked] = useState(false)
 
     return (

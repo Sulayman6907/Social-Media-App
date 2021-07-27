@@ -7,7 +7,6 @@ import styled from 'styled-components'
 export const ProfileForm = () => {
     return (
         <div>
-            <NavBar />
             <Container>
                 <ProfileData />
             </Container>
