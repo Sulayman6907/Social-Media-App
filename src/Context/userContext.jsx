@@ -1,23 +1,20 @@
 import { createContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { useGetUser } from "../Components/apis/useGetUser";
 import axios from "axios";
 
 export const UserContext = createContext("")
 
 export const UserProvider = (props) => {
     const [token, setToken] = useState(localStorage.getItem('token'))
-    const [user,setUser]= useState()
+    const [user,setUser]= useGetUser()
     let history = useHistory();
     const config = {
         headers: {
             "Content-Type": "application/json"
         }
     };
-
-    useEffect(()=>{
-        getUser()
-    },[])
 
     const submit = async ({ email, password }) => {
         try {
@@ -36,24 +33,6 @@ export const UserProvider = (props) => {
             console.log(err)
         }
     };
-
-    const getUser = async () => {
-        let token = localStorage.getItem("token")
-        console.log(token)
-        try {
-            const res = await axios.get("/api/profile/me", {
-                headers: {
-                    'x-auth-token': token,
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                }
-            });
-            console.log(res.data.user)
-            setUser(res.data.user)
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
     return (
         <UserContext.Provider value={{ submit,user }}>
