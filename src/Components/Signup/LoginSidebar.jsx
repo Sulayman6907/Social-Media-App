@@ -1,14 +1,24 @@
-import { React, useEffect } from "react";
+import { React } from "react";
 import styled from "styled-components";
 import logo from '../assests/logo.svg'
-import { Formik, yupToFormErrors, useField } from "formik";
+import { Formik } from "formik";
 import * as Yup from 'yup';
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { WithToken } from "../../HOCs/withToken";
 import { CustomInput } from "./CustomInput";
+import { useLogin } from "../apis/useLogin";
 
-export const LoginSidebarComponent = ({ submit }) => {
+export const LoginSidebarComponent = () => {
+  const [res, login] = useLogin()
+  const history = useHistory();
+
+  const submit = async ({ email, password }) => {
+    console.log(email)
+    const res =await login({ email, password })
+    if (res.status === 201) {
+      history.push("/feed")
+    }
+  }
 
   const validationShape = {
     password: Yup.string().required(),
@@ -37,9 +47,9 @@ export const LoginSidebarComponent = ({ submit }) => {
           </>
         }
       </Formik>
-        <h4>
-          Don't have an account? <a href="/"> <span> Sign up</span></a>
-        </h4>
+      <h4>
+        Don't have an account? <a href="/"> <span> Sign up</span></a>
+      </h4>
     </Container>
   );
 };

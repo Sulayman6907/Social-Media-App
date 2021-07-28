@@ -1,11 +1,8 @@
-import React from 'react';
 import { useState,useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import axios from "axios";
 
 export const useLogin=()=>{
     const [res,setRes]=useState()
-    const history = useHistory();
     const config = {
         headers: {
             "Content-Type": "application/json"
@@ -20,11 +17,9 @@ export const useLogin=()=>{
             const url = "/api/auth";
             // console.log(user)
             const res = await axios.post(url, user, config)
-            setRes(res.data.token)
+            setRes(res)
             localStorage.setItem("token", res.data.token)
-            if (res.status === 201) {
-                history.push("/feed")
-            }
+            return res
         } catch (err) {
             console.log(err)
         }

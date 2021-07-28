@@ -7,31 +7,11 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { CustomInput } from "./CustomInput";
 import { useState } from "react";
+import { WithToken } from "../../HOCs/withToken";
 
-export const Sidebar = () => {
-  let history = useHistory()
-  const Submit = async ({ name, email, password }) => {
-    try {
-      console.log("here are the values : ", name, email, password)
-      const user = JSON.stringify({ name, email, password });
-      const url = "/api/users";
-      console.log(user)
-      const res = await axios.post(url, {
-        name: name,
-        email: email,
-        password: password
-      }, {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      })
-      console.log(res)
-      if (res.status === 201) {
-        history.push("/feed")
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  }
+
+export const SidebarComponent = ({signUp}) => {
+  
 
   const validationShape = {
     name: Yup.string().required(),
@@ -48,7 +28,7 @@ export const Sidebar = () => {
       </LogoWrapper>
       <Formik
         initialValues={{ email: '', password: '', name: '' }}
-        onSubmit={Submit}
+        onSubmit={signUp}
 
         validationSchema={Yup.object().shape(validationShape)}
       >
@@ -155,4 +135,4 @@ const Container = styled.div`
     }
   }
 `
-
+export const Sidebar=WithToken(SidebarComponent)
