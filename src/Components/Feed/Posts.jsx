@@ -20,15 +20,10 @@ export const PostsComponent = ({ statePost, setStatePost }) => {
 
 
   const like = async (id) => {
-    await doLike(id)
-    console.log(res)
-    console.log(id)
-    console.log(posts)
+    const res= await doLike(id)
     const index=statePost.findIndex(statePost => statePost._id===id)
-    console.log(index)
     const tempPosts=[...statePost]
     tempPosts[index].likes.push(res.data)
-    console.log(tempPosts)
     setStatePost(tempPosts)  
     
   }

@@ -3,7 +3,12 @@ import { WithToken } from "../../HOCs/withToken";
 import { useEffect } from "react";
 import styled from "styled-components";
 
-const MiniDashboardComponent = ({ user }) => {
+const MiniDashboardComponent = ({ user, getUser }) => {
+  
+  useEffect(() => {
+    getUser()
+  }, [])
+
   return (
     <div>
       <Customh1>Welcome {user && user.name} from User Context </Customh1>

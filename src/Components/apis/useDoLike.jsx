@@ -16,6 +16,7 @@ export const useDoLike = (posts) => {
                 }   
             });
             setRes(res)
+            return res
 
             
         } catch (err) {

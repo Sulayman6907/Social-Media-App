@@ -15,7 +15,7 @@ export const UserProvider = (props) => {
     const [signUp]=useSignUp()
     
     return (
-        <UserContext.Provider value={{ login,user,signUp }}>
+        <UserContext.Provider value={{ login,user,signUp,getUser }}>
             {props.children}
         </UserContext.Provider>
     )

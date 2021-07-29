@@ -4,10 +4,7 @@ import axios from "axios";
 
 export const useGetUser=()=>{
     const [user,setUser]=useState()
-    useEffect(()=>{
-        getUser()
-    },[])
-
+    
     const getUser = async () => {
         let token = localStorage.getItem("token")
         console.log(token)
@@ -19,8 +16,8 @@ export const useGetUser=()=>{
                     'Access-Control-Allow-Origin': '*',
                 }
             });
-            console.log(res.data.user)
             setUser(res.data.user)
+            return res.data.user
         } catch (error) {
             console.log(error)
         }
