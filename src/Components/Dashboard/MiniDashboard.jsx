@@ -2,8 +2,10 @@ import React from "react";
 import { WithToken } from "../../HOCs/withToken";
 import { useEffect } from "react";
 import styled from "styled-components";
+import { useGetUser } from "../apis/useGetUser";
 
-const MiniDashboardComponent = ({ user, getUser }) => {
+const MiniDashboardComponent = () => {
+  const [user,getUser]=useGetUser()
   
   useEffect(() => {
     getUser()

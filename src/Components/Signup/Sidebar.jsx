@@ -8,10 +8,19 @@ import { useHistory } from "react-router-dom";
 import { CustomInput } from "./CustomInput";
 import { useState } from "react";
 import { WithToken } from "../../HOCs/withToken";
+import { useSignUp } from "../apis/useSignUp";
 
 
-export const SidebarComponent = ({signUp}) => {
+export const SidebarComponent = () => {
+  const [res,signUp]=useSignUp()
+  const history = useHistory()
   
+  const submit = async ({ name,email, password }) => {
+    const res =await signUp({ name,email, password })
+    if (res.status === 201) {
+      history.push("/feed")
+    }
+  }
 
   const validationShape = {
     name: Yup.string().required(),
@@ -28,7 +37,7 @@ export const SidebarComponent = ({signUp}) => {
       </LogoWrapper>
       <Formik
         initialValues={{ email: '', password: '', name: '' }}
-        onSubmit={signUp}
+        onSubmit={submit}
 
         validationSchema={Yup.object().shape(validationShape)}
       >

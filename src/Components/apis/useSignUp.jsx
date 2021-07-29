@@ -4,7 +4,8 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
 export const useSignUp = () => {
-    const history = useHistory()
+    const [res,setRes]=useState()
+    
     const signUp = async ({ name, email, password }) => {
         try {
             console.log("here are the values : ", name, email, password)
@@ -19,15 +20,13 @@ export const useSignUp = () => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
             })
-            console.log(res)
-            if (res.status === 201) {
-                history.push("/feed")
-            }
+            setRes(res)
+            return res
         } catch (err) {
             console.log(err)
         }
     }
-    return [signUp]
+    return [res,signUp]
 }
 
 

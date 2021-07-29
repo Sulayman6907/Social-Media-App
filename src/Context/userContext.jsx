@@ -9,13 +9,12 @@ import { useSignUp } from "../Components/apis/useSignUp";
 export const UserContext = createContext("")
 
 export const UserProvider = (props) => {
-    const [token, setToken] = useState(localStorage.getItem('token'))
-    const [user,getUser]= useGetUser()
-    const [res,login]=useLogin()
+    const [user,setUser]= useState()
+    
     const [signUp]=useSignUp()
     
     return (
-        <UserContext.Provider value={{ login,user,signUp,getUser }}>
+        <UserContext.Provider value={{ user,setUser,signUp }}>
             {props.children}
         </UserContext.Provider>
     )

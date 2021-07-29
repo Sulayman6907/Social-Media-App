@@ -8,7 +8,8 @@ import { WithToken } from "../../HOCs/withToken";
 import { CustomInput } from "./CustomInput";
 import { useLogin } from "../apis/useLogin";
 
-export const LoginSidebarComponent = ({login}) => {
+export const LoginSidebarComponent = () => {
+  const [res,login]=useLogin()
   const history = useHistory();
 
   const submit = async ({ email, password }) => {
