@@ -12,11 +12,11 @@ import { useSignUp } from "../apis/useSignUp";
 
 
 export const SidebarComponent = () => {
-  const [res,signUp]=useSignUp()
+  const [res, signUp] = useSignUp()
   const history = useHistory()
-  
-  const submit = async ({ name,email, password }) => {
-    const res =await signUp({ name,email, password })
+
+  const submit = async ({ name, email, password }) => {
+    const res = await signUp({ name, email, password })
     if (res.status === 201) {
       history.push("/feed")
     }
@@ -27,6 +27,12 @@ export const SidebarComponent = () => {
     password: Yup.string().required(),
     email: Yup.string().email().required("Email is required")
   }
+  const initialValues = {
+    email: '',
+    password: '',
+    name: ''
+  }
+  
   return (
     <Container>
       <LogoWrapper>
@@ -36,7 +42,7 @@ export const SidebarComponent = () => {
         </h3>
       </LogoWrapper>
       <Formik
-        initialValues={{ email: '', password: '', name: '' }}
+        initialValues={initialValues}
         onSubmit={submit}
 
         validationSchema={Yup.object().shape(validationShape)}
@@ -144,4 +150,4 @@ const Container = styled.div`
     }
   }
 `
-export const Sidebar=WithToken(SidebarComponent)
+export const Sidebar = WithToken(SidebarComponent)

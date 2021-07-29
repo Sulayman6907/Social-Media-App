@@ -1,8 +1,8 @@
+//WIP
 import React from 'react'
 import { NavBar } from '../Feed/NavBar.jsx'
 import { ProfileData } from '../ProfilePage/ProfileData'
 import styled from 'styled-components'
-
 
 export const ProfileForm = () => {
     return (

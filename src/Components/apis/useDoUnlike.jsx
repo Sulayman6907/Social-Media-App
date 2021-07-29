@@ -15,9 +15,7 @@ export const useDoUnLike = () => {
                 }   
             });
             setRes(res)
-            return res
-
-            
+            return res   
         } catch (err) {
             console.log(err)
         }

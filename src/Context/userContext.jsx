@@ -10,7 +10,6 @@ export const UserContext = createContext("")
 
 export const UserProvider = (props) => {
     const [user,setUser]= useState()
-    
     const [signUp]=useSignUp()
     
     return (

@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const useCreatePost=()=>{
-
 const addPost =  async (text) => {
     try {
       console.log("in add post with text ", text);

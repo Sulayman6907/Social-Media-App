@@ -8,8 +8,8 @@ import { useDoUnLike } from '../apis/useDoUnlike.jsx';
 
 export const PostsComponent = ({ statePost, setStatePost }) => {
   const [posts, getPost] = useGetPost();
-  const [doLike]=useDoLike()
-  const [doUnLike]=useDoUnLike()
+  const [doLike] = useDoLike()
+  const [doUnLike] = useDoUnLike()
   let userId = null
 
   useEffect(() => {
@@ -20,29 +20,25 @@ export const PostsComponent = ({ statePost, setStatePost }) => {
     setStatePost(posts)
   }, [posts])
 
-
   const like = async (id) => {
-    try{
-      const res= await doLike(id)
-      const index=statePost.findIndex(statePost => statePost._id===id)
-      const tempPosts=[...statePost]
+    try {
+      const res = await doLike(id)
+      const index = statePost.findIndex(statePost => statePost._id === id)
+      const tempPosts = [...statePost]
       tempPosts[index].likes.push(res.data)
-      setStatePost(tempPosts) 
-    }catch (err) {
+      setStatePost(tempPosts)
+    } catch (err) {
       console.log(err)
     }
   };
-     
-    
-  
 
   const unlike = async (id) => {
-    try{
-    const res =await doUnLike(id)
-    const index=statePost.findIndex(statePost => statePost._id===id)
-    const tempPosts=[...statePost]
-    tempPosts[index].likes.pop()
-    setStatePost(tempPosts)     
+    try {
+      const res = await doUnLike(id)
+      const index = statePost.findIndex(statePost => statePost._id === id)
+      const tempPosts = [...statePost]
+      tempPosts[index].likes.pop()
+      setStatePost(tempPosts)
 
     } catch (err) {
       console.log(err)

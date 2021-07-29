@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import bgImg from '../assests/bg.png'
-import { Sidebar } from '../Signup/Sidebar.jsx'
+import { Sidebar } from '../Signup/SignupSidebar.jsx'
 import { Main } from '../Signup/Main.jsx'
 
 export const Signup = () => {

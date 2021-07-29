@@ -1,9 +1,5 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Signup } from './Pages/Signup.jsx'
 import { FeedPage } from './Pages/FeedPage.jsx';
 import { ProfilePage } from './Pages/ProfilePage.jsx';

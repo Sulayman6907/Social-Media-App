@@ -6,7 +6,7 @@ import { useCreatePost } from "../apis/useCreatePost";
 
 export const CreatePostsComponent = ({ statePost, setStatePost }) => {
   const [postText, setPostText] = useState("")
-  const [addPost]=useCreatePost()  
+  const [addPost] = useCreatePost()
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
@@ -14,22 +14,22 @@ export const CreatePostsComponent = ({ statePost, setStatePost }) => {
     if (res.status === 200) {
       const tempPost = [res.data, ...statePost];
       setStatePost(tempPost)
-    }     
+    }
   }
 
   return (
-      <Container onSubmit={handleSubmit}>
-        <label>Add your Status</label>
-        <CustomText
-          name="commentTextArea"
-          type="text"
-          id="CommentsOrAdditionalInformation"
-          value={postText}
-          onChange={e => setPostText(e.target.value)}
-        >
-        </CustomText>
-        <button type="submit"  value="Submit"> Submit </button>
-      </Container>
+    <Container onSubmit={handleSubmit}>
+      <label>Add your Status</label>
+      <CustomText
+        name="commentTextArea"
+        type="text"
+        id="CommentsOrAdditionalInformation"
+        value={postText}
+        onChange={e => setPostText(e.target.value)}
+      >
+      </CustomText>
+      <button type="submit" value="Submit"> Submit </button>
+    </Container>
   )
 }
 

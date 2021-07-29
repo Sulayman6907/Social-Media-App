@@ -1,3 +1,4 @@
+//WIP
 import React, { useEffect } from 'react'
 import { NavBar } from '../Feed/NavBar.jsx'
 import { Profile } from '../ProfilePage/Profile.jsx'
