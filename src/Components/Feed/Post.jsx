@@ -16,7 +16,7 @@ export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, us
             <Status>
                 <Customh1>Status</Customh1>
                 <StatusText>"  {status} "</StatusText>
-                <Like onClick={() => like(user, id)} style={{ backgroundColor: checkLiked ? 'green' : 'black' }}> like</Like>
+                <Like onClick={() => like(id)} style={{ backgroundColor: checkLiked ? 'green' : 'black' }}> like</Like>
                 <Dislike onClick={() => unlike(id)}>Unlike</Dislike>
                 {userId === user && (
                     <button

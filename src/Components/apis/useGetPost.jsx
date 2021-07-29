@@ -4,10 +4,6 @@ import axios from "axios";
 
 export const useGetPost=()=> {
     const [posts,setPosts]=useState([])
-
-    useEffect(()=>{
-        getPost();
-    },[]);
    
    const getPost = async () => {
      let token = localStorage.getItem("token")
