@@ -1,15 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
-import { useGetPost } from "./useGetPost";
 
-export const useDoLike = () => {
+export const useDoUnLike = () => {
     const [res,setRes]=useState()
-    const doLike = async (id) => {
-        // console.log("liked");
+    const doUnlike = async (id) => {
+        // console.log("unliked");
         try {
             console.log("Like is running!")
             const token = localStorage.getItem("token")
-            const res = await axios.put(`/api/posts/like/${id}`, {}, {
+            const res = await axios.put(`/api/posts/unlike/${id}`, {}, {
                 headers: {
                     'x-auth-token': token,
                     'Content-Type': 'application/json',
@@ -23,5 +22,5 @@ export const useDoLike = () => {
             console.log(err)
         }
     };
-    return [doLike]
+    return [doUnlike]
 }

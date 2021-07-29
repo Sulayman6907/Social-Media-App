@@ -4,10 +4,12 @@ import axios from 'axios';
 import { WithPost } from '../../HOCs/WithPost.jsx';
 import { useDoLike } from '../apis/useDoLike.jsx';
 import { useGetPost } from '../apis/useGetPost.jsx';
+import { useDoUnLike } from '../apis/useDoUnlike.jsx';
 
 export const PostsComponent = ({ statePost, setStatePost }) => {
   const [posts, getPost] = useGetPost();
-  const [res,doLike]=useDoLike(statePost)
+  const [doLike]=useDoLike()
+  const [doUnLike]=useDoUnLike()
   let userId = null
 
   useEffect(() => {
@@ -20,31 +22,27 @@ export const PostsComponent = ({ statePost, setStatePost }) => {
 
 
   const like = async (id) => {
-    const res= await doLike(id)
-    const index=statePost.findIndex(statePost => statePost._id===id)
-    const tempPosts=[...statePost]
-    tempPosts[index].likes.push(res.data)
-    setStatePost(tempPosts)  
+    try{
+      const res= await doLike(id)
+      const index=statePost.findIndex(statePost => statePost._id===id)
+      const tempPosts=[...statePost]
+      tempPosts[index].likes.push(res.data)
+      setStatePost(tempPosts) 
+    }catch (err) {
+      console.log(err)
+    }
+  };
+     
     
-  }
+  
 
   const unlike = async (id) => {
-    // console.log("unliked");
-    try {
-      console.log("Unlike is running!")
-      const token = localStorage.getItem("token")
-      const res = await axios.put(`/api/posts/unlike/${id}`, {}, {
-        headers: {
-          'x-auth-token': token,
-          'Content-Type': 'application/json',
-        }
-      });
-      getPost()
-      // const index=posts.findIndex(posts => posts._id===id)
-      // const tempPosts=[...posts]
-      // tempPosts[index].likes.pop()
-      // console.log(tempPosts)
-      // setPosts(tempPosts)    
+    try{
+    const res =await doUnLike(id)
+    const index=statePost.findIndex(statePost => statePost._id===id)
+    const tempPosts=[...statePost]
+    tempPosts[index].likes.pop()
+    setStatePost(tempPosts)     
 
     } catch (err) {
       console.log(err)
