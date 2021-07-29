@@ -2,36 +2,19 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { WithPost } from "../../HOCs/WithPost";
+import { useCreatePost } from "../apis/useCreatePost";
 
-export const CreatePostsComponent = ({ posts, setPosts }) => {
-  const [commentText, setCommentText] = useState("")
+export const CreatePostsComponent = ({ statePost, setStatePost }) => {
+  const [postText, setPostText] = useState("")
+  const [addPost]=useCreatePost()  
 
-  const addPost =  async (text) => {
-    try {
-      console.log("in add post with text ", text);
-      const token = localStorage.getItem("token")
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          "x-auth-token": token,
-        }
-      };
-      const res = await axios.post("/api/posts", { text: text }, config);
-      console.log(res)
-      if (res.status === 200) {
-        const tempPost = [res.data, ...posts];
-        setPosts(tempPost)
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  };
-
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
-    console.log(commentText)
-    addPost(commentText)
-    console.log("Post is added!")      
+    const res = await addPost(postText)
+    if (res.status === 200) {
+      const tempPost = [res.data, ...statePost];
+      setStatePost(tempPost)
+    }     
   }
 
   return (
@@ -41,8 +24,8 @@ export const CreatePostsComponent = ({ posts, setPosts }) => {
           name="commentTextArea"
           type="text"
           id="CommentsOrAdditionalInformation"
-          value={commentText}
-          onChange={e => setCommentText(e.target.value)}
+          value={postText}
+          onChange={e => setPostText(e.target.value)}
         >
         </CustomText>
         <button type="submit"  value="Submit"> Submit </button>
