@@ -5,11 +5,11 @@ import { useGetPost } from "../Components/apis/useGetPost";
  export const PostContext=createContext([])
 
  export const PostProvider=(props)=>{
-    const [posts, setPosts] = useGetPost();
+    const [posts, getPost] = useGetPost();
      
     
     return(
-        <PostContext.Provider value={{posts,setPosts:(data)=>{console.log("Setposts is called", data); setPosts(data)}}}>
+        <PostContext.Provider value={{posts,getPost}}>
             {props.children}
         </PostContext.Provider>
     )

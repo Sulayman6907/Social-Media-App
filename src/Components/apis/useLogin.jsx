@@ -9,7 +9,7 @@ export const useLogin=()=>{
         }
     };
 
-    const submit = async ({ email, password }) => {
+    const login = async ({ email, password }) => {
         try {
             console.log("here are the values : ", email, password)
             //Login a user
@@ -24,5 +24,5 @@ export const useLogin=()=>{
             console.log(err)
         }
     };
-    return [res,submit]
+    return [res,login]
 }

@@ -25,5 +25,5 @@ export const useGetUser=()=>{
             console.log(error)
         }
     }
-    return [user,setUser]
+    return [user,getUser]
 }

@@ -10,12 +10,12 @@ export const UserContext = createContext("")
 
 export const UserProvider = (props) => {
     const [token, setToken] = useState(localStorage.getItem('token'))
-    const [user,setUser]= useGetUser()
-    const [res,submit]=useLogin()
+    const [user,getUser]= useGetUser()
+    const [res,login]=useLogin()
     const [signUp]=useSignUp()
     
     return (
-        <UserContext.Provider value={{ submit,user,signUp }}>
+        <UserContext.Provider value={{ login,user,signUp }}>
             {props.children}
         </UserContext.Provider>
     )

@@ -26,5 +26,5 @@ export const useGetPost=()=> {
        console.log(error)
      }  
    }
-   return [posts,setPosts]
+   return [posts,getPost]
 }

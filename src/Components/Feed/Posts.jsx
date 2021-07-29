@@ -1,19 +1,17 @@
 import React, { useState, useEffect,useContext } from 'react'
 import { Post } from './Post.jsx'
 import axios from 'axios';
-import { cloneDeep } from 'lodash';
-import { arrayExpression } from '@babel/types';
 import { WithPost } from '../../HOCs/WithPost.jsx';
 import { useDoLike } from '../apis/useDoLike.jsx';
+import { useGetPost } from '../apis/useGetPost.jsx';
 
-export const PostsComponent = ({posts,setPosts}) => {
-  
+export const PostsComponent = ({posts,getPost}) => {
   let userId= null
-  const [changedPost,like]=useDoLike()
-  console.log("Component rerendered!!!!")
-  useEffect(()=>{
-    setPosts(changedPost)
-  },[changedPost])
+  // const [changedPost,like]=useDoLike()
+  // console.log("Component rerendered!!!!")
+  // useEffect(()=>{
+  //   setPosts(changedPost)
+  // },[changedPost])
 
     const unlike = async (id) => {
       // console.log("unliked");
@@ -26,11 +24,12 @@ export const PostsComponent = ({posts,setPosts}) => {
             'Content-Type': 'application/json',
           }  
         });
-        const index=posts.findIndex(posts => posts._id===id)
-        const tempPosts=[...posts]
-        tempPosts[index].likes.pop()
-        console.log(tempPosts)
-        setPosts(tempPosts)    
+        getPost()
+        // const index=posts.findIndex(posts => posts._id===id)
+        // const tempPosts=[...posts]
+        // tempPosts[index].likes.pop()
+        // console.log(tempPosts)
+        // setPosts(tempPosts)    
 
       } catch (err) {
         console.log(err)
@@ -57,7 +56,7 @@ export const PostsComponent = ({posts,setPosts}) => {
   return (
     <div>
       {posts.map(({ avatar, name, text,_id,likes,user}) =>(
-        <Post  key={_id}  avatar={avatar} name={name} status={text} user={user} likes={likes} like={like} id={_id}  unlike={unlike}auth={auth} userId={userId}/>
+        <Post  key={_id}  avatar={avatar} name={name} status={text} user={user} likes={likes}  id={_id}  unlike={unlike}auth={auth} userId={userId}/>
       ))}
     </div>
   )
