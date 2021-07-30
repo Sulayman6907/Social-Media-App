@@ -9,7 +9,7 @@ import { useDoUnLike } from '../apis/useDoUnlike.jsx';
 export const PostsComponent = ({ statePost, setStatePost }) => {
   const [posts, getPost] = useGetPost();
   const [res,doLike] = useDoLike()
-  const [doUnLike] = useDoUnLike()
+  const [unlikeRes,doUnLike] = useDoUnLike()
   const[currentPostId,setCurrentPostId]=useState()
   const [errorMessage, setErrorMessage] = useState('');
   let userId = null
@@ -37,6 +37,20 @@ export const PostsComponent = ({ statePost, setStatePost }) => {
       
   },[res,currentPostId])
 
+  useEffect(()=>{
+    console.log(res)
+    const index = statePost.findIndex(statePost => statePost._id === currentPostId)
+      const tempPosts = [...statePost]
+    if(res?.status === 200){ 
+      tempPosts[index].likes.pop()
+      setStatePost(tempPosts)
+    }
+    else if (res.error===400){
+      setErrorMessage('') 
+    }
+    
+},[unlikeRes,currentPostId])
+
   const like = (id) => {
     try {
       doLike(id)
@@ -49,13 +63,8 @@ export const PostsComponent = ({ statePost, setStatePost }) => {
 
   const unlike = async (id) => {
     try {
-      const res = await doUnLike(id)
-      const index = statePost.findIndex(statePost => statePost._id === id)
-      const tempPosts = [...statePost]
-      tempPosts[index].likes.pop()
-      setStatePost(tempPosts)
-      setErrorMessage('')
-
+      doUnLike(id)
+      setCurrentPostId(id)
     } catch (err) {
       console.log(err)
     }
