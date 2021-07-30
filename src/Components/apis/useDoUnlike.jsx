@@ -6,7 +6,7 @@ export const useDoUnLike = () => {
     const doUnlike = async (id) => {
         // console.log("unliked");
         try {
-            console.log("Like is running!")
+            console.log("unSLike is running!")
             const token = localStorage.getItem("token")
             const res = await axios.put(`/api/posts/unlike/${id}`, {}, {
                 headers: {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, user }) => {
+export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, user, errorMessage }) => {
     const [checkLiked, setLiked] = useState(false)
 
     return (
@@ -17,6 +17,9 @@ export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, us
                 <StatusText>"  {status} "</StatusText>
                 <Like onClick={() => like(id)} style={{ backgroundColor: checkLiked ? 'green' : 'black' }}> like</Like>
                 <Dislike onClick={() => unlike(id)}>Unlike</Dislike>
+                {errorMessage && (
+                    <p> {errorMessage} </p>
+                )}
                 {userId === user && (
                     <button
                         type="button"

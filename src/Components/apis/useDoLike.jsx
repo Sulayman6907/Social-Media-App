@@ -3,7 +3,13 @@ import { useState } from "react";
 import { useGetPost } from "./useGetPost";
 
 export const useDoLike = () => {
-    const [res,setRes]=useState()
+    const [res, setRes] = useState({
+        success: false,
+        loading: true,
+        status: null,
+        response:null,
+        error:null
+    })
     const doLike = async (id) => {
         // console.log("liked");
         try {
@@ -13,15 +19,25 @@ export const useDoLike = () => {
                 headers: {
                     'x-auth-token': token,
                     'Content-Type': 'application/json',
-                }   
+                }
             });
-            setRes(res)
-            return res
-
-            
+            setRes({
+                success: true,
+                loading: false,
+                status: res.status,
+                data:res.data,
+                error:false
+            })
         } catch (err) {
+            setRes({
+                success: false,
+                loading: false,
+                status: null,
+                data:null,
+                error:err.response.status
+            })
             console.log(err)
         }
     };
-    return [doLike]
+    return [res, doLike]
 }
