@@ -7,17 +7,21 @@ import { useHistory } from "react-router-dom";
 import { WithToken } from "../../HOCs/withToken";
 import { CustomInput } from "./CustomInput";
 import { useLogin } from "../apis/useLogin";
+import { useEffect } from "react";
 
 export const LoginSidebarComponent = () => {
   const [res,login]=useLogin()
   const history = useHistory();
 
-  const submit = async ({ email, password }) => {
-    console.log(email)
-    const res =await login({ email, password })
+  useEffect(() => {
     if (res.status === 201) {
       history.push("/feed")
     }
+  }, [res])
+
+  const submit = async ({ email, password }) => {
+    login({ email, password })
+    
   }
 
   const validationShape = {

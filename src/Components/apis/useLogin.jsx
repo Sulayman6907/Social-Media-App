@@ -1,8 +1,15 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from "axios";
 
-export const useLogin=()=>{
-    const [res,setRes]=useState()
+export const useLogin = () => {
+    const [res, setRes] = useState({
+        success: false,
+        loading: true,
+        status: null,
+        data: null,
+        error: null
+    }
+    )
     const config = {
         headers: {
             "Content-Type": "application/json"
@@ -11,18 +18,28 @@ export const useLogin=()=>{
 
     const login = async ({ email, password }) => {
         try {
-            console.log("here are the values : ", email, password)
             //Login a user
             const user = JSON.stringify({ email, password });
             const url = "/api/auth";
-            // console.log(user)
             const res = await axios.post(url, user, config)
-            setRes(res)
             localStorage.setItem("token", res.data.token)
-            return res
+            setRes({
+                success: true,
+                loading: false,
+                status: res.status,
+                data: res.data.token,
+                error: null
+            })
         } catch (err) {
+            setRes({
+                success: false,
+                loading: false,
+                status: null,
+                data:null,
+                error:err.response.status
+            })
             console.log(err)
         }
     };
-    return [res,login]
+    return [res, login]
 }
