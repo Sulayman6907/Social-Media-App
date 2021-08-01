@@ -6,7 +6,7 @@ export const useDoUnLike = () => {
         success: false,
         loading: true,
         status: null,
-        response:null,
+        data:null,
         error:null
     })
     const doUnlike = async (id) => {

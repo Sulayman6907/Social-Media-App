@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { WithPost } from "../../HOCs/WithPost";
@@ -6,15 +6,19 @@ import { useCreatePost } from "../apis/useCreatePost";
 
 export const CreatePostsComponent = ({ statePost, setStatePost }) => {
   const [postText, setPostText] = useState("")
-  const [addPost] = useCreatePost()
+  const [res,addPost] = useCreatePost()
 
-  const handleSubmit = async (evt) => {
-    evt.preventDefault();
-    const res = await addPost(postText)
+  useEffect(() => {
     if (res.status === 200) {
       const tempPost = [res.data, ...statePost];
       setStatePost(tempPost)
     }
+  }, [res])
+
+  const handleSubmit = async (evt) => {
+    evt.preventDefault();
+    addPost(postText)
+    
   }
 
   return (

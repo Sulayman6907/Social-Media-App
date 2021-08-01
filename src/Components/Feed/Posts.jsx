@@ -41,11 +41,11 @@ export const PostsComponent = ({ statePost, setStatePost }) => {
     console.log(res)
     const index = statePost.findIndex(statePost => statePost._id === currentPostId)
       const tempPosts = [...statePost]
-    if(res?.status === 200){ 
+    if(unlikeRes?.status === 200){ 
       tempPosts[index].likes.pop()
       setStatePost(tempPosts)
     }
-    else if (res.error===400){
+    else if (unlikeRes.error===400){
       setErrorMessage('') 
     }
     

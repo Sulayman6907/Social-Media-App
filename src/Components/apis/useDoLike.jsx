@@ -7,7 +7,7 @@ export const useDoLike = () => {
         success: false,
         loading: true,
         status: null,
-        response:null,
+        data:null,
         error:null
     })
     const doLike = async (id) => {
