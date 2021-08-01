@@ -8,8 +8,7 @@ export const useLogin = () => {
         status: null,
         data: null,
         error: null
-    }
-    )
+    })
     const config = {
         headers: {
             "Content-Type": "application/json"

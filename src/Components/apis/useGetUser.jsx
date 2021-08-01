@@ -3,7 +3,13 @@ import { useState,useEffect } from 'react';
 import axios from "axios";
 
 export const useGetUser=()=>{
-    const [user,setUser]=useState()
+    const [res,setRes]=useState({
+        success: false,
+        loading: true,
+        status: null,
+        data: null,
+        error: null
+    })
     
     const getUser = async () => {
         let token = localStorage.getItem("token")
@@ -16,11 +22,25 @@ export const useGetUser=()=>{
                     'Access-Control-Allow-Origin': '*',
                 }
             });
-            setUser(res.data.user)
-            return res.data.user
+            console.log(res)
+            setRes({
+                success: true,
+                loading: false,
+                status: res.status,
+                data: res.data.user,
+                error: null
+            })
+            
         } catch (error) {
+            setRes({
+                success: false,
+                loading: false,
+                status: null,
+                data:null,
+                error:error.response.status
+            })
             console.log(error)
         }
     }
-    return [user,getUser]
+    return [res,getUser]
 }
