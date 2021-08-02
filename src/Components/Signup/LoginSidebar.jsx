@@ -8,7 +8,7 @@ import { WithToken } from "../../HOCs/withToken";
 import { CustomInput } from "./CustomInput";
 import { useLogin } from "../apis/useLogin";
 import { useEffect } from "react";
-import { Spinner,Button } from "react-bootstrap";
+import { Spinner, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const LoginSidebarComponent = () => {
@@ -48,18 +48,18 @@ export const LoginSidebarComponent = () => {
             <h3>Login now</h3>
             <CustomInput type="email" name="email" placeholder="Email" label="email" />
             <CustomInput type="password" placeholder="password" name="password" label="password" />
-            {res.loading? <Button variant="primary" disabled>
-                <Spinner
-                  as="span"
-                  animation="border"
-                  size="sm"
-                  role="status"
-                  aria-hidden="true"
-                />
-                <span className="visually-hidden">Loading...</span>
-              </Button>
+            {res.loading ? <Button variant="primary" disabled>
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+              <span className="visually-hidden">Loading...</span>
+            </Button>
               : <button type="button" onClick={() => { handleSubmit() }}>Login</button>
-            }  
+            }
           </>
         }
       </Formik>

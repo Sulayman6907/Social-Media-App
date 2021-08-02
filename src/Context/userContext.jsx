@@ -9,11 +9,11 @@ import { useSignUp } from "../Components/apis/useSignUp";
 export const UserContext = createContext("")
 
 export const UserProvider = (props) => {
-    const [user,setUser]= useState()
-    const [signUp]=useSignUp()
-    
+    const [user, setUser] = useState()
+    const [signUp] = useSignUp()
+
     return (
-        <UserContext.Provider value={{ user,setUser,signUp }}>
+        <UserContext.Provider value={{ user, setUser, signUp }}>
             {props.children}
         </UserContext.Provider>
     )

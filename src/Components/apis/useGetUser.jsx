@@ -1,16 +1,16 @@
 import React from 'react';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from "axios";
 
-export const useGetUser=()=>{
-    const [res,setRes]=useState({
+export const useGetUser = () => {
+    const [res, setRes] = useState({
         success: false,
         loading: true,
         status: null,
         data: null,
         error: null
     })
-    
+
     const getUser = async () => {
         let token = localStorage.getItem("token")
         console.log(token)
@@ -30,17 +30,17 @@ export const useGetUser=()=>{
                 data: res.data.user,
                 error: null
             })
-            
+
         } catch (error) {
             setRes({
                 success: false,
                 loading: false,
                 status: null,
-                data:null,
-                error:error.response.status
+                data: null,
+                error: error.response.status
             })
             console.log(error)
         }
     }
-    return [res,getUser]
+    return [res, getUser]
 }

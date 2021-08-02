@@ -26,7 +26,6 @@ export const useCreatePost = () => {
         status: res.status,
         data: res.data,
         error: null
-
       })
     } catch (err) {
       console.log(err)
@@ -34,10 +33,10 @@ export const useCreatePost = () => {
         success: false,
         loading: false,
         status: null,
-        data:null,
-        error:err.response.status
-    })
+        data: null,
+        error: err.response.status
+      })
     }
   };
-  return [res,addPost]
+  return [res, addPost]
 }

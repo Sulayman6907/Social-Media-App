@@ -4,22 +4,22 @@ import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
 export const useSignUp = () => {
-    const [res,setRes]=useState({
+    const [res, setRes] = useState({
         success: false,
         loading: false,
         status: null,
         data: null,
         error: null
     })
-    
+
     const signUp = async ({ name, email, password }) => {
         try {
             setRes({
                 success: false,
                 loading: true,
                 status: null,
-                data:null,
-                error:null
+                data: null,
+                error: null
             })
             const url = "/api/users";
             const res = await axios.post(url, {
@@ -43,13 +43,13 @@ export const useSignUp = () => {
                 success: false,
                 loading: false,
                 status: null,
-                data:null,
-                error:err.response.status
+                data: null,
+                error: err.response.status
             })
             console.log(err)
         }
     }
-    return [res,signUp]
+    return [res, signUp]
 }
 
 

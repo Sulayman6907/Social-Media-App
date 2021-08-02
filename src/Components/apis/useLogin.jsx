@@ -22,8 +22,8 @@ export const useLogin = () => {
                 success: false,
                 loading: true,
                 status: null,
-                data:null,
-                error:null
+                data: null,
+                error: null
             })
             const user = JSON.stringify({ email, password });
             const url = "/api/auth";
@@ -41,8 +41,8 @@ export const useLogin = () => {
                 success: false,
                 loading: false,
                 status: null,
-                data:null,
-                error:err.response.status
+                data: null,
+                error: err.response.status
             })
             console.log(err)
         }
