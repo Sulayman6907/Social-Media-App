@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom'
 export const useSignUp = () => {
     const [res,setRes]=useState({
         success: false,
-        loading: true,
+        loading: false,
         status: null,
         data: null,
         error: null
@@ -14,6 +14,13 @@ export const useSignUp = () => {
     
     const signUp = async ({ name, email, password }) => {
         try {
+            setRes({
+                success: false,
+                loading: true,
+                status: null,
+                data:null,
+                error:null
+            })
             const url = "/api/users";
             const res = await axios.post(url, {
                 name: name,

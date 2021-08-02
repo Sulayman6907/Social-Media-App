@@ -4,7 +4,7 @@ import axios from "axios";
 export const useLogin = () => {
     const [res, setRes] = useState({
         success: false,
-        loading: true,
+        loading: false,
         status: null,
         data: null,
         error: null
@@ -18,6 +18,13 @@ export const useLogin = () => {
     const login = async ({ email, password }) => {
         try {
             //Login a user
+            setRes({
+                success: false,
+                loading: true,
+                status: null,
+                data:null,
+                error:null
+            })
             const user = JSON.stringify({ email, password });
             const url = "/api/auth";
             const res = await axios.post(url, user, config)
