@@ -10,7 +10,7 @@ import { useLogin } from "../apis/useLogin";
 import { useEffect } from "react";
 
 export const LoginSidebarComponent = () => {
-  const [res,login]=useLogin()
+  const [res, login] = useLogin()
   const history = useHistory();
 
   useEffect(() => {
@@ -21,7 +21,6 @@ export const LoginSidebarComponent = () => {
 
   const submit = async ({ email, password }) => {
     login({ email, password })
-    
   }
 
   const validationShape = {

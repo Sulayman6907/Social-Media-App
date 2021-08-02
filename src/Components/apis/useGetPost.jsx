@@ -3,7 +3,13 @@ import { useState,useEffect } from 'react';
 import axios from "axios";
 
 export const useGetPost=()=> {
-    const [posts,setPosts]=useState([])
+    const [postRes,setPostRes]=useState({
+      success: false,
+      loading: true,
+      status: null,
+      data: null,
+      error: null
+  })
    
    const getPost = async () => {
      let token = localStorage.getItem("token")
@@ -16,11 +22,25 @@ export const useGetPost=()=> {
            'Access-Control-Allow-Origin': '*',
          }
        });
-       console.log(res.data)
-       setPosts(res.data)
+       console.log(res)
+       setPostRes({
+          success: true,
+          loading: false,
+          status: res.status,
+          data: res.data,
+          error: null
+       })
+       console.log(postRes)      
      } catch (error) {
+      setPostRes({
+        success: false,
+        loading: false,
+        status: null,
+        data:null,
+        error:error.response.status
+    })
        console.log(error)
      }  
    }
-   return [posts,getPost]
+   return [postRes,getPost]
 }
