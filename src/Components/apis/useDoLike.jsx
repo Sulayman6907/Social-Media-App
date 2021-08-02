@@ -5,7 +5,7 @@ import { useGetPost } from "./useGetPost";
 export const useDoLike = () => {
     const [res, setRes] = useState({
         success: false,
-        loading: true,
+        loading: false,
         status: null,
         data:null,
         error:null
@@ -14,6 +14,13 @@ export const useDoLike = () => {
         // console.log("liked");
         try {
             console.log("Like is running!")
+            setRes({
+                success: false,
+                loading: true,
+                status: null,
+                data:null,
+                error:null
+            })
             const token = localStorage.getItem("token")
             const res = await axios.put(`/api/posts/like/${id}`, {}, {
                 headers: {
