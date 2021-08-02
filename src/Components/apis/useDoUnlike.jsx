@@ -4,7 +4,7 @@ import { useState } from "react";
 export const useDoUnLike = () => {
     const [res,setRes]=useState({
         success: false,
-        loading: true,
+        loading: false,
         status: null,
         data:null,
         error:null
@@ -12,7 +12,14 @@ export const useDoUnLike = () => {
     const doUnlike = async (id) => {
         // console.log("unliked");
         try {
-            console.log("unSLike is running!")
+            console.log("unLike is running!")
+            setRes({
+                success: false,
+                loading: true,
+                status: null,
+                data:null,
+                error:null
+            })
             const token = localStorage.getItem("token")
             const res = await axios.put(`/api/posts/unlike/${id}`, {}, {
                 headers: {

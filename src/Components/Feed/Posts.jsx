@@ -96,7 +96,7 @@ export const PostsComponent = ({ statePost, setStatePost }) => {
     <div>
       {postRes.loading ? <PostLoader />
         : statePost.map(({ avatar, name, text, _id, likes, user }) => (
-          <Post key={_id} avatar={avatar} name={name} status={text} user={user} likes={likes} likeRes={res} like={like} id={_id} unlike={unlike} auth={auth} userId={userId} errorMessage={errorMessage} />
+          <Post key={_id} avatar={avatar} name={name} status={text} user={user} likes={likes} likeRes={res} like={like} id={_id} unlike={unlike} auth={auth} userId={userId} errorMessage={errorMessage} unlikeRes={unlikeRes}/>
         ))
       }
     </div>

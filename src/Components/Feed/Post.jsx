@@ -4,7 +4,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap'
 
-export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, user, errorMessage,likeRes }) => {
+export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, user, errorMessage,likeRes,unlikeRes }) => {
     const [checkLiked, setLiked] = useState(false)
 
     return (
@@ -31,8 +31,20 @@ export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, us
               </Button>
                 : <Like onClick={() => like(id)} > like</Like>
                 }
+                { unlikeRes.loading? <Button variant="primary" disabled>
+                <Spinner
+                  as="span"
+                  animation="border"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />
+                <span className="visually-hidden">Loading...</span>
+              </Button>
+                : <Dislike onClick={() => unlike(id)}>Unlike</Dislike>
+
+                }
                 
-                <Dislike onClick={() => unlike(id)}>Unlike</Dislike>
                 {errorMessage && (
                     <p> {errorMessage} </p>
                 )}
