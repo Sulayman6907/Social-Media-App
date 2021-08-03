@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const NavBar = () => {
     return (
         <Container>
             <CustomUl>
                 <Header> Fakebook 2.0</Header>
-                <Customachor href="/feed"><CustomLi> Posts</CustomLi></Customachor>
-                <Customachor href="/profile"><CustomLi> Profile</CustomLi></Customachor>
-                <Customachor href="/"><CustomLi> Logout</CustomLi></Customachor>
+                <StyledLink to="/feed"><CustomLi> Posts</CustomLi></StyledLink>
+                <StyledLink to="/profile"><CustomLi> Profile</CustomLi></StyledLink>
+                <StyledLink to="/logout"><CustomLi> Logout</CustomLi></StyledLink>
             </CustomUl>
         </Container>
     )
@@ -42,6 +43,7 @@ const CustomLi = styled.li`
     border-width: 2px;  
     border-style: solid;
 `
-const Customachor = styled.a`
-    text-decoration: none;
-`
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  position: relative;
+`;
