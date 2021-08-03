@@ -64,7 +64,7 @@ const PostComponent = ({ avatar, name, status, likes, like, unlike, id,  userPos
                       >
                         delete
                       </button>
-                    : <p></p>}
+                    : <span></span>}
 
                 {errorMessage && (
                     <p> {errorMessage} </p>

@@ -21,7 +21,7 @@ export const useDeletePost = () => {
                 error: null
             })
             const token = localStorage.getItem("token")
-            const res = await axios.delete(`/api/posts/${id}` ,{
+            const res = await axios.delete(`/api/posts/${id}`,{
                 headers: {
                     'x-auth-token': token,
                     'Content-Type': 'application/json',

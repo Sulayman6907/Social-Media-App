@@ -76,8 +76,13 @@ export const PostsComponent = ({ statePost, setStatePost, user, setUser }) => {
   }, [unlikeRes, currentPostId])
 
   useEffect(()=>{
-    if(resDel.status===200)
-    console.log("Post Deleted")
+    if(resDel.status===200){
+      const index = statePost.findIndex(statePost => statePost._id === currentPostId)
+      const tempPosts = [...statePost]
+      tempPosts.splice(index,1)
+      setStatePost(tempPosts)
+    }
+    
   },[resDel])
    
 
@@ -103,6 +108,7 @@ export const PostsComponent = ({ statePost, setStatePost, user, setUser }) => {
   const del= async (id)=>{
     try{
       doDel(id)
+      setCurrentPostId(id)
     }catch (err) {
       console.log(err)
     }
