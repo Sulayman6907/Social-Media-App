@@ -6,15 +6,18 @@ import { useGetUser } from "../apis/useGetUser";
 import { set } from "lodash";
 import { useState } from "react";
 
-const MiniDashboardComponent = ({user,setUser}) => {
-  const [res,getUser]=useGetUser()
+const MiniDashboardComponent = ({ user, setUser }) => {
+  const [res, getUser] = useGetUser()
 
   useEffect(() => {
     getUser()
   }, [])
 
   useEffect(() => {
-    setUser(res.data)
+    if (res) {
+      setUser(res.data)
+    }
+
   }, [res])
   return (
     <div>
