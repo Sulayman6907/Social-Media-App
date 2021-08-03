@@ -3,10 +3,13 @@ import styled from "styled-components";
 import axios from "axios";
 import { WithPost } from "../../HOCs/WithPost";
 import { useCreatePost } from "../apis/useCreatePost";
+import { Spinner, Button } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 export const CreatePostsComponent = ({ statePost, setStatePost }) => {
   const [postText, setPostText] = useState("")
-  const [res,addPost] = useCreatePost()
+  const [res, addPost] = useCreatePost()
 
   useEffect(() => {
     if (res.status === 200) {
@@ -18,7 +21,7 @@ export const CreatePostsComponent = ({ statePost, setStatePost }) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     addPost(postText)
-    
+
   }
 
   return (
@@ -32,7 +35,18 @@ export const CreatePostsComponent = ({ statePost, setStatePost }) => {
         onChange={e => setPostText(e.target.value)}
       >
       </CustomText>
-      <button type="submit" value="Submit"> Submit </button>
+      {res.loading ? <Button variant="primary" disabled>
+        <Spinner
+          as="span"
+          animation="border"
+          size="sm"
+          role="status"
+          aria-hidden="true"
+        />
+        <span className="visually-hidden">Loading...</span>
+      </Button>
+        : <button type="submit" value="Submit"> Submit </button>
+      }
     </Container>
   )
 }

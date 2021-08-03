@@ -4,13 +4,20 @@ import { useState } from "react";
 export const useCreatePost = () => {
   const [res, setRes] = useState({
     success: false,
-    loading: true,
+    loading: false,
     status: null,
     data: null,
     error: null
   })
   const addPost = async (text) => {
     try {
+      setRes({
+        success: false,
+        loading: true,
+        status: null,
+        data: null,
+        error: null
+      })
       console.log("in add post with text ", text);
       const token = localStorage.getItem("token")
       const config = {
