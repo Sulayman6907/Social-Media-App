@@ -8,6 +8,7 @@ import { Login } from './Pages/Login.jsx';
 import { PostProvider } from '../Context/PostContext.jsx';
 import { UserProvider } from '../Context/userContext.jsx';
 import { NavBar } from './Feed/NavBar.jsx';
+import { PrivateRoute } from './Routes/PrivateRoute.jsx';
 
 export const App = () => {
   return (
@@ -22,9 +23,7 @@ export const App = () => {
             <Route path="/feed" exact>
               <FeedPage />
             </Route>
-            <Route path="/profile" exact>
-              <ProfilePage />
-            </Route>
+            <PrivateRoute component ={ProfilePage} path="/profile" exact/> 
             <Route path="/profileform" exact>
               <ProfileForm />
             </Route>
