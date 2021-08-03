@@ -30,7 +30,8 @@ export const PostsComponent = ({ statePost, setStatePost }) => {
     const index = statePost?.findIndex(statePost => statePost._id === currentPostId)
     const tempPosts = [...statePost]
     if (res.status === 200) {
-      tempPosts?.[index]?.likes.push(res.data)
+      tempPosts[index].likes=res.data
+      console.log(tempPosts)
       setStatePost(tempPosts)
       setErrorMessage('')
     }

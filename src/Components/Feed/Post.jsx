@@ -4,8 +4,7 @@ import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap'
 
-export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, user, errorMessage,likeRes,unlikeRes }) => {
-    const [checkLiked, setLiked] = useState(false)
+export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, user, errorMessage, likeRes, unlikeRes }) => {
 
     return (
         <Container>
@@ -18,33 +17,33 @@ export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, us
             <Status>
                 <Customh1>Status</Customh1>
                 <StatusText>"  {status} "</StatusText>
-                
-                { likeRes.loading? <Button variant="primary" disabled>
-                <Spinner
-                  as="span"
-                  animation="border"
-                  size="sm"
-                  role="status"
-                  aria-hidden="true"
-                />
-                <span className="visually-hidden">Loading...</span>
-              </Button>
-                : <Like onClick={() => like(id)} > like</Like>
+
+                {likeRes.loading ? <Button variant="primary" disabled>
+                    <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                    />
+                    <span className="visually-hidden">Loading...</span>
+                </Button>
+                    : <Like onClick={() => like(id)} > like</Like>
                 }
-                { unlikeRes.loading? <Button variant="primary" disabled>
-                <Spinner
-                  as="span"
-                  animation="border"
-                  size="sm"
-                  role="status"
-                  aria-hidden="true"
-                />
-                <span className="visually-hidden">Loading...</span>
-              </Button>
-                : <Dislike onClick={() => unlike(id)}>Unlike</Dislike>
+                {unlikeRes.loading ? <Button variant="primary" disabled>
+                    <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                    />
+                    <span className="visually-hidden">Loading...</span>
+                </Button>
+                    : <Dislike onClick={() => unlike(id)}>Unlike</Dislike>
 
                 }
-                
+
                 {errorMessage && (
                     <p> {errorMessage} </p>
                 )}
