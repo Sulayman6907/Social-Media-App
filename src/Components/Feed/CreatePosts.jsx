@@ -32,6 +32,7 @@ export const CreatePostsComponent = ({ statePost, setStatePost }) => {
         type="text"
         id="CommentsOrAdditionalInformation"
         value={postText}
+        placeholder="Write your status..."
         onChange={e => setPostText(e.target.value)}
       >
       </CustomText>
