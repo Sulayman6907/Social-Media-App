@@ -9,7 +9,7 @@ export const NavBar = () => {
                 <Header> Fakebook 2.0</Header>
                 <StyledLink to="/feed"><CustomLi> Posts</CustomLi></StyledLink>
                 <StyledLink to="/profile"><CustomLi> Profile</CustomLi></StyledLink>
-                <StyledLink to="/logout"><CustomLi> Logout</CustomLi></StyledLink>
+                <StyledLink to="/login"><CustomLi> Logout</CustomLi></StyledLink>
             </CustomUl>
         </Container>
     )

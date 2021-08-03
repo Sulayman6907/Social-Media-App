@@ -1,10 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap'
+import { WithToken } from '../../HOCs/withToken';
+import { useGetUser } from '../apis/useGetUser';
 
-export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, user, errorMessage, likeRes, unlikeRes }) => {
+const PostComponent = ({ avatar, name, status, likes, like, unlike, id,  userPost, errorMessage, likeRes, unlikeRes,user,setUser,Del }) => {
+    const [userRes, getUser] = useGetUser()
+
+    useEffect(() => {
+        getUser()
+      }, [])
+    
+      useEffect(() => {
+        if (userRes) {
+          setUser(userRes.data)
+        }
+    
+      }, [userRes])
 
     return (
         <Container>
@@ -43,18 +57,19 @@ export const Post = ({ avatar, name, status, likes, like, unlike, id, userId, us
                     : <Dislike onClick={() => unlike(id)}>Unlike</Dislike>
 
                 }
+                {user?._id === userPost?
+                      <button
+                        type="button"
+                        onClick={() => Del(id)}
+                      >
+                        delete
+                      </button>
+                    : <p></p>}
 
                 {errorMessage && (
                     <p> {errorMessage} </p>
                 )}
-                {userId === user && (
-                    <button
-                        type="button"
-                        onClick={() => console.log("Lets implement delete")}
-                    >
-                        delete
-                    </button>
-                )}
+                
                 <LikesCounter >Total likes : {likes.length} </LikesCounter>
             </Status>
         </Container>
@@ -122,3 +137,5 @@ const DivImg = styled.div`
     align-items: center;
     justify-content: center;
     `
+
+export const Post =WithToken(PostComponent)    
