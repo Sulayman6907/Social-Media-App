@@ -9,7 +9,7 @@ import { CustomInput } from "./CustomInput";
 import { useState } from "react";
 import { WithToken } from "../../HOCs/withToken";
 import { useSignUp } from "../apis/useSignUp";
-import { Spinner,Button } from "react-bootstrap";
+import { Spinner, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -34,7 +34,7 @@ export const SidebarComponent = () => {
     password: '',
     name: ''
   }
-  
+
   return (
     <Container>
       <LogoWrapper>
@@ -54,18 +54,18 @@ export const SidebarComponent = () => {
             <CustomInput type="string " placeholder="name" name="name" label="name" />
             <CustomInput type="email" name="email" placeholder="Email" label="email" />
             <CustomInput type="password" placeholder="password" name="password" label="password" />
-            {res.loading? <Button variant="primary" disabled>
-                <Spinner
-                  as="span"
-                  animation="border"
-                  size="sm"
-                  role="status"
-                  aria-hidden="true"
-                />
-                <span className="visually-hidden">Loading...</span>
-              </Button>
+            {res.loading ? <Button variant="primary" disabled>
+              <Spinner
+                as="span"
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+              <span className="visually-hidden">Loading...</span>
+            </Button>
               : <button type="button" onClick={() => { handleSubmit() }}>Login</button>
-            }  
+            }
           </>
         }
       </Formik>

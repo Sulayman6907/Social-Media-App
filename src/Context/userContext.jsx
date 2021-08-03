@@ -10,10 +10,9 @@ export const UserContext = createContext("")
 
 export const UserProvider = (props) => {
     const [user, setUser] = useState()
-    const [signUp] = useSignUp()
 
     return (
-        <UserContext.Provider value={{ user, setUser, signUp }}>
+        <UserContext.Provider value={{ user, setUser }}>
             {props.children}
         </UserContext.Provider>
     )
