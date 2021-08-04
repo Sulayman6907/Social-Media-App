@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useGetAllProfiles } from "../apis/useGetAllProfiles";
+import styled from "styled-components";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export const Profiles = () => {
@@ -23,12 +25,14 @@ export const Profiles = () => {
             <p > Browse and connect with similiar people</p>
             <div >
                 {profiles?profiles.map(dev => (
-                    <div key={dev.key} >
-                        <img  src={dev.user.avatar} alt="user" />
+                    <Container key={dev.key} >
+                        <DivImg>
+                        <AvatarImg  src={dev.user.avatar} alt="user" />
+                        </DivImg>
                         <div>
-                            <h2>{dev.user.name}</h2>
-                            <p>{dev.status}</p>
-                            <p>{dev.location}</p>
+                            <Customh1>{dev.user.name}</Customh1>
+                            <Customp>Status: {dev.status}</Customp>
+                            <Customp>Location: {dev.location}</Customp>
                             <Link to={`/profile/${dev.user._id}`}>
                                 View Profile
                             </Link>
@@ -41,10 +45,50 @@ export const Profiles = () => {
                                 </li>
                             ))}
                         </ul>
-                    </div>
+                    </Container>
                 )):<p></p>}
             </div>
         </>
     );
 };
 
+const Container = styled.div`
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+    border: 1px solid #363636;
+    display: flex;
+    flex-direction: column;
+    margin-bottom:30px;
+`
+const AvatarImg = styled.img`
+    height: 200px:
+    width: 200px; 
+    border-radius: 100px;
+    display: inline;
+    padding-top: 10px;
+`
+
+const DivImg = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    `
+const Customh1 = styled.h1`
+    text-align:center;
+`
+const Customp = styled.p`
+    text-align:center;
+`
+const Status = styled.div`
+    padding-top: 30px;
+    display: flex;
+    align-items: left;
+    justify-context: left;
+    flex-direction: column;
+    align-items: center;
+`
+const StatusText = styled.h3`
+    padding-top: 30px;
+`
