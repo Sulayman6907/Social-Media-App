@@ -1,11 +1,11 @@
 import React from "react"
-export const ProfileHeader=({profile})=>{
+export const ProfileAbout=({profile})=>{
     return(
         <div>
-            <img src={profile.user.avatar}/>
+            {/* <img src={profile.user.avatar}/>
             <h1 >{profile.user.name}</h1>
             <p >{profile.user.status}</p>
-            <p>{profile.user.location}</p>
+            <p>{profile.user.location}</p> */}
         </div>
     )
 }
