@@ -64,6 +64,7 @@ export const PostsComponent = ({ statePost, setStatePost, user, setUser }) => {
   useEffect(() => {
     const index = statePost.findIndex(statePost => statePost._id === currentPostId)
     const tempPosts = [...statePost]
+    // const likeIndex=tempPosts[index].likes.findIndex(likes=>likes.user===user._id)
     if (unlikeRes.status === 200) {
       tempPosts[index].likes.pop()
       setStatePost(tempPosts)
