@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useGetAllProfiles } from "../apis/useGetAllProfiles";
 import styled from "styled-components";
+import { BsFillChatSquareQuoteFill } from 'react-icons/bs'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from "react-bootstrap";
+import { Children } from "react";
 
 
 export const Profiles = () => {
@@ -31,11 +34,9 @@ export const Profiles = () => {
                         </DivImg>
                         <div>
                             <Customh1>{dev.user.name}</Customh1>
-                            <Customp>Status: {dev.status}</Customp>
+                            <Customp><BsFillChatSquareQuoteFill></BsFillChatSquareQuoteFill>{dev.status}</Customp>
                             <Customp>Location: {dev.location}</Customp>
-                            <Link to={`/profile/${dev.user._id}`}>
-                                View Profile
-                            </Link>
+                            <Link to={`/profile/${dev.user._id}` }><Button variant="dark">View Profile</Button></Link>
                         </div>
 
                         <ul>

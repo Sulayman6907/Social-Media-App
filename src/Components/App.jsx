@@ -9,6 +9,8 @@ import { PostProvider } from '../Context/PostContext.jsx';
 import { UserProvider } from '../Context/userContext.jsx';
 import { NavBar } from './Feed/NavBar.jsx';
 import { PrivateRoute } from './Routes/PrivateRoute.jsx';
+import { Profiles } from './ProfilePage/Profiles.jsx';
+import { Profile } from './ProfilePage/Profile.jsx';
 
 export const App = () => {
   return (
@@ -23,13 +25,14 @@ export const App = () => {
             <Route path="/feed" exact>
               <FeedPage />
             </Route>
-            <PrivateRoute component ={ProfilePage} path="/profile" exact/> 
+            <PrivateRoute component ={Profiles} path="/profiles" exact/> 
             <Route path="/profileform" exact>
               <ProfileForm />
             </Route>
             <Route path="/login" exact>
               <Login />
             </Route>
+            <Route exact path={`/profile/:id`} component={Profile} />
           </Switch>
         </PostProvider>
       </UserProvider>
