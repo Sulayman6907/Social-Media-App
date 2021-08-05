@@ -25,9 +25,6 @@ export const useProfileById = () => {
                     "x-auth-token": token
                 }
             });
-
-            console.log("in getprofile try block", res.data);
-
             setRes({
                 success: true,
                 loading: false,

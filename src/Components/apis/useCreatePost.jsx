@@ -18,7 +18,6 @@ export const useCreatePost = () => {
         data: null,
         error: null
       })
-      console.log("in add post with text ", text);
       const token = localStorage.getItem("token")
       const config = {
         headers: {

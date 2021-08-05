@@ -13,7 +13,6 @@ export const useGetUser = () => {
 
     const getUser = async () => {
         let token = localStorage.getItem("token")
-        console.log(token)
         try {
             const res = await axios.get("/api/profile/me", {
                 headers: {
@@ -22,7 +21,6 @@ export const useGetUser = () => {
                     'Access-Control-Allow-Origin': '*',
                 }
             });
-            console.log(res)
             setRes({
                 success: true,
                 loading: false,
@@ -30,7 +28,6 @@ export const useGetUser = () => {
                 data: res.data.user,
                 error: null
             })
-
         } catch (error) {
             setRes({
                 success: false,

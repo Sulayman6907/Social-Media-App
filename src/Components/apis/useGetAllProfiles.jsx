@@ -25,10 +25,6 @@ export const useGetAllProfiles= () => {
                     "x-auth-token": token
                 }
             });
-
-            console.log("in Profilestry block", res.data);
-            console.log(res)
-
             setRes({
                 success: true,
                 loading: false,

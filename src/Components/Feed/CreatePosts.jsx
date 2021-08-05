@@ -21,7 +21,6 @@ export const CreatePostsComponent = ({ statePost, setStatePost }) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     addPost(postText)
-
   }
 
   return (

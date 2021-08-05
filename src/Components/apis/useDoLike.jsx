@@ -11,9 +11,7 @@ export const useDoLike = () => {
         error: null
     })
     const doLike = async (id) => {
-        // console.log("liked");
         try {
-            console.log("Like is running!")
             setRes({
                 success: false,
                 loading: true,

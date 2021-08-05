@@ -3,23 +3,9 @@ import styled from 'styled-components'
 import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap'
-import { WithToken } from '../../HOCs/withToken';
-import { useGetUser } from '../apis/useGetUser';
 
-const PostComponent = ({ avatar, name, status, likes, like, unlike, id,  userPost, errorMessage, likeRes, unlikeRes,user,setUser,Del }) => {
-    const [userRes, getUser] = useGetUser()
-
-    useEffect(() => {
-        getUser()
-      }, [])
+export const Post = ({ avatar, name, status, likes, like, unlike, id,  userPost,userContext, errorMessage, likeRes, unlikeRes,Del }) => {
     
-      useEffect(() => {
-        if (userRes) {
-          setUser(userRes.data)
-        }
-    
-      }, [userRes])
-
     return (
         <Container>
             <div>
@@ -57,7 +43,7 @@ const PostComponent = ({ avatar, name, status, likes, like, unlike, id,  userPos
                     : <Dislike onClick={() => unlike(id)}>Unlike</Dislike>
 
                 }
-                {user?._id === userPost?
+                {userContext?._id === userPost?
                       <button
                         type="button"
                         onClick={() => Del(id)}
@@ -138,4 +124,3 @@ const DivImg = styled.div`
     justify-content: center;
     `
 
-export const Post =WithToken(PostComponent)    

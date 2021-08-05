@@ -11,14 +11,14 @@ import { useGetUser } from '../apis/useGetUser.jsx';
 import { useDeletePost } from '../apis/useDeletePost.jsx';
 
 
-export const PostsComponent = ({ statePost, setStatePost, user, setUser }) => {
+export const PostsComponent = ({ statePost, setStatePost, user: userContext, setUser }) => {
   const [postRes, getPost] = useGetPost();
   const [res, doLike] = useDoLike()
   const [unlikeRes, doUnLike] = useDoUnLike()
   const [currentPostId, setCurrentPostId] = useState()
   const [errorMessage, setErrorMessage] = useState('');
   const [userRes, getUser] = useGetUser()
-  const[resDel,doDel]=useDeletePost()
+  const [resDel, doDel] = useDeletePost()
 
   useEffect(() => {
     getUser()
@@ -45,13 +45,12 @@ export const PostsComponent = ({ statePost, setStatePost, user, setUser }) => {
   useEffect(() => {
     const index = statePost?.findIndex(statePost => statePost._id === currentPostId)
     const tempPosts = [...statePost]
-    if (res.status === 200) {
-      if (tempPosts) {
-        tempPosts[index].likes = res.data
-        console.log(tempPosts)
-        setStatePost(tempPosts)
-        setErrorMessage('')
-      }
+    if (res.status === 200 && tempPosts) {
+      tempPosts[index].likes = res.data
+      console.log(tempPosts)
+      setStatePost(tempPosts)
+      setErrorMessage('')
+
 
     }
     else if (res.error === 400) {
@@ -70,56 +69,43 @@ export const PostsComponent = ({ statePost, setStatePost, user, setUser }) => {
       setStatePost(tempPosts)
       setErrorMessage('')
     }
-    else if (unlikeRes.error === 400) {
+    else {
       setErrorMessage('Not liked')
     }
 
   }, [unlikeRes, currentPostId])
 
-  useEffect(()=>{
-    if(resDel.status===200){
+  useEffect(() => {
+    if (resDel.status === 200) {
       const index = statePost.findIndex(statePost => statePost._id === currentPostId)
       const tempPosts = [...statePost]
-      tempPosts.splice(index,1)
+      tempPosts.splice(index, 1)
       setStatePost(tempPosts)
     }
-    
-  },[resDel])
-   
+
+  }, [resDel])
+
 
   const like = (id) => {
-    try {
-      doLike(id)
-      setCurrentPostId(id)
-
-    } catch (err) {
-      console.log(err)
-    }
+    doLike(id)
+    setCurrentPostId(id)
   };
 
-  const unlike = async ( id) => {
-    try {
-      doUnLike(id)
-      setCurrentPostId(id)
-    } catch (err) {
-      console.log(err)
-    }
+  const unlike = (id) => {
+    doUnLike(id)
+    setCurrentPostId(id)
   };
 
-  const del= async (id)=>{
-    try{
-      doDel(id)
-      setCurrentPostId(id)
-    }catch (err) {
-      console.log(err)
-    }
+  const del = (id) => {
+    doDel(id)
+    setCurrentPostId(id)
   }
 
   return (
     <div>
       {postRes.loading ? <PostLoader />
-        : statePost.map(({ avatar, name, text, _id, likes,user }) => (
-          <Post key={_id} avatar={avatar} name={name} Del ={del} status={text} userPost={user} likes={likes} likeRes={res} like={like} id={_id} unlike={unlike} errorMessage={errorMessage} unlikeRes={unlikeRes} />
+        : statePost.map(({ avatar, name, text, _id, likes, user }) => (
+          <Post key={_id} avatar={avatar} name={name} Del={del} status={text} userContext={userContext} userPost={user} likes={likes} likeRes={res} like={like} id={_id} unlike={unlike} errorMessage={errorMessage} unlikeRes={unlikeRes} />
         ))
       }
     </div>

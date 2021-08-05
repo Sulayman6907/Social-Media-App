@@ -3,8 +3,6 @@ import { WithToken } from "../../HOCs/withToken";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { useGetUser } from "../apis/useGetUser";
-import { set } from "lodash";
-import { useState } from "react";
 
 const MiniDashboardComponent = ({ user, setUser }) => {
   const [res, getUser] = useGetUser()
@@ -14,7 +12,7 @@ const MiniDashboardComponent = ({ user, setUser }) => {
   }, [])
 
   useEffect(() => {
-    if (res) {
+    if (res.status===200) {
       setUser(res.data)
     }
 

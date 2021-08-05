@@ -1,11 +1,11 @@
 import React from "react"
-import { ProfileHeader } from "./ProfileHeader"
-import { Profiles } from "./Profiles"
+import { ProfileHeader } from "../ProfilePage/ProfileHeader"
 import { useParams } from "react-router"
 import { useProfileById } from "../apis/useProfilebyId"
 import { useEffect } from "react"
-import { ProfileAbout } from "./ProfileAbout"
-import { EduExp } from "./EduExp"
+import { ProfileAbout } from "../ProfilePage/ProfileAbout"
+import { EduExp } from "../ProfilePage/EduExp"
+
 
 export const Profile = () => {
     const { id } = useParams()
@@ -15,11 +15,6 @@ export const Profile = () => {
         getProfileById(id)
     }, [])
 
-    useEffect(() => {
-        if (res.status === 200) {
-            console.log(res)
-        }
-    }, [res])
 
     return (
         <div>

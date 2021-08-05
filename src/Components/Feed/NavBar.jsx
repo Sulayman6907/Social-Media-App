@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
+import { WithToken } from '../../HOCs/withToken';
 
 export const NavBar = () => {
     const history=useHistory()
@@ -16,7 +17,7 @@ export const NavBar = () => {
             <CustomUl>
                 <Header> Fakebook 2.0</Header>
                 <StyledLink to="/feed"><CustomLi> Posts</CustomLi></StyledLink>
-                <StyledLink to="/profile"><CustomLi> Profile</CustomLi></StyledLink>
+                <StyledLink to="/profiles"><CustomLi> Profiles</CustomLi></StyledLink>
                 <Button onClick={logout}> Logout</Button>
             </CustomUl>
         </Container>

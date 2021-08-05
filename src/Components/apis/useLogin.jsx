@@ -17,7 +17,6 @@ export const useLogin = () => {
 
     const login = async ({ email, password }) => {
         try {
-            //Login a user
             setRes({
                 success: false,
                 loading: true,

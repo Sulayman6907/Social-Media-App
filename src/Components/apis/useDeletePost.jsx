@@ -10,9 +10,7 @@ export const useDeletePost = () => {
         error: null
     })
     const doDelete = async (id) => {
-        // console.log("liked");
         try {
-            console.log("Like is running!")
             setRes({
                 success: false,
                 loading: true,

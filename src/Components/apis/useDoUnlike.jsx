@@ -10,9 +10,7 @@ export const useDoUnLike = () => {
         error: null
     })
     const doUnlike = async (id) => {
-        // console.log("unliked");
         try {
-            console.log("unLike is running!")
             setRes({
                 success: false,
                 loading: true,
