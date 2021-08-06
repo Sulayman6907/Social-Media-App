@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import axios from "axios";
 import { WithPost } from "../../HOCs/WithPost";
 import { useCreatePost } from "../apis/useCreatePost";
 import { Spinner, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 
 export const CreatePostsComponent = ({ statePost, setStatePost }) => {
   const [postText, setPostText] = useState("")
@@ -21,6 +19,7 @@ export const CreatePostsComponent = ({ statePost, setStatePost }) => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     addPost(postText)
+    setPostText("")
   }
 
   return (

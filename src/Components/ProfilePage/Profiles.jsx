@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetAllProfiles } from "../apis/useGetAllProfiles";
 import styled from "styled-components";
-import { BsFillChatSquareQuoteFill } from 'react-icons/bs'
+import { BsFillChatSquareQuoteFill,BsCheck } from 'react-icons/bs'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from "react-bootstrap";
+
 
 export const Profiles = () => {
     const [res, getAllProfiles] = useGetAllProfiles()
@@ -32,16 +33,20 @@ export const Profiles = () => {
                             <Customh1>{dev.user.name}</Customh1>
                             <Customp><BsFillChatSquareQuoteFill></BsFillChatSquareQuoteFill>{dev.status}</Customp>
                             <Customp>Location: {dev.location}</Customp>
-                            <Link to={`/profile/${dev.user._id}` }><Button variant="dark">View Profile</Button></Link>
+                            <CustomDiv>
+                            <CustomLink to={`/profile/${dev.user._id}` }><Button variant="dark">View Profile</Button></CustomLink>
+                            </CustomDiv>
+                            
                         </div>
 
-                        <ul>
+                        <CustomUl>
                             {dev.skills.map(skill => (
-                                <li >
+                                <CustomLi>
+                                    <BsCheck/>
                                  {skill}
-                                </li>
+                                </CustomLi>
                             ))}
-                        </ul>
+                        </CustomUl>
                     </Container>
                 )):<p></p>}
             </div>
@@ -73,11 +78,26 @@ const DivImg = styled.div`
     justify-content: center;
     `
 const Customh1 = styled.h1`
-    text-align:center;
+    text-align: center;
+`
+const CustomDiv = styled.div`
+    text-align: center;
 `
 const Customp = styled.p`
-    text-align:center;
+    text-align: center;
 `
+const CustomLink = styled(Link)`
+    text-align: center;
+`
+const CustomUl = styled.ul`
+    text-align: center;
+    
+`
+const CustomLi = styled.li`
+    list-style-type: none;
+    margin-left: -50px;
+`
+
 const Status = styled.div`
     padding-top: 30px;
     display: flex;
