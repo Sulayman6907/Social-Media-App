@@ -1,23 +1,22 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap'
 
-export const Post = ({ avatar, name, status, likes, like, unlike, id,  userPost,userContext, errorMessage, likeRes, unlikeRes,Del }) => {
-    
+export const Post = ({ props, like, unlike, id, userContext, errorMessage, likeRes, unlikeRes, Del }) => {
+
     return (
         <Container>
             <div>
                 <DivImg>
-                    <AvatarImg src={avatar} alt="new" />
+                    <AvatarImg src={props.avatar} alt="new" />
                 </DivImg>
-                <Customh1>{name}</Customh1>
+                <Customh1>{props.name}</Customh1>
             </div>
             <Status>
                 <Customh1>Status</Customh1>
-                <StatusText>"  {status} "</StatusText>
-
+                <StatusText>"  {props.text} "</StatusText>
                 {likeRes.loading ? <Button variant="primary" disabled>
                     <Spinner
                         as="span"
@@ -41,22 +40,19 @@ export const Post = ({ avatar, name, status, likes, like, unlike, id,  userPost,
                     <span className="visually-hidden">Loading...</span>
                 </Button>
                     : <Dislike onClick={() => unlike(id)}>Unlike</Dislike>
-
                 }
-                {userContext?._id === userPost?
-                      <button
+                {userContext?._id === props.user ?
+                    <button
                         type="button"
                         onClick={() => Del(id)}
-                      >
+                    >
                         delete
-                      </button>
+                    </button>
                     : <span></span>}
-
                 {errorMessage && (
                     <p> {errorMessage} </p>
                 )}
-                
-                <LikesCounter >Total likes : {likes.length} </LikesCounter>
+                <LikesCounter >Total likes : {props.likes.length} </LikesCounter>
             </Status>
         </Container>
     )
@@ -98,12 +94,6 @@ const Dislike = styled.button`
     margin-top: 30px;
     width: 100px;
     background-color: red;
-    color: white;
-`
-const Comment = styled.button`
-    margin-top: 30px;
-    width: 100px;
-    background-color: blue;
     color: white;
 `
 const LikesCounter = styled.div`

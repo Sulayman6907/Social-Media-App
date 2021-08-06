@@ -20,14 +20,12 @@ export const App = () => {
             <Route path="/" exact>
               <Signup />
             </Route>
-            <Route path="/feed" exact>
-              <FeedPage />
-            </Route>
+            <Route component ={FeedPage} path="/feed" exact />
             <PrivateRoute component ={Profiles} path="/profiles" exact/> 
             <Route path="/login" exact>
               <Login />
             </Route>
-            <Route exact path={`/profile/:id`} component={Profile} />
+            <PrivateRoute component ={Profile} path={`/profile/:id`} />
           </Switch>
         </PostProvider>
       </UserProvider>

@@ -15,7 +15,6 @@ export const Profile = () => {
         getProfileById(id)
     }, [])
 
-
     return (
         <div>
             <ProfileHeader profile={res.data} />

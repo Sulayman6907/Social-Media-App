@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Post } from './Post.jsx'
-import axios from 'axios';
 import { WithPost } from '../../HOCs/WithPost.jsx';
 import { useDoLike } from '../apis/useDoLike.jsx';
 import { useGetPost } from '../apis/useGetPost.jsx';
@@ -9,7 +8,6 @@ import { PostLoader } from '../Loaders/PostLoader.jsx';
 import { WithToken } from "../../HOCs/withToken";
 import { useGetUser } from '../apis/useGetUser.jsx';
 import { useDeletePost } from '../apis/useDeletePost.jsx';
-
 
 export const PostsComponent = ({ statePost, setStatePost, user: userContext, setUser }) => {
   const [postRes, getPost] = useGetPost();
@@ -28,7 +26,6 @@ export const PostsComponent = ({ statePost, setStatePost, user: userContext, set
     if (userRes) {
       setUser(userRes.data)
     }
-
   }, [userRes])
 
   useEffect(() => {
@@ -49,8 +46,6 @@ export const PostsComponent = ({ statePost, setStatePost, user: userContext, set
       console.log(tempPosts)
       setStatePost(tempPosts)
       setErrorMessage('')
-
-
     }
     else if (res.error === 400) {
       setErrorMessage("You have already Liked")
@@ -73,7 +68,6 @@ export const PostsComponent = ({ statePost, setStatePost, user: userContext, set
     else {
       setErrorMessage('')
     }
-
   }, [unlikeRes, currentPostId])
 
   useEffect(() => {
@@ -83,9 +77,7 @@ export const PostsComponent = ({ statePost, setStatePost, user: userContext, set
       tempPosts.splice(index, 1)
       setStatePost(tempPosts)
     }
-
   }, [resDel])
-
 
   const like = (id) => {
     doLike(id)
@@ -105,8 +97,8 @@ export const PostsComponent = ({ statePost, setStatePost, user: userContext, set
   return (
     <div>
       {postRes.loading ? <PostLoader />
-        : statePost.map(({ avatar, name, text, _id, likes, user }) => (
-          <Post key={_id} avatar={avatar} name={name} Del={del} status={text} userContext={userContext} userPost={user} likes={likes} likeRes={res} like={like} id={_id} unlike={unlike} errorMessage={errorMessage} unlikeRes={unlikeRes} />
+        : statePost.map((props) => (
+          <Post key={props._id} props={props}  Del={del} userContext={userContext}  likeRes={res} like={like}  unlike={unlike} errorMessage={errorMessage} unlikeRes={unlikeRes} />
         ))
       }
     </div>

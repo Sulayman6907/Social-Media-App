@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useGetAllProfiles } from "../apis/useGetAllProfiles";
 import styled from "styled-components";
 import { BsFillChatSquareQuoteFill } from 'react-icons/bs'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from "react-bootstrap";
-import { Children } from "react";
-
 
 export const Profiles = () => {
     const [res, getAllProfiles] = useGetAllProfiles()
@@ -23,7 +20,6 @@ export const Profiles = () => {
 
     return (
         <>
-        
             <h1 >Community </h1>
             <p > Browse and connect with similiar people</p>
             <div >

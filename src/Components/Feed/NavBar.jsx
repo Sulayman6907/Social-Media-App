@@ -11,8 +11,8 @@ export const NavBarComponent = ({setUser}) => {
         localStorage.removeItem("token");
         setUser('')
         history.push("/login")
-
     }
+
     return (
         <Container>
             <CustomUl>
@@ -56,6 +56,6 @@ const CustomLi = styled.li`
 const StyledLink = styled(Link)`
   text-decoration: none;
   position: relative;
-`;
+`
 
 export const NavBar=WithToken(NavBarComponent)
