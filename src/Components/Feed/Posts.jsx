@@ -36,7 +36,6 @@ export const PostsComponent = ({ statePost, setStatePost, user: userContext, set
   }, [])
 
   useEffect(() => {
-    console.log(postRes)
     if (postRes.data) {
       setStatePost(postRes.data)
     }
@@ -57,7 +56,6 @@ export const PostsComponent = ({ statePost, setStatePost, user: userContext, set
       setErrorMessage("You have already Liked")
       console.log(errorMessage)
     }
-
   }, [res, currentPostId])
 
   useEffect(() => {
@@ -69,8 +67,11 @@ export const PostsComponent = ({ statePost, setStatePost, user: userContext, set
       setStatePost(tempPosts)
       setErrorMessage('')
     }
-    else {
+    else if(unlikeRes.error===400){
       setErrorMessage('Not liked')
+    }
+    else {
+      setErrorMessage('')
     }
 
   }, [unlikeRes, currentPostId])

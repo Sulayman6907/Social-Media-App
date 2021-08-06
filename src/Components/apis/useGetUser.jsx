@@ -1,6 +1,5 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import axios from "axios";
+import { useState } from 'react';
+import { authAxios } from '../Utility/addToken';
 
 export const useGetUser = () => {
     const [res, setRes] = useState({
@@ -12,15 +11,8 @@ export const useGetUser = () => {
     })
 
     const getUser = async () => {
-        let token = localStorage.getItem("token")
         try {
-            const res = await axios.get("/api/profile/me", {
-                headers: {
-                    'x-auth-token': token,
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                }
-            });
+            const res = await authAxios.get("/api/profile/me");
             setRes({
                 success: true,
                 loading: false,

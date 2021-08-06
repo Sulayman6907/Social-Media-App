@@ -1,4 +1,4 @@
-import axios from "axios";
+import { authAxios } from '../Utility/addToken';
 import { useState } from "react";
 
 export const useCreatePost = () => {
@@ -18,14 +18,7 @@ export const useCreatePost = () => {
         data: null,
         error: null
       })
-      const token = localStorage.getItem("token")
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          "x-auth-token": token,
-        }
-      };
-      const res = await axios.post("/api/posts", { text: text }, config);
+      const res = await authAxios.post("/api/posts", { text: text })
       setRes({
         success: true,
         loading: false,

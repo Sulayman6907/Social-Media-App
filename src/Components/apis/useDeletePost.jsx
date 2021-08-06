@@ -1,4 +1,4 @@
-import axios from "axios";
+import { authAxios } from '../Utility/addToken';
 import { useState } from "react";
 
 export const useDeletePost = () => {
@@ -18,13 +18,7 @@ export const useDeletePost = () => {
                 data: null,
                 error: null
             })
-            const token = localStorage.getItem("token")
-            const res = await axios.delete(`/api/posts/${id}`,{
-                headers: {
-                    'x-auth-token': token,
-                    'Content-Type': 'application/json',
-                }
-            });
+            const res = await authAxios.delete(`/api/posts/${id}`);
             setRes({
                 success: true,
                 loading: false,

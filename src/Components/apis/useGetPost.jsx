@@ -1,6 +1,5 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
-import axios from "axios";
+import { authAxios } from '../Utility/addToken';
 
 export const useGetPost = () => {
   const [postRes, setPostRes] = useState({
@@ -12,15 +11,9 @@ export const useGetPost = () => {
   })
 
   const getPost = async () => {
-    let token = localStorage.getItem("token")
+    
     try {
-      const res = await axios.get("/api/posts", {
-        headers: {
-          'x-auth-token': token,
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-        }
-      });
+      const res = await authAxios.get("/api/posts");
       setPostRes({
         success: true,
         loading: false,

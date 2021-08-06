@@ -1,4 +1,4 @@
-import axios from "axios";
+import { authAxios } from '../Utility/addToken';
 import { useState } from "react";
 
 export const useProfileById = () => {
@@ -18,13 +18,7 @@ export const useProfileById = () => {
                 data: null,
                 error: null
             })
-            const token = localStorage.getItem("token")
-            const res = await axios.get(`/api/profile/user/${id}`, {
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-auth-token": token
-                }
-            });
+            const res = await authAxios.get(`/api/profile/user/${id}`);
             setRes({
                 success: true,
                 loading: false,

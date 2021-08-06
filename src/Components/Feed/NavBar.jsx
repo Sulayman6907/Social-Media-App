@@ -5,10 +5,11 @@ import { Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom';
 import { WithToken } from '../../HOCs/withToken';
 
-export const NavBar = () => {
+export const NavBarComponent = ({setUser}) => {
     const history=useHistory()
     const logout=()=>{
         localStorage.removeItem("token");
+        setUser('')
         history.push("/login")
 
     }
@@ -56,3 +57,5 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   position: relative;
 `;
+
+export const NavBar=WithToken(NavBarComponent)

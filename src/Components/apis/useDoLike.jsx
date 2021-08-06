@@ -1,6 +1,5 @@
-import axios from "axios";
+import { authAxios } from '../Utility/addToken';
 import { useState } from "react";
-import { useGetPost } from "./useGetPost";
 
 export const useDoLike = () => {
     const [res, setRes] = useState({
@@ -19,13 +18,7 @@ export const useDoLike = () => {
                 data: null,
                 error: null
             })
-            const token = localStorage.getItem("token")
-            const res = await axios.put(`/api/posts/like/${id}`, {}, {
-                headers: {
-                    'x-auth-token': token,
-                    'Content-Type': 'application/json',
-                }
-            });
+            const res = await authAxios.put(`/api/posts/like/${id}`);
             setRes({
                 success: true,
                 loading: false,

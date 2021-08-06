@@ -1,4 +1,4 @@
-import axios from "axios";
+import { authAxios } from '../Utility/addToken';
 import { useState } from "react";
 
 export const useDoUnLike = () => {
@@ -18,13 +18,7 @@ export const useDoUnLike = () => {
                 data: null,
                 error: null
             })
-            const token = localStorage.getItem("token")
-            const res = await axios.put(`/api/posts/unlike/${id}`, {}, {
-                headers: {
-                    'x-auth-token': token,
-                    'Content-Type': 'application/json',
-                }
-            });
+            const res = await authAxios.put(`/api/posts/unlike/${id}`);
             setRes({
                 success: true,
                 loading: false,
