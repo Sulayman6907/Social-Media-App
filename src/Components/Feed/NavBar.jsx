@@ -19,7 +19,7 @@ export const NavBarComponent = ({setUser}) => {
                 <Header> Fakebook 2.0</Header>
                 <StyledLink to="/feed"><CustomLi> Posts</CustomLi></StyledLink>
                 <StyledLink to="/profiles"><CustomLi> Profiles</CustomLi></StyledLink>
-                <Button onClick={logout}> Logout</Button>
+                <CustomButton onClick={logout}> Logout</CustomButton>
             </CustomUl>
         </Container>
     )
@@ -27,7 +27,7 @@ export const NavBarComponent = ({setUser}) => {
 
 const Container = styled.div`
     min-height: 80px;
-    background-color: black;
+    background-color: #FF0000;
     margin-bottom: 50px;
 `
 const Header = styled.h1`
@@ -44,18 +44,35 @@ const CustomUl = styled.ul`
 const CustomLi = styled.li`
     display: block;
     color: white;
-    padding-top: 30px;
+    margin-top: 5px;
     height: 50%;
     font-size: 20px;
     list-style-type: none;
     padding: 20px;
-    border-color: black;
-    border-width: 2px;  
-    border-style: solid;
 `
 const StyledLink = styled(Link)`
   text-decoration: none;
   position: relative;
+`
+
+const CustomButton=styled.button`
+    width: 10%;
+    height: 40px;
+    border: none;
+    margin: 1rem 0;
+    margin-top: 20px;
+    margin-right: 10px;
+    box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    background-color: white;
+    color: #FF0000;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
 `
 
 export const NavBar=WithToken(NavBarComponent)

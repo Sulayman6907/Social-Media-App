@@ -28,8 +28,7 @@ const Customh1 = styled.h1`
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 20px;
-  border: 1px solid #363636;
+  font-family: Arial;
   display: flex;
   align-items: center;
   flex-direction: column;

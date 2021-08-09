@@ -24,7 +24,7 @@ export const CreatePostsComponent = ({ statePost, setStatePost }) => {
 
   return (
     <Container onSubmit={handleSubmit}>
-      <label>Add your Status</label>
+      <Customh2>Add your Status</Customh2>
       <CustomText
         name="commentTextArea"
         type="text"
@@ -44,7 +44,7 @@ export const CreatePostsComponent = ({ statePost, setStatePost }) => {
         />
         <span className="visually-hidden">Loading...</span>
       </Button>
-        : <button type="submit" value="Submit"> Submit </button>
+        : <CustomButton type="submit" value="Submit"> Submit </CustomButton>
       }
     </Container>
   )
@@ -59,11 +59,36 @@ const Container = styled.form`
   margin-left: 200px;
   margin-right: 200px;
   height: 100%;
-  align-item: center;
+  text-align: center;
   padding: 0 2rem;
   margin-bottom: 30px;  
 `
 const CustomText = styled.textarea`
   width: 100%;
+`
+const CustomButton=styled.button`
+    width: 10%;
+    height: 40px;
+    border: none;
+    margin: 1rem 0;
+    margin-top: 20px;
+    margin-right: 10px;
+    box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    background-color: #FF0000;
+    color: white ;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+`
+const Customh2=styled.h2`
+  font-family: Arial;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
 export const CreatePosts = WithPost(CreatePostsComponent)

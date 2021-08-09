@@ -156,16 +156,42 @@ const StatusText = styled.h3`
 `
 
 const Like = styled.button`
-    margin-top: 30px;
-    width: 100px;
+    width: 15%;
+    height: 40px;
+    border: none;
+    margin: 1rem 0;
+    margin-top: 20px;
+    margin-right: 10px;
+    box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
     background-color: green;
-    color: white;
+    color: white ;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    &:hover {
+    transform: translateY(-3px);
+    }
 `
 const Dislike = styled.button`
-    margin-top: 30px;
-    width: 100px;
-    background-color: red;
-    color: white;
+    width: 15%;
+    height: 40px;
+    border: none;
+    margin: 1rem 0;
+    margin-top: 20px;
+    margin-right: 10px;
+    box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    background-color: #FF0000;
+    color: white ;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    &:hover {
+    transform: translateY(-3px);
+    }
 `
 const LikesCounter = styled.div`
     margin-top: 30px
