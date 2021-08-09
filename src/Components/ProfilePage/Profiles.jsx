@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { BsFillChatSquareQuoteFill,BsCheck } from 'react-icons/bs'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from "react-bootstrap";
+import { PostLoader } from "../Loaders/PostLoader";
 
 
 export const Profiles = () => {
@@ -48,7 +49,7 @@ export const Profiles = () => {
                             ))}
                         </CustomUl>
                     </Container>
-                )):<p></p>}
+                )):<PostLoader/>}
             </div>
         </>
     );
