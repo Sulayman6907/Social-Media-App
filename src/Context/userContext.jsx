@@ -1,18 +1,13 @@
-import { createContext, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import { useGetUser } from "../Components/apis/useGetUser";
-import axios from "axios";
-import { useLogin } from "../Components/apis/useLogin";
-import { useSignUp } from "../Components/apis/useSignUp";
+import { createContext, useState } from "react";
 
 export const UserContext = createContext("")
 
 export const UserProvider = (props) => {
     const [user, setUser] = useState()
+    const[isLoggedIn,setIsLoggedIn]=useState()
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserContext.Provider value={{ user, setUser,isLoggedIn,setIsLoggedIn }}>
             {props.children}
         </UserContext.Provider>
     )

@@ -20,7 +20,7 @@ export const App = () => {
             <Route path="/" exact>
               <Signup />
             </Route>
-            <Route component ={FeedPage} path="/feed" exact />
+            <PrivateRoute component ={FeedPage} path="/feed" exact />
             <PrivateRoute component ={Profiles} path="/profiles" exact/> 
             <Route path="/login" exact>
               <Login />

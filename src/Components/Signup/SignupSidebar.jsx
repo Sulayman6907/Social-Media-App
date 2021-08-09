@@ -3,10 +3,8 @@ import styled from "styled-components";
 import logo from '../assests/logo.svg'
 import { Formik, yupToFormErrors, useField } from "formik";
 import * as Yup from 'yup';
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { CustomInput } from "./CustomInput";
-import { useState } from "react";
 import { WithToken } from "../../HOCs/withToken";
 import { useSignUp } from "../apis/useSignUp";
 import { Spinner, Button } from "react-bootstrap";
