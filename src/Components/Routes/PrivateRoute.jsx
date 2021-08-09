@@ -7,11 +7,12 @@ import { useEffect } from 'react';
 import { UserContext } from '../../Context/userContext';
 import { useRef } from 'react';
 
-export const PrivateRouteComponent = ({ component: Component, user, setUser,isLoggedIn, ...rest }) => {
+export const PrivateRouteComponent = ({ component: Component, user, setUser,isLoggedIn,setIsLoggedIn, ...rest }) => {
     const [res, getUser] = useGetUser()
 
     useEffect(() => {
         if (!user) {
+            setIsLoggedIn(false)
             const token = localStorage.getItem("token")
             if (token) {
                 getUser()
@@ -22,6 +23,7 @@ export const PrivateRouteComponent = ({ component: Component, user, setUser,isLo
     useEffect(() => {
         if (res.status === 200 ||304) {
             setUser(res.data)
+            setIsLoggedIn(true)
         }
     }, [res])
 

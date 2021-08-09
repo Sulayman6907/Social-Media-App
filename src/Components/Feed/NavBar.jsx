@@ -70,7 +70,7 @@ const CustomButton=styled.button`
     cursor: pointer;
     transition: all 0.2s ease-in;
     &:hover {
-      transform: translateY(-3px);
+        transform: translateY(-3px);
     }
   }
 `

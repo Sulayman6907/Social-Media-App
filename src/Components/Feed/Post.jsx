@@ -25,10 +25,11 @@ export const PostComponent = ({ post, user, statePost, setStatePost }) => {
             console.log(tempPosts)
             setStatePost(tempPosts)
             setErrorMessage('')
-        }
-        else if (likeRes.error === 400) {
+        } else if (likeRes.error === 400) {
             setErrorMessage("You have already Liked")
             console.log(errorMessage)
+        } else {
+            setErrorMessage('')
         }
     }, [likeRes, currentPostId])
 

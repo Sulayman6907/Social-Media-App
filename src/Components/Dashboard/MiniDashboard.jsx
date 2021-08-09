@@ -4,19 +4,8 @@ import { useEffect } from "react";
 import styled from "styled-components";
 import { useGetUser } from "../apis/useGetUser";
 
-const MiniDashboardComponent = ({ user, setUser }) => {
-  const [res, getUser] = useGetUser()
-
-  useEffect(() => {
-    getUser()
-  }, [])
-
-  useEffect(() => {
-    if (res.status===200) {
-      setUser(res.data)
-    }
-
-  }, [res])
+const MiniDashboardComponent = ({user}) => {
+  
   return (
     <div>
       <Customh1>Welcome {user && user.name} from User Context </Customh1>

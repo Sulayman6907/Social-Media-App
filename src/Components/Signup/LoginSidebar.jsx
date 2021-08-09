@@ -10,26 +10,18 @@ import { useLogin } from "../apis/useLogin";
 import { useEffect } from "react";
 import { Spinner, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useGetUser } from "../apis/useGetUser";
 
-export const LoginSidebarComponent = ({setUser,setIsLoggedIn}) => {
+
+export const LoginSidebarComponent = ({setIsLoggedIn}) => {
   const [res, login] = useLogin()
-  const[userRes,getUser]=useGetUser()
   const history = useHistory();
 
   useEffect(() => {
     if (res.status === 201) {
       setIsLoggedIn(true)
-      getUser()
-    }
-  }, [res])
-
-  useEffect(() => {
-    if (userRes.status === 200) {
-      setUser(userRes.data)
       history.push("/feed")
     }
-  }, [userRes])
+  }, [res])
 
   const submit = async ({ email, password }) => {
     login({ email, password })

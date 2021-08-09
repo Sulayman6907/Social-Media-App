@@ -6,20 +6,8 @@ import { PostLoader } from '../Loaders/PostLoader.jsx';
 import { WithToken } from "../../HOCs/withToken";
 import { useGetUser } from '../apis/useGetUser.jsx';
 
-export const PostsComponent = ({ statePost, setStatePost, user: userContext, setUser }) => {
+export const PostsComponent = ({ statePost, setStatePost }) => {
   const [postRes, getPost] = useGetPost();
-  const [userRes, getUser] = useGetUser()
-  
-
-  useEffect(() => {
-    getUser()
-  }, [])
-
-  useEffect(() => {
-    if (userRes) {
-      setUser(userRes.data)
-    }
-  }, [userRes])
 
   useEffect(() => {
     getPost()
