@@ -49,9 +49,9 @@ export const SidebarComponent = () => {
         {({ handleSubmit }) =>
           <>
             <h3>Sign Up</h3>
-            <CustomInput type="string " placeholder="name" name="name" label="name" />
-            <CustomInput type="email" name="email" placeholder="Email" label="email" />
-            <CustomInput type="password" placeholder="password" name="password" label="password" />
+            <CustomInput type="string " placeholder="name" name="name" label="Name" />
+            <CustomInput type="email" name="email" placeholder="Email" label="Email" />
+            <CustomInput type="password" placeholder="password" name="password" label="Password" />
             {res.loading ? <Button variant="primary" disabled>
               <Spinner
                 as="span"
@@ -62,7 +62,7 @@ export const SidebarComponent = () => {
               />
               <span className="visually-hidden">Loading...</span>
             </Button>
-              : <button type="button" onClick={() => { handleSubmit() }}>Login</button>
+              : <CustomButton type="button" onClick={() => { handleSubmit() }}>Login</CustomButton>
             }
           </>
         }
@@ -91,32 +91,23 @@ const Terms = styled.p`
   color: #808080;
   font-weight: 300;
 `
-const Form = styled.form`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  h3 {
-    color: #666666;
-    margin-bottom: 2rem;
-  }
-  button {
-    width: 75%;
-    max-width: 350px;
-    min-width: 250px;
-    height: 40px;
-    border: none;
-    margin: 1rem 0;
-    box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    background-color: #70edb9;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease-in;
-    &:hover {
-      transform: translateY(-3px);
-    }
+
+const CustomButton=styled.button`
+  width: 75%;
+  max-width: 350px;
+  min-width: 250px;
+  height: 40px;
+  border: none;
+  margin: 1rem 0;
+  box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  background-color: #70edb9;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  &:hover {
+    transform: translateY(-3px);
   }
 `
 const LogoWrapper = styled.div`

@@ -56,8 +56,8 @@ export const LoginSidebarComponent = ({setUser,setIsLoggedIn}) => {
         {({ handleSubmit }) =>
           <>
             <h3>Login now</h3>
-            <CustomInput type="email" name="email" placeholder="Email" label="email" />
-            <CustomInput type="password" placeholder="password" name="password" label="password" />
+            <CustomInput type="email" name="email" placeholder="Email" label="Email" />
+            <CustomInput type="password" placeholder="password" name="password" label="Password" />
             {res.loading ? <Button variant="primary" disabled>
               <Spinner
                 as="span"
@@ -68,7 +68,7 @@ export const LoginSidebarComponent = ({setUser,setIsLoggedIn}) => {
               />
               <span className="visually-hidden">Loading...</span>
             </Button>
-              : <button type="button" onClick={() => { handleSubmit() }}>Login</button>
+              : <CustomButton type="button" onClick={() => { handleSubmit() }}>Login</CustomButton>
             }
           </>
         }
@@ -80,23 +80,7 @@ export const LoginSidebarComponent = ({setUser,setIsLoggedIn}) => {
   );
 };
 
-const Terms = styled.p`
-  padding: 0 1rem;
-  text-align: center;
-  font-size: 10px;
-  color: #808080;
-  font-weight: 300;
-`
-const Form = styled.form`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  h3 {
-    color: #666666;
-    margin-bottom: 2rem;
-  }
-  button {
+const CustomButton=styled.button`
     width: 75%;
     max-width: 350px;
     min-width: 250px;
