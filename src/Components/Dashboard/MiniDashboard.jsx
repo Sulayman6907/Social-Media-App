@@ -1,8 +1,6 @@
 import React from "react";
 import { WithToken } from "../../HOCs/withToken";
-import { useEffect } from "react";
 import styled from "styled-components";
-import { useGetUser } from "../apis/useGetUser";
 
 const MiniDashboardComponent = ({user}) => {
   

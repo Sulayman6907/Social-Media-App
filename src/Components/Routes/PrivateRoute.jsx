@@ -1,13 +1,11 @@
-//WIP
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { WithToken } from '../../HOCs/withToken';
 import { useGetUser } from '../apis/useGetUser';
 import { useEffect } from 'react';
-import { UserContext } from '../../Context/userContext';
-import { useRef } from 'react';
+import { PostLoader } from "../Loaders/PostLoader";
 
-export const PrivateRouteComponent = ({ component: Component, user, setUser,isLoggedIn,setIsLoggedIn, ...rest }) => {
+export const PrivateRouteComponent = ({ component: Component, user, setUser, isLoggedIn, setIsLoggedIn, ...rest }) => {
     const [res, getUser] = useGetUser()
 
     useEffect(() => {
@@ -21,7 +19,7 @@ export const PrivateRouteComponent = ({ component: Component, user, setUser,isLo
     }, [])
 
     useEffect(() => {
-        if (res.status === 200 ||304) {
+        if (res.status === 200 || 304) {
             setUser(res.data)
             setIsLoggedIn(true)
         }
@@ -32,9 +30,11 @@ export const PrivateRouteComponent = ({ component: Component, user, setUser,isLo
         // Show the component only when the user is logged in
         // Otherwise, redirect the user to /login page
         <Route {...rest} render={props => (
-            isLoggedIn ?
-                <Component {...props} />
-                : <Redirect to="/login" />
+            res.loading ?
+                <PostLoader />
+                : isLoggedIn ?
+                    <Component {...props} />
+                    : <Redirect to="/login" />
         )} />
     );
 };

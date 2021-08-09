@@ -26,7 +26,7 @@ export const Profiles = () => {
             <p > Browse and connect with similiar people</p>
             <div >
                 {profiles?profiles.map(dev => (
-                    <Container key={dev.key} >
+                    <Container key={dev.user._id} >
                         <DivImg>
                         <AvatarImg  src={dev.user.avatar} alt="user" />
                         </DivImg>
@@ -41,8 +41,8 @@ export const Profiles = () => {
                         </div>
 
                         <CustomUl>
-                            {dev.skills.map(skill => (
-                                <CustomLi>
+                            {dev.skills.map((skill,index) => (
+                                <CustomLi key={index}>
                                     <BsCheck/>
                                  {skill}
                                 </CustomLi>

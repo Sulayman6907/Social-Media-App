@@ -6,9 +6,7 @@ import { Button } from 'react-bootstrap'
 import { WithToken } from '../../HOCs/withToken';
 import { WithPost } from '../../HOCs/WithPost';
 import { useEffect, useState } from 'react';
-import { useDoLike } from '../apis/useDoLike.jsx';
-import { useDoUnLike } from '../apis/useDoUnlike.jsx';
-import { useDeletePost } from '../apis/useDeletePost.jsx';
+import { useDoLike,useDoUnLike,useDeletePost } from '../apis';
 
 export const PostComponent = ({ post, user, statePost, setStatePost }) => {
     const [likeRes, doLike] = useDoLike()
@@ -22,12 +20,10 @@ export const PostComponent = ({ post, user, statePost, setStatePost }) => {
         const tempPosts = [...statePost]
         if (likeRes.status === 200 && tempPosts) {
             tempPosts[index].likes = likeRes.data
-            console.log(tempPosts)
             setStatePost(tempPosts)
             setErrorMessage('')
         } else if (likeRes.error === 400) {
             setErrorMessage("You have already Liked")
-            console.log(errorMessage)
         } else {
             setErrorMessage('')
         }
@@ -41,13 +37,10 @@ export const PostComponent = ({ post, user, statePost, setStatePost }) => {
             const likeIndex=likesArray.findIndex(likesArray=>likesArray.user===user._id )
             tempPosts[index].likes.splice(likeIndex,1)
             setStatePost(tempPosts)
-            console.log(tempPosts)
             setErrorMessage('')
-        }
-        else if (unlikeRes.error === 400) {
+        } else if (unlikeRes.error === 400) {
             setErrorMessage('Not liked')
-        }
-        else {
+        } else {
             setErrorMessage('')
         }
     }, [unlikeRes, currentPostId])
@@ -172,7 +165,7 @@ const Like = styled.button`
     cursor: pointer;
     transition: all 0.2s ease-in;
     &:hover {
-    transform: translateY(-3px);
+        transform: translateY(-3px);
     }
 `
 const Dislike = styled.button`
@@ -191,7 +184,7 @@ const Dislike = styled.button`
     cursor: pointer;
     transition: all 0.2s ease-in;
     &:hover {
-    transform: translateY(-3px);
+        transform: translateY(-3px);
     }
 `
 const LikesCounter = styled.div`
@@ -210,6 +203,6 @@ const DivImg = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    `
+`
 
 export const Post = WithToken(WithPost(PostComponent))

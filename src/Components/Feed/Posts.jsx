@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { Post } from './Post.jsx'
 import { WithPost } from '../../HOCs/WithPost.jsx';
-import { useGetPost } from '../apis/useGetPost.jsx';
+import { useGetPost } from '../apis';
 import { PostLoader } from '../Loaders/PostLoader.jsx';
 import { WithToken } from "../../HOCs/withToken";
-import { useGetUser } from '../apis/useGetUser.jsx';
+
 
 export const PostsComponent = ({ statePost, setStatePost }) => {
   const [postRes, getPost] = useGetPost();

@@ -11,7 +11,6 @@ import { useEffect } from "react";
 import { Spinner, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 export const LoginSidebarComponent = ({setIsLoggedIn}) => {
   const [res, login] = useLogin()
   const history = useHistory();

@@ -1,5 +1,8 @@
 import React from "react"
+import { PostLoader } from "../Loaders/PostLoader"
+
 export const EduExp = ({ profile }) => {
+
   return (
     <>
       {profile ?
@@ -22,7 +25,7 @@ export const EduExp = ({ profile }) => {
             <h2 >Education</h2>
             {profile.education != null &&
               profile.education.map((edu, index) => (
-                <div>
+                <div key={index}>
                   <h3>{edu.school}</h3>
                   <p>Sep 1993 - June 1999</p>
                   <p>
@@ -43,10 +46,8 @@ export const EduExp = ({ profile }) => {
               ))}
           </div>
         </>
-        : <p></p>}
-
+        : <PostLoader/>}
     </>
-
   )
 }
 
