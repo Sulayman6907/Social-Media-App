@@ -35,10 +35,12 @@ export const PostComponent = ({ post, user, statePost, setStatePost }) => {
     useEffect(() => {
         const index = statePost.findIndex(statePost => statePost._id === currentPostId)
         const tempPosts = [...statePost]
-        // const likeIndex=tempPosts[index].likes.findIndex(likes=>likes.user===user._id)
         if (unlikeRes.status === 200) {
-            tempPosts[index].likes.pop()
+            const likesArray= tempPosts[index].likes
+            const likeIndex=likesArray.findIndex(likesArray=>likesArray.user===user._id )
+            tempPosts[index].likes.splice(likeIndex,1)
             setStatePost(tempPosts)
+            console.log(tempPosts)
             setErrorMessage('')
         }
         else if (unlikeRes.error === 400) {
