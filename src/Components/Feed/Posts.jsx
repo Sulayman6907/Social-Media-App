@@ -5,7 +5,6 @@ import { useGetPost } from '../apis';
 import { PostLoader } from '../Loaders/PostLoader.jsx';
 import { WithToken } from "../../HOCs/withToken";
 
-
 export const PostsComponent = ({ statePost, setStatePost }) => {
   const [postRes, getPost] = useGetPost();
 

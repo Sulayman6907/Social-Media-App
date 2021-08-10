@@ -9,17 +9,20 @@ import { WithToken } from "../../HOCs/withToken";
 import { useSignUp } from "../apis";
 import { Spinner, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { useEffect } from "react";
 
 export const SidebarComponent = () => {
   const [res, signUp] = useSignUp()
   const history = useHistory()
 
-  const submit = async ({ name, email, password }) => {
-    const res = await signUp({ name, email, password })
+  useEffect(() => {
     if (res.status === 201) {
       history.push("/feed")
     }
+  }, [res])
+
+  const submit =  ({ name, email, password }) => {
+    signUp({ name, email, password })
   }
 
   const validationShape = {

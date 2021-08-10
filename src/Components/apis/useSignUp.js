@@ -9,7 +9,6 @@ export const useSignUp = () => {
         data: null,
         error: null
     })
-
     const signUp = async ({ name, email, password }) => {
         try {
             setRes({
@@ -28,6 +27,7 @@ export const useSignUp = () => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
             })
+            localStorage.setItem("token", res.data.token)
             setRes({
                 success: true,
                 loading: false,
@@ -35,7 +35,6 @@ export const useSignUp = () => {
                 data: res.data.token,
                 error: null
             })
-            return res
         } catch (err) {
             setRes({
                 success: false,

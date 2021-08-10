@@ -1,5 +1,8 @@
 import React from "react"
+import { PostLoader } from "../Loaders/PostLoader"
+
 export const ProfileAbout = ({ profile }) => {
+
     return (
         <div >
             {profile ?
@@ -15,7 +18,7 @@ export const ProfileAbout = ({ profile }) => {
                         ))}
                     </div>
                 </>
-                : <p></p>}
+                : <PostLoader/>}
         </div>
     )
 }

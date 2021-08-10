@@ -6,7 +6,6 @@ import { useEffect } from "react"
 import { ProfileAbout } from "../ProfilePage/ProfileAbout"
 import { EduExp } from "../ProfilePage/EduExp"
 
-
 export const Profile = () => {
     const { id } = useParams()
     const [res, getProfileById] = useProfileById()
@@ -22,5 +21,4 @@ export const Profile = () => {
             <EduExp profile={res.data} />
         </div>
     )
-
 }

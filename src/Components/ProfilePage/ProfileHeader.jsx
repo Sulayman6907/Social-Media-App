@@ -1,7 +1,10 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import { AiFillFacebook } from "react-icons/ai";
+import { PostLoader } from "../Loaders/PostLoader"
+
 export const ProfileHeader = ({ profile }) => {
+
   return (
     <div>
       {profile ?
@@ -57,7 +60,7 @@ export const ProfileHeader = ({ profile }) => {
             </div>
           )}
         </>
-        : <p></p>}
+        : <PostLoader/>}
     </div>
   )
 }
