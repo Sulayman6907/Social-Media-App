@@ -21,7 +21,7 @@ export const SidebarComponent = () => {
     }
   }, [res])
 
-  const submit =  ({ name, email, password }) => {
+  const submit = ({ name, email, password }) => {
     signUp({ name, email, password })
   }
 
@@ -95,7 +95,7 @@ const Terms = styled.p`
   font-weight: 300;
 `
 
-const CustomButton=styled.button`
+const CustomButton = styled.button`
   width: 75%;
   max-width: 350px;
   min-width: 250px;

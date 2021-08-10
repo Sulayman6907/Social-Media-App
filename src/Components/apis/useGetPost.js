@@ -11,7 +11,6 @@ export const useGetPost = () => {
   })
 
   const getPost = async () => {
-    
     try {
       const res = await authAxios.get("/api/posts");
       setPostRes({
