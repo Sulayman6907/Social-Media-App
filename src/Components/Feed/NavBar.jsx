@@ -50,8 +50,8 @@ const CustomLi = styled.li`
     padding: 20px;
 `
 const StyledLink = styled(Link)`
-  text-decoration: none;
-  position: relative;
+    text-decoration: none;
+    position: relative;
 `
 
 const CustomButton=styled.button`
