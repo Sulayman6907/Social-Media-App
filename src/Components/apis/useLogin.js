@@ -14,7 +14,6 @@ export const useLogin = () => {
             "Content-Type": "application/json"
         }
     };
-
     const login = async ({ email, password }) => {
         try {
             setRes({

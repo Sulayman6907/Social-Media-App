@@ -9,7 +9,6 @@ export const useGetUser = () => {
         data: null,
         error: null
     })
-
     const getUser = async () => {
         try {
             const res = await authAxios.get("/api/profile/me");

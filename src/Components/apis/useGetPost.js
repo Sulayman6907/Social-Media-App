@@ -9,7 +9,6 @@ export const useGetPost = () => {
     data: null,
     error: null
   })
-
   const getPost = async () => {
     try {
       const res = await authAxios.get("/api/posts");
