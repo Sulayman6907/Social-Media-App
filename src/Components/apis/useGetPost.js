@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { authAxios } from '../Utility/addToken';
 
 export const useGetPost = () => {

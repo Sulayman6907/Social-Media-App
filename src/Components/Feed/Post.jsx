@@ -67,7 +67,7 @@ export const PostComponent = ({ post, user, statePost, setStatePost }) => {
     const del = (id) => {
         doDel(id)
         setCurrentPostId(id)
-    }
+    };
 
     return (
         <Container>

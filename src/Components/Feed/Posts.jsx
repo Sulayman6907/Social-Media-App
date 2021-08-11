@@ -3,7 +3,6 @@ import { Post } from './Post.jsx'
 import { WithPost } from '../../HOCs/WithPost.jsx';
 import { useGetPost } from '../apis';
 import { PostLoader } from '../Loaders/PostLoader.jsx';
-import { WithToken } from "../../HOCs/withToken";
 
 export const PostsComponent = ({ statePost, setStatePost }) => {
   const [postRes, getPost] = useGetPost();
@@ -29,4 +28,4 @@ export const PostsComponent = ({ statePost, setStatePost }) => {
   )
 }
 
-export const Posts = WithToken(WithPost(PostsComponent))
+export const Posts = WithPost(PostsComponent)
