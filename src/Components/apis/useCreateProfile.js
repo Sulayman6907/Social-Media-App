@@ -19,7 +19,6 @@ export const useCreateProfile = () => {
         error: null
       })
       const res = await authAxios.post("/api/profile/me", formData)
-      console.log(res)
       setRes({
         success: true,
         loading: false,

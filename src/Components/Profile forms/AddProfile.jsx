@@ -2,23 +2,23 @@ import { React } from "react";
 import styled from "styled-components";
 import { Formik } from "formik";
 import * as Yup from 'yup';
-import { useHistory } from "react-router-dom";
 import { CustomInputForm } from "./CustomInputForm";
-import { useLogin } from "../apis/useLogin";
-import { useEffect } from "react";
-import { Spinner, Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Spinner} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useCreateProfile } from "../apis/useCreateProfile";
 
 export const AddProfile = () => {
-    const [res,createProfile]=useCreateProfile()
-    const history=useHistory()
+    const [res, createProfile] = useCreateProfile()
+    const [submitFeedback, setSubmitFeedback] = useState('')
 
-    useEffect(()=>{
-        if (res.success){
-            history.push("/dashboard")
+    useEffect(() => {
+        if (res.success) {
+            setSubmitFeedback("Profile added successfully")
+        }else{
+            setSubmitFeedback("Unable to set")
         }
-    },[res])
+    }, [res])
 
     const initialValues = {
         status: "",
@@ -34,9 +34,8 @@ export const AddProfile = () => {
         skills: Yup.string().required("Skills are required")
     }
 
-    const submit = ({ status,company,website,location,skills,bio }) => {
-        const formdata=JSON.stringify({status,company,website,location,skills,bio})
-        console.log(formdata)
+    const submit = ({ status, company, website, location, skills, bio }) => {
+        const formdata = JSON.stringify({ status, company, website, location, skills, bio })
         createProfile(formdata)
     }
 
@@ -49,6 +48,10 @@ export const AddProfile = () => {
             >
                 {({ handleSubmit }) =>
                     <>
+                        {submitFeedback ?
+                            <CustomSuccessMessage>{submitFeedback}</CustomSuccessMessage>
+                            : null
+                        }
                         <h3>Let's get some information to make your profile stand out</h3>
                         <CustomInputForm type="text" name="status" placeholder="status" label="Choose whatever you want, no questions asked!" />
                         <CustomInputForm type="text" name="company" placeholder="Company" label="Could be your own company or the league you work with" />
@@ -56,7 +59,21 @@ export const AddProfile = () => {
                         <CustomInputForm type="text" name="location" placeholder="location" label="Planet, City & state suggested (eg. Mars, Boton, UGALA)" />
                         <CustomInputForm type="text" name="skills" placeholder="skills" label="Please use comma separated your superpowers (eg. Money making, x-ray vision, flying etc)" />
                         <CustomInputForm type="text" name="bio" placeholder="bio" label="Tell us a little about yourself" />
-                        <CustomButton type="button" onClick={() => { handleSubmit() }}>Add Profile</CustomButton>
+                        <CustomButton type="button" onClick={() => { handleSubmit() }}>
+                            {res.loading ?
+                                <>
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                                    <span className="visually-hidden">Loading...</span>
+                                </>
+                                : 'Add Profile'
+                            }
+                        </CustomButton>
                     </>
                 }
             </Formik>
@@ -109,5 +126,9 @@ const Container = styled.div`
       cursor: pointer;
     }
   }
+`
+const CustomSuccessMessage = styled.h1`
+  background: green;
+  color: white;
 `
 
