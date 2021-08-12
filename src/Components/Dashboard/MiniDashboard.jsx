@@ -1,13 +1,14 @@
 import React from "react";
 import { WithToken } from "../../HOCs/withToken";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const MiniDashboardComponent = ({user}) => {
   
   return (
     <div>
       <Customh1>Welcome {user && user.name} to your Dashboard </Customh1>
-      <CustomButton> Add Profile</CustomButton>
+      <Link to="/add-profile"><CustomButton> Add Profile</CustomButton></Link>
       <CustomButton> Add Experience</CustomButton>
       <CustomButton> Add Education</CustomButton>
     </div>
