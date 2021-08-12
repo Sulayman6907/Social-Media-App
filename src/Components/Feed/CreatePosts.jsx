@@ -34,8 +34,10 @@ export const CreatePostsComponent = ({ statePost, setStatePost }) => {
         onChange={e => setPostText(e.target.value)}
       >
       </CustomText>
-      {res.loading ? <Button variant="primary" disabled>
-        <Spinner
+      <CustomButton type="submit" value="Submit">
+        {res.loading?
+        <>
+          <Spinner
           as="span"
           animation="border"
           size="sm"
@@ -43,9 +45,9 @@ export const CreatePostsComponent = ({ statePost, setStatePost }) => {
           aria-hidden="true"
         />
         <span className="visually-hidden">Loading...</span>
-      </Button>
-        : <CustomButton type="submit" value="Submit"> Submit </CustomButton>
-      }
+        </>
+        :"Post"}
+      </CustomButton>
     </Container>
   )
 }
@@ -63,9 +65,11 @@ const Container = styled.form`
   padding: 0 2rem;
   margin-bottom: 30px;  
 `
+
 const CustomText = styled.textarea`
   width: 100%;
 `
+
 const CustomButton=styled.button`
     width: 10%;
     height: 40px;
@@ -86,6 +90,7 @@ const CustomButton=styled.button`
     }
   }
 `
+
 const Customh2=styled.h2`
   font-family: Arial;
   margin-top: 10px;
