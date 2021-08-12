@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap'
 import { WithToken } from '../../HOCs/withToken';
 import { WithPost } from '../../HOCs/WithPost';
 import { useEffect, useState } from 'react';
-import { useDoLike,useDoUnLike,useDeletePost } from '../apis';
+import { useDoLike, useDoUnLike, useDeletePost } from '../apis';
 
 export const PostComponent = ({ post, user, statePost, setStatePost }) => {
     const [likeRes, doLike] = useDoLike()
@@ -33,9 +33,9 @@ export const PostComponent = ({ post, user, statePost, setStatePost }) => {
         const index = statePost.findIndex(statePost => statePost._id === currentPostId)
         const tempPosts = [...statePost]
         if (unlikeRes.status === 200) {
-            const likesArray= tempPosts[index].likes
-            const likeIndex=likesArray.findIndex(likesArray=>likesArray.user===user._id )
-            tempPosts[index].likes.splice(likeIndex,1)
+            const likesArray = tempPosts[index].likes
+            const likeIndex = likesArray.findIndex(likesArray => likesArray.user === user._id)
+            tempPosts[index].likes.splice(likeIndex, 1)
             setStatePost(tempPosts)
             setErrorMessage('')
         } else if (unlikeRes.error === 400) {
@@ -80,40 +80,52 @@ export const PostComponent = ({ post, user, statePost, setStatePost }) => {
             <Status>
                 <Customh1>Status</Customh1>
                 <StatusText>"  {post.text} "</StatusText>
-                {likeRes.loading ? <Button variant="primary" disabled>
-                    <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                    />
-                    <span className="visually-hidden">Loading...</span>
-                </Button>
-                    : <Like onClick={() => like(post._id)} > like</Like>
-                }
-                {unlikeRes.loading ? <Button variant="primary" disabled>
-                    <Spinner
-                        as="span"
-                        animation="border"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                    />
-                    <span className="visually-hidden">Loading...</span>
-                </Button>
-                    : <Dislike onClick={() => unlike(post._id)}>Unlike</Dislike>
-                }
+                <Like onClick={() => like(post._id)} disable={likeRes.loading}> {likeRes.loading ?
+                    <>
+                        <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />
+                        <span className="visually-hidden">Loading...</span>
+                    </>
+                    : 'Like'}
+                </Like>
+                <Dislike onClick={() => unlike(post._id)} disable={unlikeRes.loading}> {unlikeRes.loading ?
+                    <>
+                        <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                        />
+                        <span className="visually-hidden">Loading...</span>
+                    </>
+                    : 'Unlike'}</Dislike>
                 {user?._id === post.user ?
-                    <button
+                    <Delete
                         type="button"
                         onClick={() => del(post._id)}
                     >
-                        delete
-                    </button>
-                    : <span></span>
+                        {resDel.loading ?
+                            <>
+                                <Spinner
+                                    as="span"
+                                    animation="border"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />
+                                <span className="visually-hidden">Loading...</span>
+                            </>
+                            : 'Delete'
+                        }
+                    </Delete>
+                    : null
                 }
-
                 {errorMessage && (
                     <p> {errorMessage} </p>
                 )}
@@ -145,6 +157,7 @@ const Status = styled.div`
     flex-direction: column;
     align-items: center;
 `
+
 const StatusText = styled.h3`
     padding-top: 30px;
 `
@@ -177,6 +190,25 @@ const Dislike = styled.button`
     margin-right: 10px;
     box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
+    background-color: blue;
+    color: white ;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    &:hover {
+        transform: translateY(-3px);
+    }
+`
+const Delete=styled.button`
+    width: 15%;
+    height: 40px;
+    border: none;
+    margin: 1rem 0;
+    margin-top: 20px;
+    margin-right: 10px;
+    box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
     background-color: #FF0000;
     color: white ;
     align-items: center;
@@ -187,6 +219,7 @@ const Dislike = styled.button`
         transform: translateY(-3px);
     }
 `
+
 const LikesCounter = styled.div`
     margin-top: 30px
 `
