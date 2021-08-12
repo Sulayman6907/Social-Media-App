@@ -9,6 +9,7 @@ import { NavBar } from './Feed/NavBar.jsx';
 import { PrivateRoute } from './Routes/PrivateRoute.jsx';
 import { Profiles } from './ProfilePage/Profiles.jsx';
 import { Profile } from './Pages/Profile.jsx';
+import { Dashboard } from './Pages/Dashboard.jsx';
 
 export const App = () => {
   return (
@@ -22,6 +23,7 @@ export const App = () => {
             </Route>
             <PrivateRoute component ={FeedPage} path="/feed" exact />
             <PrivateRoute component ={Profiles} path="/profiles" exact/> 
+            <PrivateRoute component ={Dashboard} path="/dashboard" exact/> 
             <Route path="/login" exact>
               <Login />
             </Route>

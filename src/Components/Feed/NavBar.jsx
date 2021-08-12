@@ -16,6 +16,7 @@ export const NavBarComponent = ({setUser}) => {
         <Container>
             <CustomUl>
                 <Header> Fakebook 2.0</Header>
+                <StyledLink to="/dashboard"><CustomLi> Dashboard</CustomLi></StyledLink>
                 <StyledLink to="/feed"><CustomLi> Posts</CustomLi></StyledLink>
                 <StyledLink to="/profiles"><CustomLi> Profiles</CustomLi></StyledLink>
                 <CustomButton onClick={logout}> Logout</CustomButton>

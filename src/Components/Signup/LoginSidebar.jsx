@@ -18,7 +18,7 @@ export const LoginSidebarComponent = ({setIsLoggedIn}) => {
   useEffect(() => {
     if (res.status === 201) {
       setIsLoggedIn(true)
-      history.push("/feed")
+      history.push("/dashboard")
     }
   }, [res])
 
