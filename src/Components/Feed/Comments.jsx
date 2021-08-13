@@ -2,14 +2,25 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom";
 import { WithToken } from "../../HOCs/withToken";
+import { useDeleteComment } from "../apis";
+import { useEffect,useState } from "react";
 
-export const CommentsComponent = ({ comments,user }) => {
+export const CommentsComponent = ({ comments,user,id }) => {
+    const [res,deleteComment]=useDeleteComment()
+    const [useComments,setuseComments]=useState(comments)
+
+    useEffect(() => {
+        if (res.success){
+            setuseComments(res.data)
+        } 
+    }, [res])
+
     return (
         <>
-        <Container>
-            {comments !== [] &&
-                comments.map(comment => (
-                    <>
+        
+            {useComments !== [] &&
+                useComments.map((comment,index) => (
+                    <Container key={index}>
                     <div>
                         <DivImg>
                             <AvatarImg src={comment.avatar} alt="new" />
@@ -24,15 +35,15 @@ export const CommentsComponent = ({ comments,user }) => {
                 <Delete
                   type="button"
                   className="btn btn-danger"
-                //   onClick={() => removeComment(user._id, comment._id)}
+                  onClick={() => deleteComment(id, comment._id)}
                 >
                     Delete
                 </Delete>
               )}
-                </>
+                </Container>
                 ))}   
-        </Container>
-        {comments.length===0?
+        
+        {useComments.length===0?
             <Customh1>There are not comments</Customh1>
         : null } 
         </>

@@ -40,7 +40,7 @@ export const PostbyId = () => {
         {res.success?
         <>
         <Customh1>Comments</Customh1>
-        <Comments comments={res.data.comments.length>0?res.data.comments:[]}/>
+        <Comments comments={res.data.comments.length>0?res.data.comments:[]} id={id}/>
         </>
         :
         <PostLoader />}

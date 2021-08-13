@@ -9,7 +9,7 @@ export const useDeleteComment = () => {
         data: null,
         error: null
     })
-    const doDeleteComment = async (id,commentId) => {
+    const deleteComment = async (id,commentId) => {
         try {
             setRes({
                 success: false,
@@ -18,7 +18,8 @@ export const useDeleteComment = () => {
                 data: null,
                 error: null
             })
-            const res = await authAxios.delete( `/api/posts/comment/${id}/${commentId}`;
+            const res = await authAxios.delete( `/api/posts/comment/${id}/${commentId}`);
+            console.log(res)
             setRes({
                 success: true,
                 loading: false,
@@ -37,5 +38,5 @@ export const useDeleteComment = () => {
             console.log(err)
         }
     };
-    return [res, doDeleteComment]
+    return [res, deleteComment]
 }

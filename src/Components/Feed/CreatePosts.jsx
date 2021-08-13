@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { WithPost } from "../../HOCs/WithPost";
 import { useCreatePost } from "../apis";
-import { Spinner, Button } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const CreatePostsComponent = ({ statePost, setStatePost }) => {

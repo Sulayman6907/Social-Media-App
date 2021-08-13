@@ -12,4 +12,5 @@ export * from "./usAddEducation"
 export * from "./useCreateProfile"
 export * from "./useAddExperience"
 export * from "./useGetPostbyId"
+export * from "./useDeleteComment"
 
