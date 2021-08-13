@@ -6,7 +6,7 @@ import { CustomInputForm } from "./CustomInputForm";
 import { useEffect, useState } from "react";
 import { Spinner} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useCreateProfile } from "../apis/useCreateProfile";
+import { useCreateProfile } from "../apis";
 
 export const AddProfile = () => {
     const [res, createProfile] = useCreateProfile()

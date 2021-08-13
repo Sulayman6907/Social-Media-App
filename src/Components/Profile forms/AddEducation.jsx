@@ -6,11 +6,18 @@ import { CustomInputForm } from "./CustomInputForm";
 import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useCreateProfile } from "../apis/useCreateProfile";
+import { useAddEducation } from "../apis";
+
 
 export const AddEducation = () => {
     const [submitFeedback, setSubmitFeedback] = useState('')
+    const [res,addEducation]=useAddEducation()
 
+    useEffect(()=>{
+        if (res.success){
+            setSubmitFeedback("Education Added")
+        }
+    },[res])
     
 
     const initialValues = {
@@ -31,6 +38,7 @@ export const AddEducation = () => {
     const submit = ({ school,degree,fieldofstudy,from,current,to,description }) => {
         const formdata = JSON.stringify({ school,degree,fieldofstudy,from,current,to,description })
         console.log(formdata)
+        addEducation(formdata)
     }
 
     return (
@@ -54,7 +62,7 @@ export const AddEducation = () => {
                         <CustomInputForm type="date" name="to" placeholder="dd/mm/yyyy" label="To Date" />
                         <CustomInputForm type="text" name="description" placeholder="description" label="Program Description" />
                         <CustomButton type="button" onClick={() => { handleSubmit() }}>
-                            {/* {res.loading ?
+                            {res.loading ?
                                 <>
                                     <Spinner
                                         as="span"
@@ -65,8 +73,8 @@ export const AddEducation = () => {
                                     />
                                     <span className="visually-hidden">Loading...</span>
                                 </>
-                                : 'Add Profile'
-                            } */} Add Education
+                                : 'Add Education'
+                            } 
                         </CustomButton>
                     </>
                 }
