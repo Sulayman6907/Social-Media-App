@@ -5,6 +5,7 @@ import { useGetPostbyId } from "../apis"
 import { useEffect } from "react"
 import { PostLoader } from "../Loaders/PostLoader"
 import { Comments } from "./Comments"
+import { CreateComment } from "./CreateComment"
 
 export const PostbyId = () => {
     const { id } = useParams()
@@ -37,6 +38,7 @@ export const PostbyId = () => {
                 </>
                 : <PostLoader /> }     
         </Container>
+        <CreateComment />
         {res.success?
         <>
         <Customh1>Comments</Customh1>
