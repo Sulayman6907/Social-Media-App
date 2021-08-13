@@ -6,39 +6,30 @@ import { CustomInputForm } from "./CustomInputForm";
 import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useAddEducation } from "../apis";
 
 
-export const AddEducation = () => {
+
+export const AddExperience = () => {
     const [submitFeedback, setSubmitFeedback] = useState('')
-    const [res,addEducation]=useAddEducation()
-
-    useEffect(()=>{
-        if (res.success){
-            setSubmitFeedback("Education Added")
-        }
-    },[res])
     
 
     const initialValues = {
-        school: "",
-        degree: "",
-        fieldofstudy: "",
+        title: "",
+        company: "",
+        location: "",
         from: "",
-        current: false,
         to: "",
-        description: ""
+        current: false
     }
 
     const validationShape = {
-        school: Yup.string().required("status is required"),
-        degree: Yup.string().required("Skills are required")
+        title: Yup.string().required("status is required"),
+        company: Yup.string().required("Skills are required")
     }
 
-    const submit = ({ school,degree,fieldofstudy,from,current,to,description }) => {
-        const formdata = JSON.stringify({ school,degree,fieldofstudy,from,current,to,description })
+    const submit = ({ title, company, location, from, to, current }) => {
+        const formdata = JSON.stringify({ title, company, location, from, to, current })
         console.log(formdata)
-        addEducation(formdata)
     }
 
     return (
@@ -55,14 +46,13 @@ export const AddEducation = () => {
                             : null
                         }
                         <h3>Let's get some information about your Education</h3>
-                        <CustomInputForm type="text" name="school" placeholder="school" label="Your school?" />
-                        <CustomInputForm type="text" name="degree" placeholder="degree" label="Your majors?" />
-                        <CustomInputForm type="text" name="fieldofstudy" placeholder="field of study" label="What di you Study?"/>
+                        <CustomInputForm type="text" name="title" placeholder="stitle" label="What is your current Job?" />
+                        <CustomInputForm type="text" name="company" placeholder="company" label="Name of your Company?" />
+                        <CustomInputForm type="text" name="location" placeholder="location" label="Where are you currently located?" />
                         <CustomInputForm type="date" name="from" placeholder="dd/mm/yyyy" label="From Date" />
                         <CustomInputForm type="date" name="to" placeholder="dd/mm/yyyy" label="To Date" />
-                        <CustomInputForm type="text" name="description" placeholder="description" label="Program Description" />
                         <CustomButton type="button" onClick={() => { handleSubmit() }}>
-                            {res.loading ?
+                            {/* {res.loading ?
                                 <>
                                     <Spinner
                                         as="span"
@@ -74,7 +64,7 @@ export const AddEducation = () => {
                                     <span className="visually-hidden">Loading...</span>
                                 </>
                                 : 'Add Education'
-                            } 
+                            } */}
                         </CustomButton>
                     </>
                 }

@@ -12,6 +12,7 @@ import { Profile } from './Pages/Profile.jsx';
 import { Dashboard } from './Pages/Dashboard.jsx';
 import { AddProfile } from './Profile forms/AddProfile.jsx';
 import { AddEducation } from './Profile forms/AddEducation.jsx';
+import { AddExperience } from './Profile forms/AddExperience.jsx';
 
 export const App = () => {
   return (
@@ -28,6 +29,7 @@ export const App = () => {
             <PrivateRoute component ={Dashboard} path="/dashboard" exact/> 
             <PrivateRoute component ={AddProfile} path="/add-profile" exact/>
             <PrivateRoute component ={AddEducation} path="/add-education" exact/>
+            <PrivateRoute component ={AddExperience} path="/add-experience" exact/>
             <Route path="/login" exact>
               <Login />
             </Route>
