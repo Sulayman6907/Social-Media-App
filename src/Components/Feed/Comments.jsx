@@ -1,8 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom";
+import { WithToken } from "../../HOCs/withToken";
 
-export const Comments = ({ comments }) => {
+export const CommentsComponent = ({ comments,user }) => {
     return (
         <>
         <Container>
@@ -19,6 +20,15 @@ export const Comments = ({ comments }) => {
                     <Customh1>Status</Customh1>
                     <StatusText>"  {comment.text} "</StatusText>
                 </Status>
+                {user._id === comment.user && (
+                <Delete
+                  type="button"
+                  className="btn btn-danger"
+                //   onClick={() => removeComment(user._id, comment._id)}
+                >
+                    Delete
+                </Delete>
+              )}
                 </>
                 ))}   
         </Container>
@@ -71,3 +81,26 @@ const Container = styled.div`
     flex-direction: column;
     margin-bottom:30px;
 `
+
+const Delete = styled.button`
+    width: 15%;
+    height: 40px;
+    border: none;
+    margin: 1rem 0;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 325px;
+    box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    background-color: #FF0000;
+    color: white ;
+    align-items: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    &:hover {
+        transform: translateY(-3px);
+    }
+`
+
+export const Comments=WithToken(CommentsComponent)
