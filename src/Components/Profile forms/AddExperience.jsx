@@ -6,11 +6,19 @@ import { CustomInputForm } from "./CustomInputForm";
 import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useAddExperience } from "../apis";
 
 
 
 export const AddExperience = () => {
     const [submitFeedback, setSubmitFeedback] = useState('')
+    const [res,addExperience]=useAddExperience()
+
+    useEffect(()=>{
+        if (res.success){
+            setSubmitFeedback("Experience Added")
+        }
+    },[res])
     
 
     const initialValues = {
@@ -30,6 +38,7 @@ export const AddExperience = () => {
     const submit = ({ title, company, location, from, to, current }) => {
         const formdata = JSON.stringify({ title, company, location, from, to, current })
         console.log(formdata)
+        addExperience(formdata)
     }
 
     return (
@@ -46,13 +55,13 @@ export const AddExperience = () => {
                             : null
                         }
                         <h3>Let's get some information about your Education</h3>
-                        <CustomInputForm type="text" name="title" placeholder="stitle" label="What is your current Job?" />
+                        <CustomInputForm type="text" name="title" placeholder="title" label="What is your current Job?" />
                         <CustomInputForm type="text" name="company" placeholder="company" label="Name of your Company?" />
                         <CustomInputForm type="text" name="location" placeholder="location" label="Where are you currently located?" />
                         <CustomInputForm type="date" name="from" placeholder="dd/mm/yyyy" label="From Date" />
                         <CustomInputForm type="date" name="to" placeholder="dd/mm/yyyy" label="To Date" />
                         <CustomButton type="button" onClick={() => { handleSubmit() }}>
-                            {/* {res.loading ?
+                            {res.loading ?
                                 <>
                                     <Spinner
                                         as="span"
@@ -63,8 +72,8 @@ export const AddExperience = () => {
                                     />
                                     <span className="visually-hidden">Loading...</span>
                                 </>
-                                : 'Add Education'
-                            } */}
+                                : 'Add Experience'
+                            }
                         </CustomButton>
                     </>
                 }

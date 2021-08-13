@@ -13,7 +13,7 @@ export const EduExp = ({ profile }) => {
               profile.experience.map((exp, index) => (
                 <div key={index}>
                   <h3 >{exp.company}</h3>
-                  <p>Oct 2011 - Current</p>
+                  <p>From({exp.from}) - ({exp.to})</p>
                   <p>
                     <strong>Position: </strong>
                     {exp.title}
