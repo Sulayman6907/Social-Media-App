@@ -1,25 +1,60 @@
 import React from "react"
 import styled from "styled-components"
+import { Link } from "react-router-dom";
 
-export const Comments=({comments})=>{
-    <Container>
-            {res.success ?
-                <>
+export const Comments = ({ comments }) => {
+    return (
+        <Container>
+            {comments !== [] &&
+                comments.map(comment => (
+                    <>
                     <div>
                         <DivImg>
-                            <AvatarImg src={res.data.avatar} alt="new" />
+                            <AvatarImg src={comment.avatar} alt="new" />
                         </DivImg>
-                        <Customh1>{res.data.name}</Customh1>
+                        <Customh1>{comment.name}</Customh1>
                     </div>
                     <Status>
-                        <Customh1>Status</Customh1>
-                        <StatusText>"  {res.data.text} "</StatusText>
-                    </Status>
+                    <Customh1>Status</Customh1>
+                    <StatusText>"  {comment.text} "</StatusText>
+                </Status>
                 </>
-                : <PostLoader /> }
+                ))}
         </Container>
-
+    );
 }
+
+
+const Customh1 = styled.h1`
+    text-align:center;
+`
+
+const Status = styled.div`
+    padding-top: 30px;
+    display: flex;
+    align-items: left;
+    justify-context: left;
+    flex-direction: column;
+    align-items: center;
+`
+
+const StatusText = styled.h3`
+    padding-top: 30px;
+`
+
+const AvatarImg = styled.img`
+    height: 200px:
+    width: 200px; 
+    border-radius: 100px;
+    display: inline;
+    padding-top: 10px;
+`
+
+const DivImg = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
 
 const Container = styled.div`
     max-width: 760px;

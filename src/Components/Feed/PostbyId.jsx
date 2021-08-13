@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { useGetPostbyId } from "../apis"
 import { useEffect } from "react"
 import { PostLoader } from "../Loaders/PostLoader"
+import { Comments } from "./Comments"
 
 export const PostbyId = () => {
     const { id } = useParams()
@@ -18,6 +19,7 @@ export const PostbyId = () => {
     }, [res])
 
     return (
+        <>
         <Container>
             {res.success ?
                 <>
@@ -31,9 +33,13 @@ export const PostbyId = () => {
                         <Customh1>Status</Customh1>
                         <StatusText>"  {res.data.text} "</StatusText>
                     </Status>
+                    
                 </>
-                : <PostLoader /> }
+                : <PostLoader /> }     
         </Container>
+        <Customh1>Comments</Customh1>
+        <Comments comments={res.data.comments}/>
+        </>
     )
 
 
