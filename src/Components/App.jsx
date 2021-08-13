@@ -13,6 +13,7 @@ import { Dashboard } from './Pages/Dashboard.jsx';
 import { AddProfile } from './Profile forms/AddProfile.jsx';
 import { AddEducation } from './Profile forms/AddEducation.jsx';
 import { AddExperience } from './Profile forms/AddExperience.jsx';
+import { PostbyId } from './Feed/PostbyId.jsx';
 
 export const App = () => {
   return (
@@ -34,6 +35,7 @@ export const App = () => {
               <Login />
             </Route>
             <PrivateRoute component ={Profile} path={`/profile/:id`} />
+            <PrivateRoute component ={PostbyId} path={`/post/:id`} />
           </Switch>
         </PostProvider>
       </UserProvider>

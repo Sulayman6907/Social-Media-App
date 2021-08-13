@@ -11,4 +11,5 @@ export *  from "./useProfilebyId";
 export * from "./usAddEducation"
 export * from "./useCreateProfile"
 export * from "./useAddExperience"
+export * from "./useGetPostbyId"
 

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 import { WithToken } from '../../HOCs/withToken';
 import { WithPost } from '../../HOCs/WithPost';
 import { useEffect, useState } from 'react';
@@ -91,7 +91,9 @@ export const PostComponent = ({ post, user, statePost, setStatePost }) => {
                         />
                         <span className="visually-hidden">Loading...</span>
                     </>
-                    : 'Like'}
+                    : <span >
+                    Like {post.likes.length}
+                </span>}
                 </Like>
                 <Dislike onClick={() => unlike(post._id)} disable={unlikeRes.loading}> {unlikeRes.loading ?
                     <>
@@ -105,6 +107,17 @@ export const PostComponent = ({ post, user, statePost, setStatePost }) => {
                         <span className="visually-hidden">Loading...</span>
                     </>
                     : 'Unlike'}</Dislike>
+                {errorMessage && (
+                    <p> {errorMessage} </p>
+                )}
+                <Link to={`/post/${post._id}`} className="btn btn-primary">
+                    Discussion{" "}
+                    {post.comments.length > 0 && (
+                        <span >
+                            {post.comments.length}
+                        </span>
+                    )}
+                </Link>
                 {user?._id === post.user ?
                     <Delete
                         type="button"
@@ -126,10 +139,6 @@ export const PostComponent = ({ post, user, statePost, setStatePost }) => {
                     </Delete>
                     : null
                 }
-                {errorMessage && (
-                    <p> {errorMessage} </p>
-                )}
-                <LikesCounter >Total likes : {post.likes.length} </LikesCounter>
             </Status>
         </Container>
     )
@@ -200,7 +209,7 @@ const Dislike = styled.button`
         transform: translateY(-3px);
     }
 `
-const Delete=styled.button`
+const Delete = styled.button`
     width: 15%;
     height: 40px;
     border: none;
