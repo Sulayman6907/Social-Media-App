@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export const Comments = ({ comments }) => {
     return (
+        <>
         <Container>
             {comments !== [] &&
                 comments.map(comment => (
@@ -12,15 +13,19 @@ export const Comments = ({ comments }) => {
                         <DivImg>
                             <AvatarImg src={comment.avatar} alt="new" />
                         </DivImg>
-                        <Customh1>{comment.name}</Customh1>
+                        <Link to ={`/profile/${comment.user}`}><Customh1>{comment.name}</Customh1></Link>
                     </div>
                     <Status>
                     <Customh1>Status</Customh1>
                     <StatusText>"  {comment.text} "</StatusText>
                 </Status>
                 </>
-                ))}
+                ))}   
         </Container>
+        {comments.length===0?
+            <Customh1>There are not comments</Customh1>
+        : null } 
+        </>
     );
 }
 
