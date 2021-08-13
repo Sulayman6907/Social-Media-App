@@ -11,6 +11,7 @@ import { Profiles } from './ProfilePage/Profiles.jsx';
 import { Profile } from './Pages/Profile.jsx';
 import { Dashboard } from './Pages/Dashboard.jsx';
 import { AddProfile } from './Profile forms/AddProfile.jsx';
+import { AddEducation } from './Profile forms/AddEducation.jsx';
 
 export const App = () => {
   return (
@@ -26,6 +27,7 @@ export const App = () => {
             <PrivateRoute component ={Profiles} path="/profiles" exact/> 
             <PrivateRoute component ={Dashboard} path="/dashboard" exact/> 
             <PrivateRoute component ={AddProfile} path="/add-profile" exact/>
+            <PrivateRoute component ={AddEducation} path="/add-education" exact/>
             <Route path="/login" exact>
               <Login />
             </Route>

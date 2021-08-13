@@ -9,8 +9,8 @@ const MiniDashboardComponent = ({user}) => {
     <div>
       <Customh1>Welcome {user && user.name} to your Dashboard </Customh1>
       <Link to="/add-profile"><CustomButton> Add Profile</CustomButton></Link>
+      <Link to="/add-education"><CustomButton> Add Education</CustomButton></Link>
       <CustomButton> Add Experience</CustomButton>
-      <CustomButton> Add Education</CustomButton>
     </div>
   );
 };
