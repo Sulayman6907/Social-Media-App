@@ -27,7 +27,9 @@ export const EduExp = ({ profile }) => {
               profile.education.map((edu, index) => (
                 <div key={index}>
                   <h3>{edu.school}</h3>
-                  <p>Sep 1993 - June 1999</p>
+                  {edu.from && edu.to ?
+                    <p>From ({edu.from})- ({edu.to})</p>
+                    : 'No record to show'}
                   <p>
                     <strong>Degree: </strong>
                     {edu.degree}
@@ -36,17 +38,19 @@ export const EduExp = ({ profile }) => {
                     <strong>Field Of Study: </strong>
                     {edu.fieldofstudy}
                   </p>
-                  <p>
-                    <strong>Description: </strong>Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Dignissimos placeat, dolorum ullam
-                    ipsam, sapiente suscipit dicta eius velit amet aspernatur
-                    asperiores modi quidem expedita fugit.
-                  </p>
+                  <strong>Description: </strong>
+                  {edu.description ?
+                    <p>{edu.description}</p>
+                    : <p>Lorem ipsum dolor sit amet
+                      consectetur adipisicing elit. Dignissimos placeat, dolorum ullam
+                      ipsam, sapiente suscipit dicta eius velit amet aspernatur
+                      asperiores modi quidem expedita fugit. </p>
+                  }
                 </div>
               ))}
           </div>
         </>
-        : <PostLoader/>}
+        : <PostLoader />}
     </>
   )
 }
