@@ -8,18 +8,15 @@ import { Spinner } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAddExperience } from "../apis";
 
-
-
 export const AddExperience = () => {
     const [submitFeedback, setSubmitFeedback] = useState('')
-    const [res,addExperience]=useAddExperience()
+    const [res, addExperience] = useAddExperience()
 
-    useEffect(()=>{
-        if (res.success){
+    useEffect(() => {
+        if (res.success) {
             setSubmitFeedback("Experience Added")
         }
-    },[res])
-    
+    }, [res])
 
     const initialValues = {
         title: "",
@@ -99,7 +96,6 @@ const CustomButton = styled.button`
     &:hover {
       transform: translateY(-3px);
     }
-  }
 `
 
 const Container = styled.div`
@@ -126,7 +122,6 @@ const Container = styled.div`
       color: #ff8d8d;
       cursor: pointer;
     }
-  }
 `
 const CustomSuccessMessage = styled.h1`
   background: green;

@@ -98,7 +98,6 @@ const CustomButton = styled.button`
     &:hover {
       transform: translateY(-3px);
     }
-  }
 `
 
 const Container = styled.div`
@@ -125,7 +124,6 @@ const Container = styled.div`
       color: #ff8d8d;
       cursor: pointer;
     }
-  }
 `
 const CustomSuccessMessage = styled.h1`
   background: green;

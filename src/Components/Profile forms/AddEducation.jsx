@@ -8,17 +8,15 @@ import { Spinner } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAddEducation } from "../apis";
 
-
 export const AddEducation = () => {
     const [submitFeedback, setSubmitFeedback] = useState('')
-    const [res,addEducation]=useAddEducation()
+    const [res, addEducation] = useAddEducation()
 
-    useEffect(()=>{
-        if (res.success){
+    useEffect(() => {
+        if (res.success) {
             setSubmitFeedback("Education Added")
         }
-    },[res])
-    
+    }, [res])
 
     const initialValues = {
         school: "",
@@ -35,8 +33,8 @@ export const AddEducation = () => {
         degree: Yup.string().required("Skills are required")
     }
 
-    const submit = ({ school,degree,fieldofstudy,from,current,to,description }) => {
-        const formdata = JSON.stringify({ school,degree,fieldofstudy,from,current,to,description })
+    const submit = ({ school, degree, fieldofstudy, from, current, to, description }) => {
+        const formdata = JSON.stringify({ school, degree, fieldofstudy, from, current, to, description })
         console.log(formdata)
         addEducation(formdata)
     }
@@ -57,7 +55,7 @@ export const AddEducation = () => {
                         <h3>Let's get some information about your Education</h3>
                         <CustomInputForm type="text" name="school" placeholder="school" label="Your school?" />
                         <CustomInputForm type="text" name="degree" placeholder="degree" label="Your majors?" />
-                        <CustomInputForm type="text" name="fieldofstudy" placeholder="field of study" label="What di you Study?"/>
+                        <CustomInputForm type="text" name="fieldofstudy" placeholder="field of study" label="What di you Study?" />
                         <CustomInputForm type="date" name="from" placeholder="dd/mm/yyyy" label="From Date" />
                         <CustomInputForm type="date" name="to" placeholder="dd/mm/yyyy" label="To Date" />
                         <CustomInputForm type="text" name="description" placeholder="description" label="Program Description" />
@@ -74,7 +72,7 @@ export const AddEducation = () => {
                                     <span className="visually-hidden">Loading...</span>
                                 </>
                                 : 'Add Education'
-                            } 
+                            }
                         </CustomButton>
                     </>
                 }
@@ -100,7 +98,6 @@ const CustomButton = styled.button`
     &:hover {
       transform: translateY(-3px);
     }
-  }
 `
 
 const Container = styled.div`
