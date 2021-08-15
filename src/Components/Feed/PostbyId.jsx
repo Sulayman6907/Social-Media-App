@@ -38,11 +38,11 @@ export const PostbyId = () => {
                 </>
                 : <PostLoader /> }     
         </Container>
-        <CreateComment id={id} />
+        <CreateComment id={id} comments={res.data.comments} />
         {res.success?
         <>
         <Customh1>Comments</Customh1>
-        <Comments comments={res.data.comments.length>0?res.data.comments:[]} id={id}/>
+        <Comments  id={id} comments={res.data.comments}/>
         </>
         :
         <PostLoader />}

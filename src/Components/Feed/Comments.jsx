@@ -41,7 +41,6 @@ export const CommentsComponent = ({ comments,user,id }) => {
               )}
                 </Container>
                 ))}   
-        
         {useComments.length===0?
             <Customh1>There are not comments</Customh1>
         : null } 
@@ -49,9 +48,8 @@ export const CommentsComponent = ({ comments,user,id }) => {
     );
 }
 
-
 const Customh1 = styled.h1`
-    text-align:center;
+    text-align: center;
 `
 
 const Status = styled.div`
@@ -89,7 +87,7 @@ const Container = styled.div`
     border: 1px solid #363636;
     display: flex;
     flex-direction: column;
-    margin-bottom:30px;
+    margin-bottom: 30px;
 `
 
 const Delete = styled.button`

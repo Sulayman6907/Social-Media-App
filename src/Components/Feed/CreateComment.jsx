@@ -8,7 +8,6 @@ export const CreateComment = ({id}) => {
   const [commentText, setCommentText] = useState("")
   const [res,addComment]=useAddComment()
   
-
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     addComment(id,commentText)
@@ -45,9 +44,8 @@ export const CreateComment = ({id}) => {
   )
 }
 
-
 const CustomText = styled.textarea`
-  width: 100%;
+    width: 100%;
 `
 
 const CustomButton=styled.button`
@@ -66,26 +64,25 @@ const CustomButton=styled.button`
     cursor: pointer;
     transition: all 0.2s ease-in;
     &:hover {
-      transform: translateY(-3px);
+        transform: translateY(-3px);
     }
-  }
 `
 
 const Customh2=styled.h2`
-  font-family: Arial;
-  margin-top: 10px;
-  margin-bottom: 10px;
+    font-family: Arial;
+    margin-top: 10px;
+    margin-bottom: 10px;
 `
 const Container = styled.form`
-  min-width: 400px;
-  backdrop-filter: blur(35px);
-  background-color: rgba(255, 255, 255, 0.8);
-  border-color: black;
-  border-style: solid;
-  margin-left: 200px;
-  margin-right: 200px;
-  height: 100%;
-  text-align: center;
-  padding: 0 2rem;
-  margin-bottom: 30px;  
+    min-width: 400px;
+    backdrop-filter: blur(35px);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: black;
+    border-style: solid;
+    margin-left: 200px;
+    margin-right: 200px;
+    height: 100%;
+    text-align: center;
+    padding: 0 2rem;
+    margin-bottom: 30px;  
 `
