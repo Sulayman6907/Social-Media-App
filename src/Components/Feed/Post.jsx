@@ -152,10 +152,10 @@ const Container = styled.div`
     border: 1px solid #363636;
     display: flex;
     flex-direction: column;
-    margin-bottom:30px;
+    margin-bottom: 30px;
 `
 const Customh1 = styled.h1`
-    text-align:center;
+    text-align: center;
 `
 
 const Status = styled.div`
@@ -227,10 +227,6 @@ const Delete = styled.button`
     &:hover {
         transform: translateY(-3px);
     }
-`
-
-const LikesCounter = styled.div`
-    margin-top: 30px
 `
 
 const AvatarImg = styled.img`

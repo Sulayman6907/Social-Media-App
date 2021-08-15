@@ -61,7 +61,7 @@ const Container = styled.div`
     margin-bottom:30px;
 `
 const Customh1 = styled.h1`
-    text-align:center;
+    text-align: center;
 `
 
 const Status = styled.div`

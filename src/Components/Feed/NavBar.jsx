@@ -72,7 +72,6 @@ const CustomButton=styled.button`
     &:hover {
         transform: translateY(-3px);
     }
-  }
 `
 
 export const NavBar=WithToken(NavBarComponent)
