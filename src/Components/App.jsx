@@ -25,15 +25,15 @@ export const App = () => {
             <Route path="/" exact>
               <Signup />
             </Route>
+            <Route path="/login" exact>
+              <Login />
+            </Route>
             <PrivateRoute component ={FeedPage} path="/feed" exact />
             <PrivateRoute component ={Profiles} path="/profiles" exact/> 
             <PrivateRoute component ={Dashboard} path="/dashboard" exact/> 
             <PrivateRoute component ={AddProfile} path="/add-profile" exact/>
             <PrivateRoute component ={AddEducation} path="/add-education" exact/>
             <PrivateRoute component ={AddExperience} path="/add-experience" exact/>
-            <Route path="/login" exact>
-              <Login />
-            </Route>
             <PrivateRoute component ={Profile} path={`/profile/:id`} />
             <PrivateRoute component ={PostbyId} path={`/post/:id`} />
           </Switch>

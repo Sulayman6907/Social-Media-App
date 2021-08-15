@@ -17,7 +17,7 @@ export const SidebarComponent = () => {
 
   useEffect(() => {
     if (res.status === 201) {
-      history.push("/feed")
+      history.push("/dashboard")
     }
   }, [res])
 
@@ -30,6 +30,7 @@ export const SidebarComponent = () => {
     password: Yup.string().required(),
     email: Yup.string().email().required("Email is required")
   }
+
   const initialValues = {
     email: '',
     password: '',
