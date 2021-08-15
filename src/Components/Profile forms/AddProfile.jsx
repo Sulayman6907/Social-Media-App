@@ -15,8 +15,8 @@ export const AddProfile = () => {
     useEffect(() => {
         if (res.success) {
             setSubmitFeedback("Profile added successfully")
-        }else{
-            setSubmitFeedback("Unable to set")
+        }else {
+            setSubmitFeedback("")
         }
     }, [res])
 

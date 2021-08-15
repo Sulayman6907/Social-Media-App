@@ -17,7 +17,6 @@ export const CommentsComponent = ({ comments,user,id }) => {
 
     return (
         <>
-        
             {useComments !== [] &&
                 useComments.map((comment,index) => (
                     <Container key={index}>

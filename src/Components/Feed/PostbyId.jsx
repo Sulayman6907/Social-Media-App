@@ -38,7 +38,7 @@ export const PostbyId = () => {
                 </>
                 : <PostLoader /> }     
         </Container>
-        <CreateComment />
+        <CreateComment id={id} />
         {res.success?
         <>
         <Customh1>Comments</Customh1>
@@ -46,12 +46,8 @@ export const PostbyId = () => {
         </>
         :
         <PostLoader />}
-        
         </>
     )
-
-
-
 }
 
 const Container = styled.div`

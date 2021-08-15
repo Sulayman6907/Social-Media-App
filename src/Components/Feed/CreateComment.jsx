@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
 import { Spinner } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useAddComment } from "../apis";
 
-export const CreateComment = () => {
+export const CreateComment = ({id}) => {
   const [commentText, setCommentText] = useState("")
+  const [res,addComment]=useAddComment()
   
-
-//   useEffect(() => {
-//     if (res.status === 200) {
-//       const tempPost = [res.data, ...statePost];
-//       setStatePost(tempPost)
-//     }
-//   }, [res])
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    console.log(commentText)
+    addComment(id,commentText)
     setCommentText("")
   }
 
@@ -34,7 +28,7 @@ export const CreateComment = () => {
       >
       </CustomText>
       <CustomButton type="submit" value="Submit">
-        {/* {res.loading?
+        {res.loading?
         <>
           <Spinner
           as="span"
@@ -45,7 +39,7 @@ export const CreateComment = () => {
         />
         <span className="visually-hidden">Loading...</span>
         </>
-        :"Comment"} */}
+        :"Comment"}
       </CustomButton>
     </Container>
   )
