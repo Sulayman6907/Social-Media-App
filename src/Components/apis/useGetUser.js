@@ -11,12 +11,12 @@ export const useGetUser = () => {
     })
     const getUser = async () => {
         try {
-            const res = await authAxios.get("/api/profile/me");
+            const res = await authAxios.get("/api/auth");
             setRes({
                 success: true,
                 loading: false,
                 status: res.status,
-                data: res.data.user,
+                data: res.data,
                 error: null
             })
         } catch (error) {

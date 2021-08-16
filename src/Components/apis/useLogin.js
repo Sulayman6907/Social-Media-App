@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import axios from "axios";
+import { useState } from 'react';
+import { authAxios } from '../Utility/addToken';
 
 export const useLogin = () => {
     const [res, setRes] = useState({
@@ -9,12 +9,7 @@ export const useLogin = () => {
         data: null,
         error: null
     })
-    const config = {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    };
-    const login = async ({ email, password }) => {
+    const login = async (user) => {
         try {
             setRes({
                 success: false,
@@ -23,9 +18,7 @@ export const useLogin = () => {
                 data: null,
                 error: null
             })
-            const user = JSON.stringify({ email, password });
-            const url = "/api/auth";
-            const res = await axios.post(url, user, config)
+            const res = await authAxios.post("/api/auth", user)
             localStorage.setItem("token", res.data.token)
             setRes({
                 success: true,

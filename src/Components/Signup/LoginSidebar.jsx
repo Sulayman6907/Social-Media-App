@@ -23,7 +23,8 @@ export const LoginSidebarComponent = ({setIsLoggedIn}) => {
   }, [res])
 
   const submit = async ({ email, password }) => {
-    login({ email, password })
+    const user = JSON.stringify({ email, password });
+    login(user)
   }
 
   const validationShape = {

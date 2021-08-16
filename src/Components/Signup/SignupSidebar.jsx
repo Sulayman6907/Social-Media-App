@@ -22,7 +22,8 @@ export const SidebarComponent = () => {
   }, [res])
 
   const submit = ({ name, email, password }) => {
-    signUp({ name, email, password })
+    const user = JSON.stringify({ name,email, password });
+    signUp(user)
   }
 
   const validationShape = {

@@ -9,7 +9,7 @@ export const useGetAllProfiles= () => {
         data: null,
         error: null
     })
-    const getAllProfiles = async (id) => {
+    const getAllProfiles = async () => {
         try {
             setRes({
                 success: false,
