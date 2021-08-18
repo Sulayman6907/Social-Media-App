@@ -89,7 +89,6 @@ const CustomButton=styled.button`
     &:hover {
       transform: translateY(-3px);
     }
-  }
 `
 const LogoWrapper = styled.div`
   img {

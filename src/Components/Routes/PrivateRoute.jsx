@@ -17,14 +17,20 @@ export const PrivateRouteComponent = ({ component: Component, user, setUser, isL
                 getUser()
             }else{
                 setIsLoading(false)
+                
             }
         }
     }, [])
 
     useEffect(() => {
         if (res.status === 200 || 304) {
+            const token = localStorage.getItem("token")
             setUser(res.data)
             setIsLoggedIn(true)
+            if(!token){
+                setIsLoggedIn(false)
+            }
+            
             setIsLoading(false)
         }else{
             setIsLoading(false)

@@ -1,14 +1,11 @@
-import React from "react"
+import React,{ useEffect } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom";
-import { WithToken } from "../../HOCs/withToken";
 import { useDeleteComment } from "../apis";
-import { useEffect } from "react";
-import { WithComment } from "../../HOCs/withComment";
+import { WithToken,WithComment } from "../../HOCs";
 
 export const CommentsComponent = ({ comments, user, id, setComments }) => {
     const [res, deleteComment] = useDeleteComment()
-
 
     useEffect(() => {
         if (res.success) {

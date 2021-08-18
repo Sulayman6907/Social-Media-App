@@ -57,38 +57,38 @@ export const EduExp = ({ profile }) => {
 }
 
 const CenterDiv = styled.div`
-    padding-top: 30px;
-    display: flex;
-    align-items: left;
-    justify-context: left;
-    flex-direction: column;
-    align-items: center;
-    border-bottom: 5px solid red;
+  padding-top: 30px;
+  display: flex;
+  align-items: left;
+  justify-context: left;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 5px solid red;
     
 `
 
 const CenterDivEdu = styled.div`
-    padding-top: 30px;
-    display: flex;
-    align-items: left;
-    justify-context: left;
-    flex-direction: column;
-    align-items: center;
+  padding-top: 30px;
+  display: flex;
+  align-items: left;
+  justify-context: left;
+  flex-direction: column;
+  align-items: center;
     
 `
 
 const CenterText = styled.h3`
-    text-align: center;
-    border-bottom: 2px solid red;
+  text-align: center;
+  border-bottom: 2px solid red;
 `
 
 const CenterPara = styled.p`
-    text-align: center;
+  text-align: center;
 `
 const CenterTextCompany = styled.h3`
-    text-align: center;
-    border-bottom: 2px solid red;
-    padding-top: 30px;
+  text-align: center;
+  border-bottom: 2px solid red;
+  padding-top: 30px;
 `
 
 

@@ -1,8 +1,7 @@
-import React from "react"
+import React,{ useEffect } from "react"
 import { ProfileHeader,ProfileAbout,EduExp  } from "../Profile"
 import { useParams } from "react-router"
-import { useProfileById } from "../apis/useProfilebyId"
-import { useEffect } from "react"
+import { useProfileById } from "../apis"
 import styled from "styled-components"
 
 export const Profile = () => {

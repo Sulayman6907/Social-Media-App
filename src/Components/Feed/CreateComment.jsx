@@ -5,15 +5,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAddComment } from "../apis";
 import { WithComment } from "../../HOCs/withComment";
 
-const CreateCommentComponent = ({ id,setComments }) => {
+const CreateCommentComponent = ({ id, setComments }) => {
   const [commentText, setCommentText] = useState("")
   const [res, addComment] = useAddComment()
 
-  useEffect(()=>{
-    if(res.success){
+  useEffect(() => {
+    if (res.success) {
       setComments(res.data)
     }
-  },[res])
+  }, [res])
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
@@ -52,46 +52,46 @@ const CreateCommentComponent = ({ id,setComments }) => {
 }
 
 const CustomText = styled.textarea`
-    width: 100%;
+  width: 100%;
 `
 
 const CustomButton = styled.button`
-    width: 10%;
-    height: 40px;
-    border: none;
-    margin: 1rem 0;
-    margin-top: 20px;
-    margin-right: 10px;
-    box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    background-color: #FF0000;
-    color: white ;
-    align-items: center;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease-in;
-    &:hover {
-        transform: translateY(-3px);
-    }
+  width: 10%;
+  height: 40px;
+  border: none;
+  margin: 1rem 0;
+  margin-top: 20px;
+  margin-right: 10px;
+  box-shadow: 0px 14px 9px -15px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  background-color: #FF0000;
+  color: white ;
+  align-items: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  &:hover {
+      transform: translateY(-3px);
+  }
 `
 
 const Customh2 = styled.h2`
-    font-family: Arial;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  font-family: Arial;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
 const Container = styled.form`
-    min-width: 400px;
-    backdrop-filter: blur(35px);
-    background-color: rgba(255, 255, 255, 0.8);
-    border-color: black;
-    border-style: solid;
-    margin-left: 200px;
-    margin-right: 200px;
-    height: 100%;
-    text-align: center;
-    padding: 0 2rem;
-    margin-bottom: 30px;  
+  min-width: 400px;
+  backdrop-filter: blur(35px);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-color: black;
+  border-style: solid;
+  margin-left: 200px;
+  margin-right: 200px;
+  height: 100%;
+  text-align: center;
+  padding: 0 2rem;
+  margin-bottom: 30px;  
 `
 
 export const CreateComment = WithComment(CreateCommentComponent)

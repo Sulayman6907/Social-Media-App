@@ -1,11 +1,10 @@
-import React from "react"
+import React,{ useEffect } from "react"
 import { useParams } from "react-router"
 import styled from "styled-components"
 import { useGetPostbyId } from "../apis"
-import { useEffect } from "react"
 import { PostLoader } from "../Loaders/PostLoader"
 import { Comments, CreateComment } from "../Feed"
-import { WithComment } from "../../HOCs/withComment"
+import { WithComment } from "../../HOCs"
 
 export const PostbyIdComponent = ({setComments}) => {
     const { id } = useParams()

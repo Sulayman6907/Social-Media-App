@@ -19,7 +19,6 @@ export const useDeleteComment = () => {
                 error: null
             })
             const res = await authAxios.delete( `/api/posts/comment/${id}/${commentId}`);
-            console.log(res)
             setRes({
                 success: true,
                 loading: false,

@@ -19,7 +19,6 @@ export const useAddComment = () => {
                 error: null
             })
             const res = await authAxios.put(`/api/posts/comment/${id}`,{ text });
-            console.log(res)
             setRes({
                 success: true,
                 loading: false,

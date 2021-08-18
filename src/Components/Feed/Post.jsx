@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import { WithToken } from '../../HOCs/withToken';
-import { WithPost } from '../../HOCs/WithPost';
+import { WithToken, WithPost } from '../../HOCs';
 import { useEffect, useState } from 'react';
 import { useDoLike, useDoUnLike, useDeletePost } from '../apis';
 
@@ -92,8 +91,8 @@ export const PostComponent = ({ post, user, statePost, setStatePost }) => {
                         <span className="visually-hidden">Loading...</span>
                     </>
                     : <span >
-                    Like {post.likes.length}
-                </span>}
+                        Like {post.likes.length}
+                    </span>}
                 </Like>
                 <Dislike onClick={() => unlike(post._id)} disable={unlikeRes.loading}> {unlikeRes.loading ?
                     <>
