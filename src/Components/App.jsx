@@ -14,20 +14,18 @@ import { AddProfile } from './Profile forms/AddProfile.jsx';
 import { AddEducation } from './Profile forms/AddEducation.jsx';
 import { AddExperience } from './Profile forms/AddExperience.jsx';
 import { PostbyId } from './Feed/PostbyId.jsx';
+import { CommentProvider } from '../Context/CommentContext.jsx';
 
 export const App = () => {
   return (
     <Router>
       <UserProvider>
         <PostProvider>
+          <CommentProvider>
           <NavBar />
           <Switch>
-            <Route path="/" exact>
-              <Signup />
-            </Route>
-            <Route path="/login" exact>
-              <Login />
-            </Route>
+            <Route component ={Signup} path="/" exact />
+            <Route component ={Login} path="/login" exact />
             <PrivateRoute component ={FeedPage} path="/feed" exact />
             <PrivateRoute component ={Profiles} path="/profiles" exact/> 
             <PrivateRoute component ={Dashboard} path="/dashboard" exact/> 
@@ -37,6 +35,7 @@ export const App = () => {
             <PrivateRoute component ={Profile} path={`/profile/:id`} />
             <PrivateRoute component ={PostbyId} path={`/post/:id`} />
           </Switch>
+          </CommentProvider>
         </PostProvider>
       </UserProvider>
     </Router>

@@ -21,8 +21,8 @@ export const Profiles = () => {
 
     return (
         <>
-            <h1 >Community </h1>
-            <p > Browse and connect with similiar people</p>
+            <CenterText >Community </CenterText>
+            <CenterPara> Browse and connect with similiar people</CenterPara>
             <div >
                 {profiles ? profiles.map(dev => (
                     <Container key={dev.user._id} >
@@ -101,4 +101,11 @@ const CustomLi = styled.li`
     list-style-type: none;
     margin-left: -50px;
 `
+const CenterText = styled.h1`
+    text-align: center;
+    border-bottom: 2px solid red;
+`
 
+const CenterPara = styled.h3`
+    text-align: center;
+`

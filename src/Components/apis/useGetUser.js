@@ -4,14 +4,22 @@ import { authAxios } from '../Utility/addToken';
 export const useGetUser = () => {
     const [res, setRes] = useState({
         success: false,
-        loading: true,
+        loading: false,
         status: null,
         data: null,
         error: null
     })
     const getUser = async () => {
         try {
+            setRes({
+                success: true,
+                loading: true,
+                status: null,
+                data: null,
+                error: null
+            })
             const res = await authAxios.get("/api/auth");
+            console.log(res)
             setRes({
                 success: true,
                 loading: false,

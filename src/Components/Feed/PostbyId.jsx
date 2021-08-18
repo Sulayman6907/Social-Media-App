@@ -6,8 +6,9 @@ import { useEffect } from "react"
 import { PostLoader } from "../Loaders/PostLoader"
 import { Comments } from "./Comments"
 import { CreateComment } from "./CreateComment"
+import { WithComment } from "../../HOCs/withComment"
 
-export const PostbyId = () => {
+export const PostbyIdComponent = ({setComments}) => {
     const { id } = useParams()
     const [res, getpostbyId] = useGetPostbyId()
 
@@ -16,36 +17,40 @@ export const PostbyId = () => {
     }, [])
 
     useEffect(() => {
-        console.log(res)
+        if(res.success){
+            setComments(res.data.comments)
+        }   
     }, [res])
 
     return (
         <>
-        <Container>
+            <Container>
+                {res.success ?
+                    <>
+                        <div>
+                            <DivImg>
+                                <AvatarImg src={res.data.avatar} alt="new" />
+                            </DivImg>
+                            <Customh1>{res.data.name}</Customh1>
+                        </div>
+                        <Status>
+                            <Customh1>Status</Customh1>
+                            <StatusText>"  {res.data.text} "</StatusText>
+                        </Status>
+
+                    </>
+                    : <PostLoader />}
+            </Container>
+            {res.success ?
+                <CreateComment id={id}  />
+                : <PostLoader />}
             {res.success ?
                 <>
-                    <div>
-                        <DivImg>
-                            <AvatarImg src={res.data.avatar} alt="new" />
-                        </DivImg>
-                        <Customh1>{res.data.name}</Customh1>
-                    </div>
-                    <Status>
-                        <Customh1>Status</Customh1>
-                        <StatusText>"  {res.data.text} "</StatusText>
-                    </Status>
-                    
+                    <Customh1>Comments</Customh1>
+                    <Comments id={id} />
                 </>
-                : <PostLoader /> }     
-        </Container>
-        <CreateComment id={id} comments={res.data.comments} />
-        {res.success?
-        <>
-        <Customh1>Comments</Customh1>
-        <Comments  id={id} comments={res.data.comments}/>
-        </>
-        :
-        <PostLoader />}
+                :
+                <PostLoader />}
         </>
     )
 }
@@ -90,3 +95,5 @@ const DivImg = styled.div`
     align-items: center;
     justify-content: center;
 `
+
+export const PostbyId=WithComment(PostbyIdComponent)

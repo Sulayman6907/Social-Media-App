@@ -3,14 +3,21 @@ import styled from "styled-components";
 import { Spinner } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAddComment } from "../apis";
+import { WithComment } from "../../HOCs/withComment";
 
-export const CreateComment = ({id}) => {
+const CreateCommentComponent = ({ id,setComments }) => {
   const [commentText, setCommentText] = useState("")
-  const [res,addComment]=useAddComment()
-  
+  const [res, addComment] = useAddComment()
+
+  useEffect(()=>{
+    if(res.success){
+      setComments(res.data)
+    }
+  },[res])
+
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    addComment(id,commentText)
+    addComment(id, commentText)
     setCommentText("")
   }
 
@@ -27,18 +34,18 @@ export const CreateComment = ({id}) => {
       >
       </CustomText>
       <CustomButton type="submit" value="Submit">
-        {res.loading?
-        <>
-          <Spinner
-          as="span"
-          animation="border"
-          size="sm"
-          role="status"
-          aria-hidden="true"
-        />
-        <span className="visually-hidden">Loading...</span>
-        </>
-        :"Comment"}
+        {res.loading ?
+          <>
+            <Spinner
+              as="span"
+              animation="border"
+              size="sm"
+              role="status"
+              aria-hidden="true"
+            />
+            <span className="visually-hidden">Loading...</span>
+          </>
+          : "Comment"}
       </CustomButton>
     </Container>
   )
@@ -48,7 +55,7 @@ const CustomText = styled.textarea`
     width: 100%;
 `
 
-const CustomButton=styled.button`
+const CustomButton = styled.button`
     width: 10%;
     height: 40px;
     border: none;
@@ -68,7 +75,7 @@ const CustomButton=styled.button`
     }
 `
 
-const Customh2=styled.h2`
+const Customh2 = styled.h2`
     font-family: Arial;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -86,3 +93,5 @@ const Container = styled.form`
     padding: 0 2rem;
     margin-bottom: 30px;  
 `
+
+export const CreateComment = WithComment(CreateCommentComponent)

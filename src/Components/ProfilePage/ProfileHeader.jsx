@@ -1,66 +1,50 @@
 import React from "react"
-import { Link } from "react-router-dom"
-import { AiFillFacebook } from "react-icons/ai";
+import styled from "styled-components"
 import { PostLoader } from "../Loaders/PostLoader"
 
 export const ProfileHeader = ({ profile }) => {
 
   return (
-    <div>
+    <CustomDiv>
       {profile ?
         <>
-          <img src={profile.user.avatar} />
+          <DivImg>
+            <AvatarImg src={profile.user.avatar} />
+          </DivImg>
+          <Status>
           <h1 >{profile.user.name}</h1>
           <p >{profile.status}</p>
           <p>{profile.location}</p>
-          {profile.social != null && (
-            <div className="icons my-1">
-              <Link
-                to={profile.social.website || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fas fa-globe fa-2x"></i>
-              </Link>
-              <Link
-                to={profile.social.twitter || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-twitter fa-2x"></i>
-              </Link>
-              <Link
-                to={profile.social.facebook || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <AiFillFacebook></AiFillFacebook>
-              </Link>
-              <Link
-                to={profile.social.linkedin || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-linkedin fa-2x"></i>
-              </Link>
-              <Link
-                to={profile.social.youtube || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-youtube fa-2x"></i>
-              </Link>
-              <Link
-                to={profile.social.instagram || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-instagram fa-2x"></i>
-              </Link>
-            </div>
-          )}
+          </Status>
         </>
-        : <PostLoader/>}
-    </div>
+        : <PostLoader />}
+    </CustomDiv>
   )
 }
+
+const AvatarImg = styled.img`
+    height: 200px:
+    width: 200px; 
+    border-radius: 100px;
+    display: inline;
+    padding-top: 10px;
+`
+
+const DivImg = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+const CustomDiv = styled.div`
+    border-bottom: 5px solid red;
+`
+
+const Status = styled.div`
+    padding-top: 30px;
+    display: flex;
+    align-items: left;
+    justify-context: left;
+    flex-direction: column;
+    align-items: center;
+`

@@ -1,5 +1,6 @@
 import React from "react"
 import { PostLoader } from "../Loaders/PostLoader"
+import styled from "styled-components"
 
 export const EduExp = ({ profile }) => {
 
@@ -7,28 +8,28 @@ export const EduExp = ({ profile }) => {
     <>
       {profile ?
         <>
-          <div>
-            <h2 >Experience</h2>
+          <CenterDiv>
+            <CenterText >Experience</CenterText>
             {profile.experience != null &&
               profile.experience.map((exp, index) => (
                 <div key={index}>
-                  <h3 >{exp.company}</h3>
-                  <p>From({exp.from}) - ({exp.to})</p>
-                  <p>
+                  <CenterTextCompany >{exp.company}</CenterTextCompany>
+                  <CenterPara>From({exp.from}) - ({exp.to})</CenterPara>
+                  <CenterPara>
                     <strong>Position: </strong>
                     {exp.title}
-                  </p>
+                  </CenterPara>
                 </div>
               ))}
-          </div>
-          <div >
-            <h2 >Education</h2>
+          </CenterDiv>
+          <CenterDivEdu>
+            <CenterText >Education</CenterText>
             {profile.education != null &&
               profile.education.map((edu, index) => (
-                <div key={index}>
-                  <h3>{edu.school}</h3>
+                <CenterDivEdu key={index}>
+                  <CenterText>{edu.school}</CenterText>
                   {edu.from && edu.to ?
-                    <p>From ({edu.from})- ({edu.to})</p>
+                    <CenterPara>From ({edu.from})- ({edu.to})</CenterPara>
                     : 'No record to show'}
                   <p>
                     <strong>Degree: </strong>
@@ -40,22 +41,55 @@ export const EduExp = ({ profile }) => {
                   </p>
                   <strong>Description: </strong>
                   {edu.description ?
-                    <p>{edu.description}</p>
-                    : <p>Lorem ipsum dolor sit amet
+                    <CenterPara>{edu.description}</CenterPara>
+                    : <CenterPara>Lorem ipsum dolor sit amet
                       consectetur adipisicing elit. Dignissimos placeat, dolorum ullam
                       ipsam, sapiente suscipit dicta eius velit amet aspernatur
-                      asperiores modi quidem expedita fugit. </p>
+                      asperiores modi quidem expedita fugit. </CenterPara>
                   }
-                </div>
+                </CenterDivEdu>
               ))}
-          </div>
+          </CenterDivEdu>
         </>
         : <PostLoader />}
     </>
   )
 }
 
+const CenterDiv = styled.div`
+    padding-top: 30px;
+    display: flex;
+    align-items: left;
+    justify-context: left;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 5px solid red;
+    
+`
 
+const CenterDivEdu = styled.div`
+    padding-top: 30px;
+    display: flex;
+    align-items: left;
+    justify-context: left;
+    flex-direction: column;
+    align-items: center;
+    
+`
+
+const CenterText = styled.h3`
+    text-align: center;
+    border-bottom: 2px solid red;
+`
+
+const CenterPara = styled.p`
+    text-align: center;
+`
+const CenterTextCompany = styled.h3`
+    text-align: center;
+    border-bottom: 2px solid red;
+    padding-top: 30px;
+`
 
 
 
