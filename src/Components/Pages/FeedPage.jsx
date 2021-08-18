@@ -1,6 +1,5 @@
 import React from 'react'
-import { Posts } from '../Feed/Posts.jsx'
-import { CreatePosts } from '../Feed/CreatePosts.jsx'
+import { Posts,CreatePosts } from '../Feed'
 
 export const FeedPage = () => {
   return (

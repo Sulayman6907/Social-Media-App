@@ -1,10 +1,8 @@
 import React from "react"
-import { ProfileHeader } from "../ProfilePage/ProfileHeader"
+import { ProfileHeader,ProfileAbout,EduExp  } from "../Profile"
 import { useParams } from "react-router"
 import { useProfileById } from "../apis/useProfilebyId"
 import { useEffect } from "react"
-import { ProfileAbout } from "../ProfilePage/ProfileAbout"
-import { EduExp } from "../ProfilePage/EduExp"
 import styled from "styled-components"
 
 export const Profile = () => {

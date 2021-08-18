@@ -15,6 +15,8 @@ export const PrivateRouteComponent = ({ component: Component, user, setUser, isL
             const token = localStorage.getItem("token")
             if (token) {
                 getUser()
+            }else{
+                setIsLoading(false)
             }
         }
     }, [])
@@ -31,17 +33,15 @@ export const PrivateRouteComponent = ({ component: Component, user, setUser, isL
 
     return (
 
-        // Show the component only when the user is logged in
-        // Otherwise, redirect the user to /login page
         <Route {...rest} render={props => (
-            isloading ?
+            isloading ?(
                 <PostLoader />
-                : isLoggedIn ?
+                ): isLoggedIn ? (
                     <Component {...props} />
-                    : <Redirect to="/login" />
+                    ): <Redirect to="/login" />
+                
         )} />
-    );
-};
-
-export const PrivateRoute = WithToken(PrivateRouteComponent)
-
+        );
+    };
+    
+    export const PrivateRoute = WithToken(PrivateRouteComponent)

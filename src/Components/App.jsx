@@ -1,20 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Signup } from './Pages/Signup.jsx'
-import { FeedPage } from './Pages/FeedPage.jsx';
-import { Login } from './Pages/Login.jsx';
-import { PostProvider } from '../Context/PostContext.jsx';
-import { UserProvider } from '../Context/userContext.jsx';
-import { NavBar } from './Feed/NavBar.jsx';
+import { Signup,FeedPage,Login,Profile,Profiles,Dashboard,PostbyId } from './Pages'
+import { PostProvider,UserProvider,CommentProvider } from '../Context';
+import { NavBar } from './NavBar/NavBar.jsx';
 import { PrivateRoute } from './Routes/PrivateRoute.jsx';
-import { Profiles } from './ProfilePage/Profiles.jsx';
-import { Profile } from './Pages/Profile.jsx';
-import { Dashboard } from './Pages/Dashboard.jsx';
-import { AddProfile } from './Profile forms/AddProfile.jsx';
-import { AddEducation } from './Profile forms/AddEducation.jsx';
-import { AddExperience } from './Profile forms/AddExperience.jsx';
-import { PostbyId } from './Feed/PostbyId.jsx';
-import { CommentProvider } from '../Context/CommentContext.jsx';
+import { AddProfile,AddEducation,AddExperience } from './Profile forms';
 
 export const App = () => {
   return (

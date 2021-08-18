@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Link } from "react-router-dom";
 import { WithToken } from "../../HOCs/withToken";
 import { useDeleteComment } from "../apis";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { WithComment } from "../../HOCs/withComment";
 
 export const CommentsComponent = ({ comments, user, id, setComments }) => {

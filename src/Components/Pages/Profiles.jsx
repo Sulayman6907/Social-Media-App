@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useGetAllProfiles } from "../apis/useGetAllProfiles";
+import { useGetAllProfiles } from "../apis";
 import styled from "styled-components";
 import { BsFillChatSquareQuoteFill, BsCheck } from 'react-icons/bs'
 import 'bootstrap/dist/css/bootstrap.min.css';

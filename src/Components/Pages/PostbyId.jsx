@@ -4,8 +4,7 @@ import styled from "styled-components"
 import { useGetPostbyId } from "../apis"
 import { useEffect } from "react"
 import { PostLoader } from "../Loaders/PostLoader"
-import { Comments } from "./Comments"
-import { CreateComment } from "./CreateComment"
+import { Comments, CreateComment } from "../Feed"
 import { WithComment } from "../../HOCs/withComment"
 
 export const PostbyIdComponent = ({setComments}) => {
