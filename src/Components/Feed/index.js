@@ -1,0 +1,6 @@
+export * from "./Comments"
+export * from "./CreateComment"
+export * from "./CreatePosts"
+export * from "./Post"
+export * from "./Posts"
+export * from "../Pages/PostbyId"

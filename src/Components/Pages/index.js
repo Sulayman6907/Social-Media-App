@@ -1,0 +1,7 @@
+export * from "./Dashboard"
+export * from "./FeedPage"
+export * from "./Login"
+export * from "./PostbyId"
+export * from "./Profile"
+export * from "./Profiles"
+export * from "./Signup"
